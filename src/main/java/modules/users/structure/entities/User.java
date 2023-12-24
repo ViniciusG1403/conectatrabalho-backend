@@ -4,6 +4,9 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import modules.users.enumerations.UserRoles;
+import modules.users.enumerations.UserStatus;
+import modules.users.enumerations.UserType;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -38,7 +41,7 @@ public class User extends PanacheEntityBase {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private String status;
+    private UserStatus status;
 
     @Column(name = "lastlogin")
     private LocalDate lastLogin;
@@ -48,9 +51,9 @@ public class User extends PanacheEntityBase {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
-    private String role;
+    private UserRoles role;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false)
-    private String type;
+    private UserType type;
 }

@@ -13,13 +13,15 @@ import jakarta.ws.rs.core.Response;
 import modules.login.dtos.AuthRequest;
 import modules.login.dtos.AuthResponse;
 import modules.login.usecases.TokenUtils;
+import modules.users.enumerations.UserStatus;
+import modules.users.structure.entities.User;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -38,11 +40,6 @@ public class AuthResource {
     @ConfigProperty(name = "mp.jwt.verify.issuer")
     public String issuer;
 
-    /**
-     *
-     * @param authRequest
-     * @return
-     */
     @Transactional
     @PermitAll
     @POST
@@ -52,22 +49,25 @@ public class AuthResource {
     @APIResponse(responseCode = "200", description = "Login realizado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = AuthRequest.class)))
     @Operation(summary = "Login", description = "Realiza o login do usuário")
     public Response login(AuthRequest authRequest) {
-        final Usuario u = Usuario.find("email", authRequest.email).firstResult();
+        final User u = User.find("email", authRequest.email).firstResult();
         if (u == null) {
-            return Response.status(Response.Status.UNAUTHORIZED).entity("Usuário inexistente").build();
+            return Response.status(Response.Status.UNAUTHORIZED)
+                .entity("Usuário inexistente")
+                .build();
         }
-        if (!u.getSenha().equals(passwordEncoder.encode(authRequest.senha))) {
+        if (!u.getPassword().equals(passwordEncoder.encode(authRequest.senha))) {
             return Response.status(Response.Status.UNAUTHORIZED).entity("Senha invalida").build();
         }
-        if (Objects.equals(u.getSituacao(), AtivoInativo.INATIVO)) {
+        if (Objects.equals(u.getStatus(), UserStatus.INACTIVE)) {
             return Response.status(Response.Status.UNAUTHORIZED).entity("Usuário inativo").build();
         }
-        if (u != null && u.getSenha().equals(passwordEncoder.encode(authRequest.senha))) {
+        if (u != null && u.getPassword().equals(passwordEncoder.encode(authRequest.senha))) {
             try {
                 Response resp = Response.ok(new AuthResponse(
-                        TokenUtils.generateToken(u.getName(), u.getEmail(), u.getRole().toString(), duration, issuer, u.getId().toString()))).build();
-                u.setDhUltimoLogin(new Timestamp(System.currentTimeMillis()));
-                Usuario.persist(u);
+                    TokenUtils.generateToken(u.getName(), u.getEmail(), u.getRole().toString(),
+                        duration, issuer, u.getId().toString()))).build();
+                u.setLastLogin(LocalDate.now());
+                User.persist(u);
                 return resp;
             } catch (Exception e) {
                 return Response.status(Response.Status.UNAUTHORIZED).build();
