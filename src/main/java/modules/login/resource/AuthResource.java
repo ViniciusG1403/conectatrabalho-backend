@@ -1,6 +1,6 @@
 package modules.login.resource;
 
-import core.password.PBKDF2Encoder;
+import core.encoder.PBKDF2Encoder;
 import jakarta.annotation.security.PermitAll;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -13,11 +13,8 @@ import jakarta.ws.rs.core.Response;
 import modules.login.dtos.AuthRequest;
 import modules.login.dtos.AuthResponse;
 import modules.login.usecases.TokenUtils;
-import modules.shared.enumerations.AtivoInativo;
-import modules.usuarios.entities.Usuario;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.openapi.annotations.Operation;
-import org.eclipse.microprofile.openapi.annotations.headers.Header;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
