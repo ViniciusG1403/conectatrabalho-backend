@@ -8,6 +8,7 @@ import modules.users.enumerations.UserRoles;
 import modules.users.enumerations.UserStatus;
 import modules.users.enumerations.UserType;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -37,14 +38,17 @@ public class User extends PanacheEntityBase {
     private String password;
 
     @Column(name = "dh_register", nullable = false)
-    private LocalDate dhRegister;
+    private Timestamp dhRegister;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private UserStatus status;
 
     @Column(name = "lastlogin")
-    private LocalDate lastLogin;
+    private Timestamp lastLogin;
+
+    @Column(name = "lastUpdate")
+    private Timestamp lastUpdate;
 
     @Column(name = "code", length = 6)
     private String code;

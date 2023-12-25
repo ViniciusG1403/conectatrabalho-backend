@@ -10,6 +10,7 @@ CREATE TABLE user (
     dh_register TIMESTAMPTZ NOT NULL,
     status USER_STATUS NOT NULL,
     lastlogin TIMESTAMPTZ NULL,
+    lastUpdate TIMESTAMPTZ NULL,
     code TEXT NULL,
     role USER_ROLES NOT NULL,
     type USER_TYPE NOT NULL,
@@ -24,6 +25,7 @@ COMMENT ON COLUMN user.password IS E'Senha';
 COMMENT ON COLUMN user.dh_register IS E'Data e hora do cadastro';
 COMMENT ON COLUMN user.status IS E'Situação:\n0 - INACTIVE\n1 - ACTIVE';
 COMMENT ON COLUMN user.lastlogin IS E'Data e hora do ultimo login';
+COMMENT ON COLUMN user.lastUpdate IS E'Data e hora da última atualização';
 COMMENT ON COLUMN user.code IS E'Código gerado para confirmacões via email';
 COMMENT ON COLUMN user.role IS E'Nível de acesso:\n0 - BASIC\n1 - PREMIUM\n2 - MASTER';
 COMMENT ON COLUMN user.type IS E'Tipo de usuário:\n0 - CONTRACTOR\n1 - PROVIDER\n2 - BOTH\n3 - ADMINISTRATOR';

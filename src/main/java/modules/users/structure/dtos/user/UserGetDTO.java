@@ -19,8 +19,7 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 @RegisterForReflection
-public class UserDTO {
-
+public class UserGetDTO {
     private String id;
 
     @NotNull(message = "O nome é obrigatório")
@@ -32,11 +31,6 @@ public class UserDTO {
     @Size(min = 5, max = 60, message = "O email deve ter entre 5 e 60 caracteres")
     @Schema(description = "Email do usuário", required = true, example = "joaosantos@email.com")
     private String email;
-
-    @NotNull(message = "A senha é obrigatória")
-    @Size(min = 6, max = 20, message = "A senha deve ter entre 6 e 20 caracteres")
-    @Schema(description = "Senha do usuário", required = true, example = "123456@JOAO")
-    private String password;
 
     @NotNull(message = "A data de registro é obrigatória")
     @Schema(description = "Data de registro do usuário", required = true, example = "2024-01-01")
@@ -53,9 +47,6 @@ public class UserDTO {
 
     @Schema(description = "Data da última atualização do usuário", required = true, example = "2024-01-01")
     private Timestamp lastUpdate;
-
-    @Schema(description = "Código de verificação do usuário", required = true, example = "12A45B")
-    private String code;
 
     @Schema(description = "Regra do usuário", required = true, example = "0 - BASICO")
     private Integer role;
