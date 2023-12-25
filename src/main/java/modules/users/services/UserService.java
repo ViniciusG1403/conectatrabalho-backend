@@ -1,6 +1,8 @@
 package modules.users.services;
 
 import jakarta.enterprise.context.RequestScoped;
+import lombok.RequiredArgsConstructor;
+import modules.users.converters.UserConverter;
 import modules.users.structure.dtos.user.*;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
@@ -10,12 +12,14 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
  * @since 24/12/23
  */
 @RequestScoped
+@RequiredArgsConstructor
 @Schema(name = "Service de usuários", description = "Service responsável pelos usuários")
 public class UserService {
 
+    private final UserConverter userConverter;
 
     public UserDTO save(UserDTO dto){
-        return null;
+
     }
 
     public UserUpdateDTO update(UserUpdateDTO dto){

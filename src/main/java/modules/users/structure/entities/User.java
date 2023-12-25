@@ -9,7 +9,6 @@ import modules.users.enumerations.UserStatus;
 import modules.users.enumerations.UserType;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.util.UUID;
 
 /**
