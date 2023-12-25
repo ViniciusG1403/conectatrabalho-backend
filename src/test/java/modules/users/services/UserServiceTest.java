@@ -11,14 +11,9 @@ import modules.users.structure.dtos.user.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Objects;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.argThat;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 
 /**
  * @author Vinicius Gabriel <vinicius.prado@nexuscloud.com.br>
@@ -34,10 +29,10 @@ class UserServiceTest {
     UserService service;
 
     @Test
-    @DataSet(value = "datasets/userGetById.yml", cleanAfter = true)
+    @DataSet(value = "datasets/users/userGetById.yml", cleanAfter = true)
     @DisplayName("Deve ser possível buscar um usuário pelo id")
     void shouldBePossibleToGetAUserById() {
-        final var expectedId = "";
+        final var expectedId = "a6899a78-f819-4b90-8298-1966485dd90e";
         final var expectedName = "João da Silva";
         final var expectedEmail = "joao@mail.com";
         final var expectedStatus = UserStatus.ACTIVE;
@@ -92,9 +87,9 @@ class UserServiceTest {
 
     @Test
     @DisplayName("Deve ser possível atualizar um usuário")
-    @DataSet(value = "datasets/userUpdate.yml", cleanAfter = true)
+    @DataSet(value = "datasets/users/userUpdate.yml", cleanAfter = true)
     void shouldBePossibleToUpdateAUser() {
-        final var expectedId = UUID.fromString("");
+        final var expectedId = UUID.fromString("a6899a78-f819-4b90-8298-1966485dd90e");
         final var expectedName = "José da Costa";
         final var expectedEmail = "josecosta@mail.com";
 
@@ -113,9 +108,9 @@ class UserServiceTest {
 
     @Test
     @DisplayName("Deve ser possível inativar um usuário")
-    @DataSet(value = "datasets/userInative.yml", cleanAfter = true)
+    @DataSet(value = "datasets/users/userInative.yml", cleanAfter = true)
     void shouldBePossibleToInativeAUser() {
-        final var expectedId = UUID.fromString("");
+        final var expectedId = UUID.fromString("a6899a78-f819-4b90-8298-1966485dd90e");
         final var expectedCode = "94A0B3";
 
         UserInativeDTO userInativeDTO = new UserInativeDTO();
@@ -131,16 +126,16 @@ class UserServiceTest {
 
     @Test
     @DisplayName("Deve ser possível alterar a senha de um usuário")
-    @DataSet(value = "datasets/userChangePassword.yml", cleanAfter = true)
+    @DataSet(value = "datasets/users/userChangePassword.yml", cleanAfter = true)
     void shouldBePossibleToChangePasswordOfAUser() {
-        final var expectedId = UUID.fromString("");
+        final var expectedId = UUID.fromString("a6899a78-f819-4b90-8298-1966485dd90e");
         final var oldPassword = "654321";
         final var expectedPassword = "123456";
 
         UserChangePasswordDTO userDTO = new UserChangePasswordDTO();
         userDTO.setId(String.valueOf(expectedId));
         userDTO.setPassword(expectedPassword);
-        userDTO.setOldPassword("654321");
+        userDTO.setOldPassword(oldPassword);
 
         final UserChangePasswordDTO result = service.changePassword(userDTO);
         assertEquals(expectedId, UUID.fromString(result.getId()));

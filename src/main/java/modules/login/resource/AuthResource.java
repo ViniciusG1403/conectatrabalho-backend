@@ -21,6 +21,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -66,7 +67,7 @@ public class AuthResource {
                 Response resp = Response.ok(new AuthResponse(
                     TokenUtils.generateToken(u.getName(), u.getEmail(), u.getRole().toString(),
                         duration, issuer, u.getId().toString()))).build();
-                u.setLastLogin(LocalDate.now());
+                u.setLastLogin(new Timestamp(System.currentTimeMillis()));
                 User.persist(u);
                 return resp;
             } catch (Exception e) {
