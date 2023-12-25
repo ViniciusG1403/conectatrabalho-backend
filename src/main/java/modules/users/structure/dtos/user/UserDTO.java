@@ -38,11 +38,9 @@ public class UserDTO {
     @Schema(description = "Senha do usuário", required = true, example = "123456@JOAO")
     private String password;
 
-    @NotNull(message = "A data de registro é obrigatória")
     @Schema(description = "Data de registro do usuário", required = true, example = "2024-01-01")
     private Timestamp dhRegister;
 
-    @NotNull(message = "O status é obrigatório")
     @Min(value = 0, message = "O Status do usuário deve ser 0 - Inativo ou 1 - Ativo")
     @Max(value = 1, message = "O Status do usuário deve ser 0 - Inativo ou 1 - Ativo")
     @Schema(description = "Status do usuário", required = true, example = "1 - ATIVO")

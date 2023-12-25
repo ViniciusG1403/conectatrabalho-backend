@@ -2,6 +2,8 @@ package modules.users.services;
 
 import com.github.database.rider.cdi.api.DBRider;
 import com.github.database.rider.core.api.dataset.DataSet;
+import core.exceptions.InvalidFormatEmailException;
+import core.exceptions.NotNullException;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
 import modules.users.enumerations.UserRoles;
@@ -49,6 +51,146 @@ class UserServiceTest {
         assertEquals(expectedRole, UserRoles.valueOf(result.getRole()));
         assertEquals(expectedType, UserType.valueOf(result.getType()));
     }
+
+    @Test
+    @DisplayName("Deve ser possível buscar um usuário pelo email")
+    @DataSet(value = "datasets/users/userGetByEmail.yml", cleanAfter = true)
+    void shouldBePossibleToGetAUserByEmail() {
+        final var expectedId = "a6899a78-f819-4b90-8298-1966485dd90e";
+        final var expectedName = "João da Silva";
+        final var expectedEmail = "joao@mail.com";
+        final var expectedStatus = UserStatus.ACTIVE;
+        final var expectedRole = UserRoles.BASIC;
+        final var expectedType = UserType.BOTH;
+
+        final UserGetDTO result = service.getById(expectedEmail);
+
+        assertNotNull(result);
+        assertEquals(expectedId, result.getId());
+        assertEquals(expectedName, result.getName());
+        assertEquals(expectedEmail, result.getEmail());
+        assertEquals(expectedStatus, UserStatus.valueOf(result.getStatus()));
+        assertEquals(expectedRole, UserRoles.valueOf(result.getRole()));
+        assertEquals(expectedType, UserType.valueOf(result.getType()));
+    }
+
+    @Test
+    @DisplayName("Não deve ser possível salvar um usuário com o nome nulo")
+    void shouldNotBePossibleToSaveAUserWithNullName() {
+        final var expectedMessage = "O campo Nome não pode ser nulo";
+        final var expectedEmail = "joao@mail.com";
+        final var expectedPassword = "123456";
+        final var expectedStatus = UserStatus.ACTIVE;
+        final var expectedRole = UserRoles.BASIC;
+        final var expectedType = UserType.BOTH;
+
+        UserDTO userDTO = new UserDTO();
+        userDTO.setEmail(expectedEmail);
+        userDTO.setPassword(expectedPassword);
+        userDTO.setStatus(UserStatus.valueOf(expectedStatus));
+        userDTO.setRole(UserRoles.valueOf(expectedRole));
+        userDTO.setType(UserType.valueOf(expectedType));
+
+        final NotNullException exception = assertThrows(NotNullException.class,
+            () -> service.save(userDTO));
+
+        assertEquals(exception.getMessage(), expectedMessage);
+    }
+
+    @Test
+    @DisplayName("Não deve ser possível salvar um usuário com o email nulo")
+    void shouldNotBePossibleToSaveAUserWithNullEmail() {
+        final var expectedMessage = "O campo Email não pode ser nulo";
+        final var expectedName = "João da Silva";
+        final var expectedPassword = "123456";
+        final var expectedStatus = UserStatus.ACTIVE;
+        final var expectedRole = UserRoles.BASIC;
+        final var expectedType = UserType.BOTH;
+
+        UserDTO userDTO = new UserDTO();
+        userDTO.setName(expectedName);
+        userDTO.setPassword(expectedPassword);
+        userDTO.setStatus(UserStatus.valueOf(expectedStatus));
+        userDTO.setRole(UserRoles.valueOf(expectedRole));
+        userDTO.setType(UserType.valueOf(expectedType));
+
+        final NotNullException exception = assertThrows(NotNullException.class,
+            () -> service.save(userDTO));
+
+        assertEquals(exception.getMessage(), expectedMessage);
+    }
+
+    @Test
+    @DisplayName("Não deve ser possível salvar um usuário com a senha nula")
+    void shouldNotBePossibleToSaveAUserWithNullPassword() {
+        final var expectedMessage = "O campo Senha não pode ser nulo";
+        final var expectedName = "João da Silva";
+        final var expectedEmail = "joaosilva@mail.com";
+        final var expectedStatus = UserStatus.ACTIVE;
+        final var expectedRole = UserRoles.BASIC;
+        final var expectedType = UserType.BOTH;
+
+        UserDTO userDTO = new UserDTO();
+        userDTO.setName(expectedName);
+        userDTO.setEmail(expectedEmail);
+        userDTO.setStatus(UserStatus.valueOf(expectedStatus));
+        userDTO.setRole(UserRoles.valueOf(expectedRole));
+        userDTO.setType(UserType.valueOf(expectedType));
+
+        final NotNullException exception = assertThrows(NotNullException.class,
+            () -> service.save(userDTO));
+
+        assertEquals(exception.getMessage(), expectedMessage);
+    }
+
+    @Test
+    @DisplayName("Não deve ser possível salvar um usuário com o tipo nulo")
+    void shouldNotBePossibleToSaveAUserWithNullType() {
+        final var expectedMessage = "O campo Tipo de usuário não pode ser nulo";
+        final var expectedName = "João da Silva";
+        final var expectedPassword = "123456";
+        final var expectedEmail = "joaosilva@mail.com";
+        final var expectedStatus = UserStatus.ACTIVE;
+        final var expectedRole = UserRoles.BASIC;
+
+        UserDTO userDTO = new UserDTO();
+        userDTO.setName(expectedName);
+        userDTO.setEmail(expectedEmail);
+        userDTO.setPassword(expectedPassword);
+        userDTO.setStatus(UserStatus.valueOf(expectedStatus));
+        userDTO.setRole(UserRoles.valueOf(expectedRole));
+
+        final NotNullException exception = assertThrows(NotNullException.class,
+            () -> service.save(userDTO));
+
+        assertEquals(exception.getMessage(), expectedMessage);
+    }
+
+    @Test
+    @DisplayName("Não deve ser possível salvar um usuário com o formato de email incorreto")
+    void shouldNotBePossibleSaveAUserWithIncorrectEmailFormat() {
+        final var expectedMessage = "O campo email não está em um formato válido";
+        final var expectedName = "João da Silva";
+        final var expectedPassword = "123456";
+        final var expectedEmail = "joaosilva";
+        final var expectedStatus = UserStatus.ACTIVE;
+        final var expectedRole = UserRoles.BASIC;
+        final var expectedType = UserType.BOTH;
+
+        UserDTO userDTO = new UserDTO();
+        userDTO.setName(expectedName);
+        userDTO.setEmail(expectedEmail);
+        userDTO.setPassword(expectedPassword);
+        userDTO.setStatus(UserStatus.valueOf(expectedStatus));
+        userDTO.setRole(UserRoles.valueOf(expectedRole));
+        userDTO.setType(UserType.valueOf(expectedType));
+
+        final InvalidFormatEmailException exception = assertThrows(InvalidFormatEmailException.class,
+            () -> service.save(userDTO));
+
+        assertEquals(exception.getMessage(), expectedMessage);
+    }
+
 
     @Test
     @DataSet(cleanAfter = true)
