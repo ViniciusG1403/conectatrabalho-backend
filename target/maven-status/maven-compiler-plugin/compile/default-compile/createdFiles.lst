@@ -1,0 +1,15 @@
+modules/users/structure/entities/User.class
+modules/users/enumerations/UserStatus.class
+core/encoder/PBKDF2Encoder.class
+modules/users/structure/entities/ContractorProfile.class
+modules/login/dtos/AuthResponse.class
+modules/users/structure/dtos/user/UserDTO.class
+modules/login/usecases/TokenUtils.class
+modules/users/enumerations/UserRoles.class
+modules/users/structure/dtos/workerprofile/WorkerProfileDTO.class
+modules/users/structure/dtos/contractorprofile/ContractorProfileDTO.class
+modules/users/structure/entities/WorkerProfile.class
+modules/users/enumerations/UserType.class
+META-INF/panache-archive.marker
+modules/login/resource/AuthResource.class
+modules/login/dtos/AuthRequest.class
