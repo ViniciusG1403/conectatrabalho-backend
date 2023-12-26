@@ -63,7 +63,7 @@ class UserServiceTest {
         final var expectedRole = UserRoles.BASIC;
         final var expectedType = UserType.BOTH;
 
-        final UserGetDTO result = service.getById(expectedEmail);
+        final UserGetDTO result = service.getByEmail(expectedEmail);
 
         assertNotNull(result);
         assertEquals(expectedId, result.getId());
@@ -239,6 +239,7 @@ class UserServiceTest {
         userUpdateDTO.setId(String.valueOf(expectedId));
         userUpdateDTO.setName(expectedName);
         userUpdateDTO.setEmail(expectedEmail);
+        userUpdateDTO.setCode("1B7F83");
 
         final UserUpdateDTO result = service.update(userUpdateDTO);
 
@@ -272,7 +273,7 @@ class UserServiceTest {
     void shouldBePossibleToChangePasswordOfAUser() {
         final var expectedId = UUID.fromString("a6899a78-f819-4b90-8298-1966485dd90e");
         final var oldPassword = "654321";
-        final var expectedPassword = "123456";
+        final var expectedPassword = "jkQPMTH64P4DD0o7mvP3RcECAuf7ZpAG2du5uyUiWx4=";
 
         UserChangePasswordDTO userDTO = new UserChangePasswordDTO();
         userDTO.setId(String.valueOf(expectedId));

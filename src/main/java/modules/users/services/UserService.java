@@ -1,17 +1,23 @@
 package modules.users.services;
 
 import core.encoder.PBKDF2Encoder;
+import core.exceptions.NotNullException;
 import core.validates.Validators;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.transaction.Transactional;
+import jakarta.validation.ValidationException;
+import jakarta.ws.rs.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import modules.users.converters.UserConverter;
+import modules.users.converters.UserGetConverter;
 import modules.users.enumerations.UserStatus;
 import modules.users.structure.dtos.user.*;
 import modules.users.structure.entities.User;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import java.sql.Timestamp;
+import java.util.Objects;
+import java.util.UUID;
 
 /**
  * @author Vinicius Gabriel <vinicius.prado@nexuscloud.com.br>
@@ -24,6 +30,8 @@ import java.sql.Timestamp;
 public class UserService {
 
     private final UserConverter userConverter;
+
+    private final UserGetConverter userGetConverter;
 
     private final Validators validators;
 
@@ -48,22 +56,74 @@ public class UserService {
     }
 
     public UserUpdateDTO update(UserUpdateDTO dto) {
-        return null;
+        User user = User.findById(UUID.fromString(dto.getId()));
+        if (user == null) {
+            throw new NotFoundException("Usuário não encontrado");
+        }
+        if(!Objects.equals(user.getCode(), dto.getCode())){
+            throw new ValidationException("Código de atualização é inválido");
+        }
+        if (dto.getName() != null) {
+            user.setName(dto.getName());
+        }
+        if (dto.getEmail() != null) {
+            user.setEmail(dto.getEmail());
+        }
+        User.persist(user);
+        dto.setEmail(user.getEmail());
+        dto.setName(user.getName());
+        return dto;
     }
 
     public UserGetDTO getById(String id) {
-        return null;
+        User user = User.findById(UUID.fromString(id));
+        if (user == null) {
+            throw new NotFoundException("Usuário não encontrado");
+        }
+        return userGetConverter.ormToDto(user);
     }
 
     public UserGetDTO getByEmail(String email) {
-        return null;
+        User user = User.find("email", email).firstResult();
+        if (user == null) {
+            throw new NotFoundException("Usuário não encontrado");
+        }
+        return userGetConverter.ormToDto(user);
     }
 
-    public void inativeUser(UserInativeDTO id) {
+    @Transactional
+    public void inativeUser(UserInativeDTO dto) {
+        User user = User.findById(UUID.fromString(dto.getId()));
+        if (user == null) {
+            throw new NotFoundException("Usuário não encontrado");
+        }
+        if(!Objects.equals(user.getCode(), dto.getCode())){
+            throw new ValidationException("Código de inativação inválido");
+        }
+        user.setStatus(UserStatus.INACTIVE);
+        user.setLastUpdate(new Timestamp(System.currentTimeMillis()));
+        user.setCode(null);
+        User.persist(user);
     }
 
+    @Transactional
     public UserChangePasswordDTO changePassword(UserChangePasswordDTO dto) {
-        return null;
+        User user = User.findById(UUID.fromString(dto.getId()));
+        if (user == null) {
+            throw new NotFoundException("Usuário não encontrado");
+        }
+        if(!Objects.equals(dto.getCode(), user.getCode())){
+            throw new ValidationException("Código de alteração de senha inválido");
+        }
+        if(!Objects.equals(encoder.encode(dto.getOldPassword()), user.getPassword())){
+            throw new ValidationException("Senha atual inválida");
+        }
+        user.setPassword(encoder.encode(dto.getPassword()));
+        user.setLastUpdate(new Timestamp(System.currentTimeMillis()));
+        user.setCode(null);
+        User.persist(user);
+        dto.setPassword(user.getPassword());
+        return dto;
     }
 
 }

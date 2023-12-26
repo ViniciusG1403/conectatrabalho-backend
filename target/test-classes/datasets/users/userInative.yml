@@ -7,6 +7,6 @@ app_users:
     status: ACTIVE
     lastlogin: NULL
     lastUpdate: NULL
-    code: NULL
+    code: 94A0B3
     role: BASIC
     type: BOTH

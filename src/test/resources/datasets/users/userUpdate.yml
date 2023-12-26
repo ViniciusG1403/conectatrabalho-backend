@@ -1,4 +1,4 @@
-user:
+app_users:
   - id: a6899a78-f819-4b90-8298-1966485dd90e
     name: João da Silva
     email: joao@mail.com
@@ -7,6 +7,6 @@ user:
     status: ACTIVE
     lastlogin: NULL
     lastUpdate: NULL
-    code: NULL
+    code: 1B7F83
     role: BASIC
     type: BOTH
