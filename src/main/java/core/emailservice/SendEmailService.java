@@ -14,7 +14,8 @@ import java.util.Properties;
  * @version 1.0
  * @since 25/12/23
  */
-public abstract class SendEmailService {
+@RequestScoped
+public class SendEmailService {
     @ConfigProperty(name = "mail.credentials.password")
     private String passwordMail;
 
