@@ -9,6 +9,7 @@ import jakarta.ws.rs.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import modules.users.converters.UserConverter;
 import modules.users.converters.UserGetConverter;
+import modules.users.enumerations.UserRoles;
 import modules.users.enumerations.UserStatus;
 import modules.users.structure.dtos.user.*;
 import modules.users.structure.entities.User;
@@ -49,6 +50,7 @@ public class UserService {
 
         dto.setDhRegister(new Timestamp(System.currentTimeMillis()));
         dto.setStatus(UserStatus.INACTIVE.ordinal());
+        dto.setRole(UserRoles.BASIC.ordinal());
         dto.setPassword(encoder.encode(dto.getPassword()));
         dto.setCode(generateRandomCode.execute());
 

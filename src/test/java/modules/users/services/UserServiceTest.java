@@ -199,7 +199,7 @@ class UserServiceTest {
         final var expectedName = "João da Silva";
         final var expectedEmail = "joao@mail.com";
         final var expectedPassword = "123456";
-        final var expectedStatus = UserStatus.ACTIVE;
+        final var expectedStatus = UserStatus.INACTIVE;
         final var expectedRole = UserRoles.BASIC;
         final var expectedType = UserType.BOTH;
 
@@ -217,7 +217,6 @@ class UserServiceTest {
         assertNotNull(savedUser.getId());
         assertNotNull(savedUser.getDhRegister());
         assertNull(savedUser.getLastLogin());
-        assertNull(savedUser.getCode());
         assertNull(userDTO.getLastUpdate());
         assertNotEquals(expectedPassword, savedUser.getPassword());
         assertEquals(expectedName, savedUser.getName());

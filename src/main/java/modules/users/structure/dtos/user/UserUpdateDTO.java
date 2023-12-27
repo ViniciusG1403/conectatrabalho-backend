@@ -23,12 +23,10 @@ public class UserUpdateDTO {
 
     private String id;
 
-    @NotNull(message = "O nome é obrigatório")
     @Size(min = 3, max = 60, message = "O nome deve ter entre 3 e 60 caracteres")
     @Schema(description = "Nome do usuário", required = true, example = "João dos Santos")
     private String name;
 
-    @NotNull(message = "O email é obrigatório")
     @Size(min = 5, max = 60, message = "O email deve ter entre 5 e 60 caracteres")
     @Schema(description = "Email do usuário", required = true, example = "joaosantos@email.com")
     private String email;
