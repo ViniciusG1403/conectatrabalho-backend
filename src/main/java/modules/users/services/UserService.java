@@ -1,7 +1,6 @@
 package modules.users.services;
 
 import core.encoder.PBKDF2Encoder;
-import core.exceptions.NotNullException;
 import core.validates.Validators;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.transaction.Transactional;
@@ -60,7 +59,7 @@ public class UserService {
         if (user == null) {
             throw new NotFoundException("Usuário não encontrado");
         }
-        if(!Objects.equals(user.getCode(), dto.getCode())){
+        if (!Objects.equals(user.getCode(), dto.getCode())) {
             throw new ValidationException("Código de atualização é inválido");
         }
         if (dto.getName() != null) {
@@ -97,7 +96,7 @@ public class UserService {
         if (user == null) {
             throw new NotFoundException("Usuário não encontrado");
         }
-        if(!Objects.equals(user.getCode(), dto.getCode())){
+        if (!Objects.equals(user.getCode(), dto.getCode())) {
             throw new ValidationException("Código de inativação inválido");
         }
         user.setStatus(UserStatus.INACTIVE);
@@ -112,10 +111,10 @@ public class UserService {
         if (user == null) {
             throw new NotFoundException("Usuário não encontrado");
         }
-        if(!Objects.equals(dto.getCode(), user.getCode())){
+        if (!Objects.equals(dto.getCode(), user.getCode())) {
             throw new ValidationException("Código de alteração de senha inválido");
         }
-        if(!Objects.equals(encoder.encode(dto.getOldPassword()), user.getPassword())){
+        if (!Objects.equals(encoder.encode(dto.getOldPassword()), user.getPassword())) {
             throw new ValidationException("Senha atual inválida");
         }
         user.setPassword(encoder.encode(dto.getPassword()));
