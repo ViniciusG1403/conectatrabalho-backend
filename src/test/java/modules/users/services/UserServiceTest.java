@@ -266,6 +266,23 @@ class UserServiceTest {
 
         assertEquals(UserStatus.INACTIVE, UserStatus.valueOf(result.getStatus()));
     }
+    @Test
+    @DisplayName("Deve ser possível ativar um usuário")
+    @DataSet(value = "datasets/users/userActive.yml", cleanAfter = true)
+    void shouldBePossibleToActiveAUser() {
+        final var expectedId = UUID.fromString("a6899a78-f819-4b90-8298-1966485dd90e");
+        final var expectedCode = "94A0B3";
+
+        UserActiveDTO userActiveDTO = new UserActiveDTO();
+        userActiveDTO.setId(String.valueOf(expectedId));
+        userActiveDTO.setCode(expectedCode);
+
+        service.activeUser(userActiveDTO);
+
+        final UserGetDTO result = service.getById(String.valueOf(expectedId));
+
+        assertEquals(UserStatus.ACTIVE, UserStatus.valueOf(result.getStatus()));
+    }
 
     @Test
     @DisplayName("Deve ser possível alterar a senha de um usuário")

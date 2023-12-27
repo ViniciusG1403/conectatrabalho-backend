@@ -12,6 +12,7 @@ import modules.users.converters.UserGetConverter;
 import modules.users.enumerations.UserStatus;
 import modules.users.structure.dtos.user.*;
 import modules.users.structure.entities.User;
+import modules.users.usecases.GenerateRandomCode;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import java.sql.Timestamp;
@@ -34,6 +35,8 @@ public class UserService {
 
     private final Validators validators;
 
+    private final GenerateRandomCode generateRandomCode;
+
     private final PBKDF2Encoder encoder;
 
     @Transactional
@@ -45,8 +48,9 @@ public class UserService {
         validators.NonNullValidate(dto.getType(), "Tipo de usuário");
 
         dto.setDhRegister(new Timestamp(System.currentTimeMillis()));
-        dto.setStatus(UserStatus.ACTIVE.ordinal());
+        dto.setStatus(UserStatus.INACTIVE.ordinal());
         dto.setPassword(encoder.encode(dto.getPassword()));
+        dto.setCode(generateRandomCode.execute());
 
         User userSave = userConverter.dtoToOrm(dto);
         User.persist(userSave);
@@ -101,6 +105,20 @@ public class UserService {
         }
         user.setStatus(UserStatus.INACTIVE);
         user.setLastUpdate(new Timestamp(System.currentTimeMillis()));
+        user.setCode(null);
+        User.persist(user);
+    }
+
+    @Transactional
+    public void activeUser(UserActiveDTO dto){
+        User user = User.findById(UUID.fromString(dto.getId()));
+        if (user == null) {
+            throw new NotFoundException("Usuário não encontrado");
+        }
+        if (!Objects.equals(user.getCode(), dto.getCode())) {
+            throw new ValidationException("Código de ativação inválido");
+        }
+        user.setStatus(UserStatus.ACTIVE);
         user.setCode(null);
         User.persist(user);
     }
