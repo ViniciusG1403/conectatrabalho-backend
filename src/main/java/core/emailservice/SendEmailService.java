@@ -99,14 +99,14 @@ public class SendEmailService {
         return
             "<html><body style='display: flex; justify-content: center; align-items: center; height: 100vh;'>"
                 + "<div style='text-align: center;'>"
-                + "<div style='font-size: 24px; font-weight: bold; color: #E53935;'>Desativação de Conta</div>"
+                + "<div style='font-size: 24px; font-weight: bold;'>Atualização de dados</div>"
                 + "<div style='margin-top: 20px; font-size: 16px;'>"
                 + "Olá, " + dto.getName()
                 + ". Recebemos uma solicitação para atualizar alguns dados de sua conta."
                 + "</div>"
                 + "<div style='margin-top: 20px; font-size: 16px;'>"
                 + "Seu código de atualização é: <strong>" + dto.getCode()
-                + "</strong>. Por favor, use este código para confirmar a desativação."
+                + "</strong>. Por favor, use este código para confirmar a atualização dos dados."
                 + "</div>"
                 + "<div style='margin-top: 20px; font-size: 16px;'>"
                 + "Se você não solicitou esta ação ou mudou de ideia, entre em contato conosco imediatamente."
