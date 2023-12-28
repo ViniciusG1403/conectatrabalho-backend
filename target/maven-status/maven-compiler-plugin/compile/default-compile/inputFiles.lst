@@ -1,30 +1,30 @@
-C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\core\encoder\PBKDF2Encoder.java
-C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\modules\users\structure\dtos\user\UserInativeDTO.java
-C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\core\validates\Validators.java
-C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\modules\users\enumerations\UserRoles.java
-C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\modules\users\structure\entities\WorkerProfile.java
-C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\core\exceptions\InvalidFormatEmailException.java
-C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\modules\users\structure\entities\User.java
-C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\modules\users\structure\entities\ContractorProfile.java
-C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\core\emailservice\SendEmailService.java
-C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\modules\users\enumerations\UserStatus.java
-C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\modules\users\structure\dtos\user\UserDTO.java
-C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\modules\users\structure\dtos\workerprofile\WorkerProfileDTO.java
-C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\modules\users\resources\UserResource.java
-C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\core\emailservice\MessageOperation.java
-C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\modules\login\dtos\AuthRequest.java
-C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\modules\users\structure\dtos\user\UserChangePasswordDTO.java
-C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\modules\login\usecases\TokenUtils.java
-C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\modules\login\dtos\AuthResponse.java
-C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\modules\users\services\UserService.java
-C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\modules\users\structure\dtos\user\UserUpdateDTO.java
-C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\modules\users\converters\UserConverter.java
-C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\modules\users\converters\UserGetConverter.java
-C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\core\exceptions\NotNullException.java
-C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\modules\login\resource\AuthResource.java
-C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\modules\users\enumerations\UserType.java
-C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\modules\users\structure\dtos\contractorprofile\ContractorProfileDTO.java
-C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\modules\users\structure\dtos\user\UserGetDTO.java
-C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\core\shared\PostgreSQLEnumType.java
-C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\modules\users\usecases\GenerateRandomCode.java
-C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\modules\users\structure\dtos\user\UserActiveDTO.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/modules/users/structure/dtos/user/UserActiveDTO.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/modules/users/services/UserService.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/modules/users/enumerations/UserType.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/modules/users/structure/entities/WorkerProfile.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/modules/users/structure/dtos/user/UserInativeDTO.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/modules/users/structure/dtos/contractorprofile/ContractorProfileDTO.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/modules/users/structure/dtos/workerprofile/WorkerProfileDTO.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/core/exceptions/NotNullException.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/modules/users/structure/entities/ContractorProfile.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/modules/users/usecases/GenerateRandomCode.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/core/emailservice/SendEmailService.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/modules/users/converters/UserConverter.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/modules/users/structure/dtos/user/UserDTO.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/modules/users/structure/entities/User.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/core/shared/PostgreSQLEnumType.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/modules/users/converters/UserGetConverter.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/modules/users/structure/dtos/user/UserGetDTO.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/modules/login/dtos/AuthResponse.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/modules/login/usecases/TokenUtils.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/modules/users/structure/dtos/user/UserChangePasswordDTO.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/core/exceptions/InvalidFormatEmailException.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/modules/users/structure/dtos/user/UserUpdateDTO.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/modules/login/dtos/AuthRequest.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/core/validates/Validators.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/modules/login/resource/AuthResource.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/modules/users/resources/UserResource.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/modules/users/enumerations/UserStatus.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/modules/users/enumerations/UserRoles.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/core/emailservice/MessageOperation.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/core/encoder/PBKDF2Encoder.java

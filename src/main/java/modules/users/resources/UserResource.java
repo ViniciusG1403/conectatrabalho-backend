@@ -27,6 +27,9 @@ public class UserResource {
     @Path("/{id}")
     @Operation(summary = "Buscar", description = "Buscar usuário pelo ID")
     @APIResponse(responseCode = "200", description = "Usuário encontrado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = UserGetDTO.class)), headers = @Header(schema = @Schema(example = "/user/61afb078-46b3-4140-9051-3adb295dc4b9", implementation = String.class)))
+    @APIResponse(responseCode = "404", description = "Usuário não encontrado")
+    @APIResponse(responseCode = "401", description = "Não autorizado")
+    @APIResponse(responseCode = "500", description = "Erro no servidor")
     public Response getUserById(@PathParam("id") final String id) {
         return Response.ok(userService.getById(id)).build();
     }
@@ -35,6 +38,9 @@ public class UserResource {
     @Path("/email/{email}")
     @Operation(summary = "Buscar", description = "Buscar um usuário pelo email")
     @APIResponse(responseCode = "200", description = "Usuário encontrado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = UserGetDTO.class)), headers = @Header(schema = @Schema(example = "/user/joao@email.com", implementation = String.class)))
+    @APIResponse(responseCode = "404", description = "Usuário não encontrado")
+    @APIResponse(responseCode = "401", description = "Não autorizado")
+    @APIResponse(responseCode = "500", description = "Erro no servidor")
     public Response getUserByEmail(@PathParam("email") final String email) {
         return Response.ok(userService.getByEmail(email)).build();
     }
@@ -42,6 +48,8 @@ public class UserResource {
     @POST
     @Operation(summary = "Criar", description = "Criar um novo usuário")
     @APIResponse(responseCode = "201", description = "Usuário criado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = UserDTO.class)))
+    @APIResponse(responseCode = "500", description = "Erro no servidor")
+    @APIResponse(responseCode = "400", description = "Erro de validação")
     public Response createUser(UserDTO dto) {
         return Response.ok(userService.save(dto)).build();
     }
@@ -49,6 +57,11 @@ public class UserResource {
     @PUT
     @Operation(summary = "Atualizar", description = "Atualizar um usuário")
     @APIResponse(responseCode = "200", description = "Usuário atualizado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = UserUpdateDTO.class)))
+    @APIResponse(responseCode = "500", description = "Erro no servidor")
+    @APIResponse(responseCode = "400", description = "Erro de validação")
+    @APIResponse(responseCode = "406", description = "Código inválido")
+    @APIResponse(responseCode = "401", description = "Não autorizado")
+    @APIResponse(responseCode = "404", description = "Usuário não encontrado")
     public Response updateUser(UserUpdateDTO dto) {
         return Response.ok(userService.update(dto)).build();
     }
@@ -57,6 +70,10 @@ public class UserResource {
     @Path("/inative")
     @Operation(summary = "Inativar", description = "Inativar um usuário")
     @APIResponse(responseCode = "200", description = "Usuário inativo com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = UserInativeDTO.class)))
+    @APIResponse(responseCode = "500", description = "Erro no servidor")
+    @APIResponse(responseCode = "406", description = "Código inválido")
+    @APIResponse(responseCode = "401", description = "Não autorizado")
+    @APIResponse(responseCode = "404", description = "Usuário não encontrado")
     public Response inativeUser(UserInativeDTO dto) {
         userService.inativeUser(dto);
         return Response.ok().build();
@@ -66,6 +83,10 @@ public class UserResource {
     @Path("/active")
     @Operation(summary = "Ativar", description = "Ativar um usuário")
     @APIResponse(responseCode = "200", description = "Usuário ativado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = UserActiveDTO.class)))
+    @APIResponse(responseCode = "500", description = "Erro no servidor")
+    @APIResponse(responseCode = "406", description = "Código inválido")
+    @APIResponse(responseCode = "401", description = "Não autorizado")
+    @APIResponse(responseCode = "404", description = "Usuário não encontrado")
     public Response activeUser(UserActiveDTO dto) {
         userService.activeUser(dto);
         return Response.ok().build();
@@ -75,6 +96,10 @@ public class UserResource {
     @Path("/change-password")
     @Operation(summary = "Alterar", description = "Alterar senha de um usuário")
     @APIResponse(responseCode = "200", description = "Senha alterada com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = UserChangePasswordDTO.class)))
+    @APIResponse(responseCode = "500", description = "Erro no servidor")
+    @APIResponse(responseCode = "406", description = "Código inválido")
+    @APIResponse(responseCode = "401", description = "Não autorizado")
+    @APIResponse(responseCode = "404", description = "Usuário não encontrado")
     public Response changePassword(UserChangePasswordDTO dto) {
         return Response.ok(userService.changePassword(dto)).build();
     }
