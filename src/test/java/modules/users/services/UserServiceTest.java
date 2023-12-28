@@ -2,6 +2,7 @@ package modules.users.services;
 
 import com.github.database.rider.cdi.api.DBRider;
 import com.github.database.rider.core.api.dataset.DataSet;
+import core.emailservice.SendEmailService;
 import core.exceptions.InvalidFormatEmailException;
 import core.exceptions.NotNullException;
 import io.quarkus.test.junit.QuarkusTest;
@@ -12,6 +13,7 @@ import modules.users.enumerations.UserType;
 import modules.users.structure.dtos.user.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
 import java.util.UUID;
 
@@ -29,6 +31,9 @@ class UserServiceTest {
 
     @Inject
     UserService service;
+
+    @InjectMocks
+    SendEmailService sendEmailService;
 
     @Test
     @DataSet(value = "datasets/users/userGetById.yml", cleanAfter = true)

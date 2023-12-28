@@ -1,5 +1,7 @@
 package modules.users.services;
 
+import core.emailservice.MessageOperation;
+import core.emailservice.SendEmailService;
 import core.encoder.PBKDF2Encoder;
 import core.validates.Validators;
 import jakarta.enterprise.context.RequestScoped;
@@ -40,6 +42,8 @@ public class UserService {
 
     private final PBKDF2Encoder encoder;
 
+    private final SendEmailService sendEmailService;
+
     @Transactional
     public UserDTO save(UserDTO dto) {
         validators.NonNullValidate(dto.getName(), "Nome");
@@ -53,6 +57,8 @@ public class UserService {
         dto.setRole(UserRoles.BASIC.ordinal());
         dto.setPassword(encoder.encode(dto.getPassword()));
         dto.setCode(generateRandomCode.execute());
+
+        sendEmailService.sendMail(dto, "Ativação de usuário", MessageOperation.ATIVACAO);
 
         User userSave = userConverter.dtoToOrm(dto);
         User.persist(userSave);
