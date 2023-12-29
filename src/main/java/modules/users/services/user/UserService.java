@@ -59,12 +59,13 @@ public class UserService extends Validators {
         dto.setPassword(encoder.encode(dto.getPassword()));
         dto.setCode(generateRandomCode.execute());
 
-        localizationService.save(dto.getLocalization());
-
         sendEmailService.sendMail(dto, "Ativação de usuário", MessageOperation.ATIVACAO);
 
         User userSave = userConverter.dtoToOrm(dto);
         User.persist(userSave);
+        dto.getLocalization().setUser(userConverter.ormToDto(userSave));
+        localizationService.save(dto.getLocalization());
+
 
         return userConverter.ormToDto(userSave);
     }

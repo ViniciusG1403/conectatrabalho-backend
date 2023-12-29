@@ -1,4 +1,4 @@
-package modules.users.services.user;
+package modules.users.services;
 
 import com.github.database.rider.cdi.api.DBRider;
 import com.github.database.rider.core.api.dataset.DataSet;
@@ -10,6 +10,7 @@ import jakarta.inject.Inject;
 import modules.users.enumerations.UserRoles;
 import modules.users.enumerations.UserStatus;
 import modules.users.enumerations.UserType;
+import modules.users.services.user.UserService;
 import modules.users.structure.dtos.user.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -47,14 +48,7 @@ class UserServiceTest {
         final var expectedType = UserType.BOTH;
 
         final UserGetDTO result = service.getById(expectedId);
-
-        Assertions.assertNotNull(result);
-        Assertions.assertEquals(expectedId, result.getId());
-        Assertions.assertEquals(expectedName, result.getName());
-        Assertions.assertEquals(expectedEmail, result.getEmail());
-        Assertions.assertEquals(expectedStatus, UserStatus.valueOf(result.getStatus()));
-        Assertions.assertEquals(expectedRole, UserRoles.valueOf(result.getRole()));
-        Assertions.assertEquals(expectedType, UserType.valueOf(result.getType()));
+        assertNotNull(result);assertEquals(expectedId, result.getId());assertEquals(expectedName, result.getName());assertEquals(expectedEmail, result.getEmail());assertEquals(expectedStatus, UserStatus.valueOf(result.getStatus()));assertEquals(expectedRole, UserRoles.valueOf(result.getRole()));assertEquals(expectedType, UserType.valueOf(result.getType()));
     }
 
     @Test
@@ -69,14 +63,7 @@ class UserServiceTest {
         final var expectedType = UserType.BOTH;
 
         final UserGetDTO result = service.getByEmail(expectedEmail);
-
-        Assertions.assertNotNull(result);
-        Assertions.assertEquals(expectedId, result.getId());
-        Assertions.assertEquals(expectedName, result.getName());
-        Assertions.assertEquals(expectedEmail, result.getEmail());
-        Assertions.assertEquals(expectedStatus, UserStatus.valueOf(result.getStatus()));
-        Assertions.assertEquals(expectedRole, UserRoles.valueOf(result.getRole()));
-        Assertions.assertEquals(expectedType, UserType.valueOf(result.getType()));
+        assertNotNull(result);assertEquals(expectedId, result.getId());assertEquals(expectedName, result.getName());assertEquals(expectedEmail, result.getEmail());assertEquals(expectedStatus, UserStatus.valueOf(result.getStatus()));assertEquals(expectedRole, UserRoles.valueOf(result.getRole()));assertEquals(expectedType, UserType.valueOf(result.getType()));
     }
 
     @Test
@@ -96,10 +83,9 @@ class UserServiceTest {
         userDTO.setRole(UserRoles.valueOf(expectedRole));
         userDTO.setType(UserType.valueOf(expectedType));
 
-        final NotNullException exception = Assertions.assertThrows(NotNullException.class,
+        final NotNullException exception =assertThrows(NotNullException.class,
             () -> service.save(userDTO));
-
-        Assertions.assertEquals(exception.getMessage(), expectedMessage);
+        assertEquals(exception.getMessage(), expectedMessage);
     }
 
     @Test
@@ -119,10 +105,9 @@ class UserServiceTest {
         userDTO.setRole(UserRoles.valueOf(expectedRole));
         userDTO.setType(UserType.valueOf(expectedType));
 
-        final NotNullException exception = Assertions.assertThrows(NotNullException.class,
+        final NotNullException exception =assertThrows(NotNullException.class,
             () -> service.save(userDTO));
-
-        Assertions.assertEquals(exception.getMessage(), expectedMessage);
+        assertEquals(exception.getMessage(), expectedMessage);
     }
 
     @Test
@@ -142,10 +127,9 @@ class UserServiceTest {
         userDTO.setRole(UserRoles.valueOf(expectedRole));
         userDTO.setType(UserType.valueOf(expectedType));
 
-        final NotNullException exception = Assertions.assertThrows(NotNullException.class,
+        final NotNullException exception =assertThrows(NotNullException.class,
             () -> service.save(userDTO));
-
-        Assertions.assertEquals(exception.getMessage(), expectedMessage);
+        assertEquals(exception.getMessage(), expectedMessage);
     }
 
     @Test
@@ -165,10 +149,9 @@ class UserServiceTest {
         userDTO.setStatus(UserStatus.valueOf(expectedStatus));
         userDTO.setRole(UserRoles.valueOf(expectedRole));
 
-        final NotNullException exception = Assertions.assertThrows(NotNullException.class,
+        final NotNullException exception =assertThrows(NotNullException.class,
             () -> service.save(userDTO));
-
-        Assertions.assertEquals(exception.getMessage(), expectedMessage);
+        assertEquals(exception.getMessage(), expectedMessage);
     }
 
     @Test
@@ -190,10 +173,9 @@ class UserServiceTest {
         userDTO.setRole(UserRoles.valueOf(expectedRole));
         userDTO.setType(UserType.valueOf(expectedType));
 
-        final InvalidFormatEmailException exception = Assertions.assertThrows(InvalidFormatEmailException.class,
+        final InvalidFormatEmailException exception =assertThrows(InvalidFormatEmailException.class,
             () -> service.save(userDTO));
-
-        Assertions.assertEquals(exception.getMessage(), expectedMessage);
+        assertEquals(exception.getMessage(), expectedMessage);
     }
 
 
@@ -217,18 +199,7 @@ class UserServiceTest {
         userDTO.setType(UserType.valueOf(expectedType));
 
         final UserDTO savedUser = service.save(userDTO);
-
-        Assertions.assertNotNull(savedUser);
-        Assertions.assertNotNull(savedUser.getId());
-        Assertions.assertNotNull(savedUser.getDhRegister());
-        Assertions.assertNull(savedUser.getLastLogin());
-        Assertions.assertNull(userDTO.getLastUpdate());
-        Assertions.assertNotEquals(expectedPassword, savedUser.getPassword());
-        Assertions.assertEquals(expectedName, savedUser.getName());
-        Assertions.assertEquals(expectedEmail, savedUser.getEmail());
-        Assertions.assertEquals(expectedStatus, UserStatus.valueOf(savedUser.getStatus()));
-        Assertions.assertEquals(expectedRole, UserRoles.valueOf(savedUser.getRole()));
-        Assertions.assertEquals(expectedType, UserType.valueOf(savedUser.getType()));
+        assertNotNull(savedUser);assertNotNull(savedUser.getId());assertNotNull(savedUser.getDhRegister());assertNull(savedUser.getLastLogin());assertNull(userDTO.getLastUpdate());assertNotEquals(expectedPassword, savedUser.getPassword());assertEquals(expectedName, savedUser.getName());assertEquals(expectedEmail, savedUser.getEmail());assertEquals(expectedStatus, UserStatus.valueOf(savedUser.getStatus()));assertEquals(expectedRole, UserRoles.valueOf(savedUser.getRole()));assertEquals(expectedType, UserType.valueOf(savedUser.getType()));
     }
 
     @Test
@@ -246,11 +217,7 @@ class UserServiceTest {
         userUpdateDTO.setCode("1B7F83");
 
         final UserUpdateDTO result = service.update(userUpdateDTO);
-
-        Assertions.assertNotNull(result);
-        Assertions.assertEquals(expectedId, UUID.fromString(result.getId()));
-        Assertions.assertEquals(expectedName, result.getName());
-        Assertions.assertEquals(expectedEmail, result.getEmail());
+        assertNotNull(result);assertEquals(expectedId, UUID.fromString(result.getId()));assertEquals(expectedName, result.getName());assertEquals(expectedEmail, result.getEmail());
     }
 
     @Test
@@ -267,8 +234,7 @@ class UserServiceTest {
         service.inativeUser(userInativeDTO);
 
         final UserGetDTO result = service.getById(String.valueOf(expectedId));
-
-        Assertions.assertEquals(UserStatus.INACTIVE, UserStatus.valueOf(result.getStatus()));
+        assertEquals(UserStatus.INACTIVE, UserStatus.valueOf(result.getStatus()));
     }
     @Test
     @DisplayName("Deve ser possível ativar um usuário")
@@ -284,8 +250,7 @@ class UserServiceTest {
         service.activeUser(userActiveDTO);
 
         final UserGetDTO result = service.getById(String.valueOf(expectedId));
-
-        Assertions.assertEquals(UserStatus.ACTIVE, UserStatus.valueOf(result.getStatus()));
+        assertEquals(UserStatus.ACTIVE, UserStatus.valueOf(result.getStatus()));
     }
 
     @Test
@@ -301,8 +266,6 @@ class UserServiceTest {
         userDTO.setPassword(expectedPassword);
         userDTO.setOldPassword(oldPassword);
 
-        final UserChangePasswordDTO result = service.changePassword(userDTO);
-        Assertions.assertEquals(expectedId, UUID.fromString(result.getId()));
-        Assertions.assertNotEquals(expectedPassword, result.getPassword());
+        final UserChangePasswordDTO result = service.changePassword(userDTO);assertEquals(expectedId, UUID.fromString(result.getId()));assertNotEquals(expectedPassword, result.getPassword());
     }
 }

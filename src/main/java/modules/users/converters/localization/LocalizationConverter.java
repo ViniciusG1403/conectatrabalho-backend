@@ -1,6 +1,8 @@
 package modules.users.converters.localization;
 
 import jakarta.enterprise.context.RequestScoped;
+import lombok.RequiredArgsConstructor;
+import modules.users.converters.user.UserConverter;
 import modules.users.structure.dtos.localization.LocalizationDTO;
 import modules.users.structure.entities.Localization;
 
@@ -10,11 +12,15 @@ import modules.users.structure.entities.Localization;
  * @since 28/12/23
  */
 @RequestScoped
+@RequiredArgsConstructor
 public class LocalizationConverter {
 
-    public Localization dtoToOrm(final LocalizationDTO orm){
-        Localization dto = new Localization();
-        orm.setId(dto.getId().toString());
+    private final UserConverter userConverter;
+
+    public Localization dtoToOrm(final LocalizationDTO dto){
+        Localization orm = new Localization();
+        orm.setId(dto.getId() != null ? java.util.UUID.fromString(dto.getId()) : null);
+        orm.setUser(userConverter.dtoToOrm(dto.getUser()));
         orm.setCep(dto.getCep());
         orm.setStreet(dto.getStreet());
         orm.setNumber(dto.getNumber());
@@ -22,7 +28,7 @@ public class LocalizationConverter {
         orm.setNeighborhood(dto.getNeighborhood());
         orm.setCity(dto.getCity());
         orm.setState(dto.getState());
-        return dto;
+        return orm;
     }
 
     public LocalizationDTO ormToDto(final Localization orm) {

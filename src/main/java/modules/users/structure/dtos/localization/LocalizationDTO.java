@@ -4,6 +4,8 @@ import io.quarkus.runtime.annotations.RegisterForReflection;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import modules.users.structure.dtos.user.UserDTO;
+import modules.users.structure.entities.User;
 
 /**
  * @author Vinicius Gabriel <vinicius.prado@nexuscloud.com.br>
@@ -16,6 +18,8 @@ import lombok.Setter;
 public class LocalizationDTO {
 
     private String id;
+
+    private UserDTO user;
 
     @NotNull(message = "O cep é obrigatório")
     private String cep;
