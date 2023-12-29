@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import modules.users.structure.dtos.localization.LocalizationDTO;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import java.time.LocalDate;
@@ -30,6 +31,9 @@ public class UserUpdateDTO {
     @Size(min = 5, max = 60, message = "O email deve ter entre 5 e 60 caracteres")
     @Schema(description = "Email do usuário", required = true, example = "joaosantos@email.com")
     private String email;
+
+    @Schema(description = "Endereço do usuário ", required = true)
+    private LocalizationDTO localization;
 
     @NotNull(message = "O código é obrigatório")
     @Size(min = 6, max = 6, message = "O código deve ter 6 caracteres")

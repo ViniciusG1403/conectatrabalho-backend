@@ -1,4 +1,4 @@
-package modules.users.services;
+package modules.users.services.user;
 
 import core.emailservice.MessageOperation;
 import core.emailservice.SendEmailService;
@@ -9,10 +9,11 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.ValidationException;
 import jakarta.ws.rs.NotFoundException;
 import lombok.RequiredArgsConstructor;
-import modules.users.converters.UserConverter;
-import modules.users.converters.UserGetConverter;
+import modules.users.converters.user.UserConverter;
+import modules.users.converters.user.UserGetConverter;
 import modules.users.enumerations.UserRoles;
 import modules.users.enumerations.UserStatus;
+import modules.users.services.localization.LocalizationService;
 import modules.users.structure.dtos.user.*;
 import modules.users.structure.entities.User;
 import modules.users.usecases.GenerateRandomCode;
@@ -30,13 +31,11 @@ import java.util.UUID;
 @RequestScoped
 @RequiredArgsConstructor
 @Schema(name = "Service de usuários", description = "Service responsável pelos usuários")
-public class UserService {
+public class UserService extends Validators {
 
     private final UserConverter userConverter;
 
     private final UserGetConverter userGetConverter;
-
-    private final Validators validators;
 
     private final GenerateRandomCode generateRandomCode;
 
@@ -44,19 +43,23 @@ public class UserService {
 
     private final SendEmailService sendEmailService;
 
+    private final LocalizationService localizationService;
+
     @Transactional
     public UserDTO save(UserDTO dto) {
-        validators.NonNullValidate(dto.getName(), "Nome");
-        validators.NonNullValidate(dto.getEmail(), "Email");
-        validators.EmailFormatValidate(dto.getEmail());
-        validators.NonNullValidate(dto.getPassword(), "Senha");
-        validators.NonNullValidate(dto.getType(), "Tipo de usuário");
+        NonNullValidate(dto.getName(), "Nome");
+        NonNullValidate(dto.getEmail(), "Email");
+        EmailFormatValidate(dto.getEmail());
+        NonNullValidate(dto.getPassword(), "Senha");
+        NonNullValidate(dto.getType(), "Tipo de usuário");
 
         dto.setDhRegister(new Timestamp(System.currentTimeMillis()));
         dto.setStatus(UserStatus.INACTIVE.ordinal());
         dto.setRole(UserRoles.BASIC.ordinal());
         dto.setPassword(encoder.encode(dto.getPassword()));
         dto.setCode(generateRandomCode.execute());
+
+        localizationService.save(dto.getLocalization());
 
         sendEmailService.sendMail(dto, "Ativação de usuário", MessageOperation.ATIVACAO);
 
@@ -83,6 +86,7 @@ public class UserService {
         User.persist(user);
         dto.setEmail(user.getEmail());
         dto.setName(user.getName());
+        localizationService.save(dto.getLocalization());
         return dto;
     }
 

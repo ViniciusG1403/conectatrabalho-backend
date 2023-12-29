@@ -11,8 +11,7 @@ import jakarta.enterprise.context.RequestScoped;
  * @version 1.0
  * @since 25/12/23
  */
-@RequestScoped
-public class Validators {
+public abstract class Validators {
 
     public void NonNullValidate(final Object t, final String field){
         if(t == null){

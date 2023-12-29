@@ -1,4 +1,4 @@
-package modules.users.converters;
+package modules.users.converters.user;
 
 import jakarta.enterprise.context.RequestScoped;
 import modules.users.enumerations.UserRoles;
