@@ -100,8 +100,7 @@ public class UserService extends Validators {
         if (user == null) {
             throw new NotFoundException("Usuário não encontrado");
         }
-        UserGetDTO userGetDTO = userGetConverter.ormToDto(user);
-        return userGetDTO;
+        return userGetConverter.ormToDto(user);
     }
 
     public UserGetDTO getByEmail(String email) {
@@ -165,7 +164,7 @@ public class UserService extends Validators {
     public void sendConfirmationCode(SendConfirmationCodeDTO dto) {
         User user = User.findById(UUID.fromString(dto.getId()));
 
-        if(Objects.isNull(user)){
+        if (Objects.isNull(user)) {
             throw new NotFoundException("Nenhum usuário encontrado");
         }
 
