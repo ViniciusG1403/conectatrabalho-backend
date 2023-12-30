@@ -11,6 +11,7 @@ import modules.users.enumerations.UserRoles;
 import modules.users.enumerations.UserStatus;
 import modules.users.enumerations.UserType;
 import modules.users.services.user.UserService;
+import modules.users.structure.dtos.localization.LocalizationDTO;
 import modules.users.structure.dtos.user.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -190,6 +191,15 @@ class UserServiceTest {
         final var expectedRole = UserRoles.BASIC;
         final var expectedType = UserType.BOTH;
 
+        LocalizationDTO localizationDTO = new LocalizationDTO();
+        localizationDTO.setCep("85200000");
+        localizationDTO.setCity("Guarapuava");
+        localizationDTO.setNeighborhood("Centro");
+        localizationDTO.setNumber("123");
+        localizationDTO.setState("PR");
+        localizationDTO.setStreet("Rua XV de Novembro");
+
+
         UserDTO userDTO = new UserDTO();
         userDTO.setName(expectedName);
         userDTO.setEmail(expectedEmail);
@@ -197,6 +207,7 @@ class UserServiceTest {
         userDTO.setStatus(UserStatus.valueOf(expectedStatus));
         userDTO.setRole(UserRoles.valueOf(expectedRole));
         userDTO.setType(UserType.valueOf(expectedType));
+        userDTO.setLocalization(localizationDTO);
 
         final UserDTO savedUser = service.save(userDTO);
         assertNotNull(savedUser);assertNotNull(savedUser.getId());assertNotNull(savedUser.getDhRegister());assertNull(savedUser.getLastLogin());assertNull(userDTO.getLastUpdate());assertNotEquals(expectedPassword, savedUser.getPassword());assertEquals(expectedName, savedUser.getName());assertEquals(expectedEmail, savedUser.getEmail());assertEquals(expectedStatus, UserStatus.valueOf(savedUser.getStatus()));assertEquals(expectedRole, UserRoles.valueOf(savedUser.getRole()));assertEquals(expectedType, UserType.valueOf(savedUser.getType()));
@@ -210,11 +221,22 @@ class UserServiceTest {
         final var expectedName = "José da Costa";
         final var expectedEmail = "josecosta@mail.com";
 
+
         UserUpdateDTO userUpdateDTO = new UserUpdateDTO();
         userUpdateDTO.setId(String.valueOf(expectedId));
         userUpdateDTO.setName(expectedName);
         userUpdateDTO.setEmail(expectedEmail);
         userUpdateDTO.setCode("1B7F83");
+
+        LocalizationDTO localizationDTO = new LocalizationDTO();
+        localizationDTO.setId("e0772faf-75d8-472c-be18-6d17e48ec599");
+        localizationDTO.setCep("85200000");
+        localizationDTO.setCity("Guarapuava");
+        localizationDTO.setNeighborhood("Centro");
+        localizationDTO.setNumber("123");
+        localizationDTO.setState("PR");
+        localizationDTO.setStreet("Rua XV de Novembro");
+
 
         final UserUpdateDTO result = service.update(userUpdateDTO);
         assertNotNull(result);assertEquals(expectedId, UUID.fromString(result.getId()));assertEquals(expectedName, result.getName());assertEquals(expectedEmail, result.getEmail());

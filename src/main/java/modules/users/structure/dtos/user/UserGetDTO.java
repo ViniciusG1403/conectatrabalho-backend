@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import modules.users.structure.dtos.localization.LocalizationDTO;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import java.sql.Timestamp;
@@ -56,4 +57,6 @@ public class UserGetDTO {
     @Max(value = 3, message = "O Tipo do usuário deve ser 0 - Contratante, 1 - Prestador, 2 - Ambos, 3 - Administrador")
     @Schema(description = "Tipo do usuário", required = true, example = "0 - CONTRATANTE")
     private Integer type;
+
+    private LocalizationDTO localization;
 }

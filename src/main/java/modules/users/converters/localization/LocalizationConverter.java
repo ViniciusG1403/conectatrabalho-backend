@@ -20,7 +20,6 @@ public class LocalizationConverter {
     public Localization dtoToOrm(final LocalizationDTO dto){
         Localization orm = new Localization();
         orm.setId(dto.getId() != null ? java.util.UUID.fromString(dto.getId()) : null);
-        orm.setUser(userConverter.dtoToOrm(dto.getUser()));
         orm.setCep(dto.getCep());
         orm.setStreet(dto.getStreet());
         orm.setNumber(dto.getNumber());

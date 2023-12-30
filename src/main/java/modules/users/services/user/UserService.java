@@ -14,6 +14,7 @@ import modules.users.converters.user.UserGetConverter;
 import modules.users.enumerations.UserRoles;
 import modules.users.enumerations.UserStatus;
 import modules.users.services.localization.LocalizationService;
+import modules.users.structure.dtos.localization.LocalizationDTO;
 import modules.users.structure.dtos.user.*;
 import modules.users.structure.entities.User;
 import modules.users.usecases.GenerateRandomCode;
@@ -62,9 +63,9 @@ public class UserService extends Validators {
         sendEmailService.sendMail(dto, "Ativação de usuário", MessageOperation.ATIVACAO);
 
         User userSave = userConverter.dtoToOrm(dto);
+        LocalizationDTO localizationDTO = localizationService.save(dto.getLocalization());
+        userSave.getLocalization().setId(UUID.fromString(localizationDTO.getId()));
         User.persist(userSave);
-        dto.getLocalization().setUser(userConverter.ormToDto(userSave));
-        localizationService.save(dto.getLocalization());
 
 
         return userConverter.ormToDto(userSave);
@@ -84,10 +85,12 @@ public class UserService extends Validators {
         if (dto.getEmail() != null) {
             user.setEmail(dto.getEmail());
         }
+        if(dto.getLocalization() != null){
+            localizationService.update(dto.getLocalization());
+        }
         User.persist(user);
         dto.setEmail(user.getEmail());
         dto.setName(user.getName());
-        localizationService.save(dto.getLocalization());
         return dto;
     }
 
@@ -96,7 +99,8 @@ public class UserService extends Validators {
         if (user == null) {
             throw new NotFoundException("Usuário não encontrado");
         }
-        return userGetConverter.ormToDto(user);
+        UserGetDTO userGetDTO = userGetConverter.ormToDto(user);
+        return userGetDTO;
     }
 
     public UserGetDTO getByEmail(String email) {

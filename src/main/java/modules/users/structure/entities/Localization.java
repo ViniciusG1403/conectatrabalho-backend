@@ -1,5 +1,6 @@
 package modules.users.structure.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -22,10 +23,6 @@ public class Localization extends PanacheEntityBase {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private UUID id;
-
-    @JoinColumn(name = "app_users_id", nullable = false)
-    @OneToOne
-    private User user;
 
     @Column(name = "cep", nullable = false)
     private String cep;

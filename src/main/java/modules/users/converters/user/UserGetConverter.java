@@ -1,6 +1,8 @@
 package modules.users.converters.user;
 
 import jakarta.enterprise.context.RequestScoped;
+import lombok.RequiredArgsConstructor;
+import modules.users.converters.localization.LocalizationConverter;
 import modules.users.enumerations.UserRoles;
 import modules.users.enumerations.UserStatus;
 import modules.users.enumerations.UserType;
@@ -14,7 +16,10 @@ import modules.users.structure.entities.User;
  * @since 25/12/23
  */
 @RequestScoped
+@RequiredArgsConstructor
 public class UserGetConverter {
+
+    private final LocalizationConverter localizationConverter;
 
     public UserGetDTO ormToDto(final User userDTO) {
         UserGetDTO dto = new UserGetDTO();
@@ -27,6 +32,7 @@ public class UserGetConverter {
         dto.setLastUpdate(userDTO.getLastUpdate());
         dto.setRole(UserRoles.valueOf(userDTO.getRole()));
         dto.setType(UserType.valueOf(userDTO.getType()));
+        dto.setLocalization(localizationConverter.ormToDto(userDTO.getLocalization()));
         return dto;
     }
 

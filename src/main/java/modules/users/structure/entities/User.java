@@ -1,5 +1,6 @@
 package modules.users.structure.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import core.shared.PostgreSQLEnumType;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
@@ -19,7 +20,6 @@ import java.util.UUID;
  * @version 1.0
  * @since 23/12/23
  */
-@Data
 @Entity
 @Getter
 @Setter
@@ -66,4 +66,8 @@ public class User extends PanacheEntityBase {
     @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false)
     private UserType type;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "localization_id")
+    private Localization localization;
 }

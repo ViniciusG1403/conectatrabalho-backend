@@ -1,6 +1,8 @@
 package modules.users.converters.user;
 
 import jakarta.enterprise.context.RequestScoped;
+import lombok.RequiredArgsConstructor;
+import modules.users.converters.localization.LocalizationConverter;
 import modules.users.enumerations.UserRoles;
 import modules.users.enumerations.UserStatus;
 import modules.users.enumerations.UserType;
@@ -13,7 +15,10 @@ import modules.users.structure.entities.User;
  * @since 25/12/23
  */
 @RequestScoped
+@RequiredArgsConstructor
 public class UserConverter {
+
+    private final LocalizationConverter localizationConverter;
 
     public UserDTO ormToDto(final User orm){
         UserDTO dto = new UserDTO();
@@ -28,6 +33,7 @@ public class UserConverter {
         dto.setCode(orm.getCode());
         dto.setRole(UserRoles.valueOf(orm.getRole()));
         dto.setType(UserType.valueOf(orm.getType()));
+        dto.setLocalization(localizationConverter.ormToDto(orm.getLocalization()));
         return dto;
     }
 
@@ -44,6 +50,7 @@ public class UserConverter {
         orm.setCode(dto.getCode());
         orm.setRole(UserRoles.valueOf(dto.getRole()));
         orm.setType(UserType.valueOf(dto.getType()));
+        orm.setLocalization(localizationConverter.dtoToOrm(dto.getLocalization()));
         return orm;
     }
 
