@@ -67,10 +67,10 @@ public class UserService extends Validators {
         userSave.getLocalization().setId(UUID.fromString(localizationDTO.getId()));
         User.persist(userSave);
 
-
         return userConverter.ormToDto(userSave);
     }
 
+    @Transactional
     public UserUpdateDTO update(UserUpdateDTO dto) {
         User user = User.findById(UUID.fromString(dto.getId()));
         if (user == null) {
@@ -85,7 +85,8 @@ public class UserService extends Validators {
         if (dto.getEmail() != null) {
             user.setEmail(dto.getEmail());
         }
-        if(dto.getLocalization() != null){
+        if (dto.getLocalization() != null) {
+            dto.getLocalization().setId(String.valueOf(user.getLocalization().getId()));
             localizationService.update(dto.getLocalization());
         }
         User.persist(user);
@@ -127,7 +128,7 @@ public class UserService extends Validators {
     }
 
     @Transactional
-    public void activeUser(UserActiveDTO dto){
+    public void activeUser(UserActiveDTO dto) {
         User user = User.findById(UUID.fromString(dto.getId()));
         if (user == null) {
             throw new NotFoundException("Usuário não encontrado");
@@ -158,6 +159,37 @@ public class UserService extends Validators {
         User.persist(user);
         dto.setPassword(user.getPassword());
         return dto;
+    }
+
+    @Transactional
+    public void sendConfirmationCode(SendConfirmationCodeDTO dto) {
+        User user = User.findById(UUID.fromString(dto.getId()));
+
+        if(Objects.isNull(user)){
+            throw new NotFoundException("Nenhum usuário encontrado");
+        }
+
+        user.setCode(generateRandomCode.execute());
+
+        User.persist(user);
+
+        if (Objects.equals(dto.getSubject(), "Ativação de usuário")) {
+            sendEmailService.sendMail(userConverter.ormToDto(user), dto.getSubject(),
+                MessageOperation.ATIVACAO);
+            return;
+        }
+        if (Objects.equals(dto.getSubject(), "Alteração de senha")) {
+            sendEmailService.sendMail(userConverter.ormToDto(user), dto.getSubject(),
+                MessageOperation.TROCA_SENHA);
+            return;
+        }
+        if (Objects.equals(dto.getSubject(), "Atualização de usuário")) {
+            sendEmailService.sendMail(userConverter.ormToDto(user), dto.getSubject(),
+                MessageOperation.ATUALIZACAO);
+            return;
+        } else {
+            throw new ValidationException("Nenhuma operação valida para " + dto.getSubject());
+        }
     }
 
 }

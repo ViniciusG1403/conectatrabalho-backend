@@ -104,4 +104,15 @@ public class UserResource {
         return Response.ok(userService.changePassword(dto)).build();
     }
 
+    @PUT
+    @Path("/send-confirmation-code")
+    @Operation(summary = "Enviar", description = "Enviar código de confirmação de email")
+    @APIResponse(responseCode = "200", description = "Código enviado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = SendConfirmationCodeDTO.class)))
+    @APIResponse(responseCode = "500", description = "Erro no servidor")
+    @APIResponse(responseCode = "404", description = "Usuário não encontrado")
+    public Response sendConfirmationCodeInEmail(SendConfirmationCodeDTO dto) {
+        userService.sendConfirmationCode(dto);
+        return Response.ok().build();
+    }
+
 }

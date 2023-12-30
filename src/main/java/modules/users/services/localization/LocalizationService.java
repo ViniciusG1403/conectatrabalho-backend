@@ -60,6 +60,11 @@ public class LocalizationService extends Validators {
         Localization.persist(localization);
     }
 
+    public LocalizationDTO findByUser(String id) {
+        Localization orm = Localization.find("user.id", UUID.fromString(id)).firstResult();
+        return converter.ormToDto(orm);
+    }
+
     private void validate(LocalizationDTO dto) {
         NonNullValidate(dto.getCep(), "Cep");
         NonNullValidate(dto.getStreet(), "Rua");

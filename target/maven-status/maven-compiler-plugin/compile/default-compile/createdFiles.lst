@@ -31,6 +31,7 @@ META-INF/panache-archive.marker
 modules/users/structure/dtos/user/UserChangePasswordDTO.class
 modules/login/resource/AuthResource.class
 modules/login/dtos/AuthRequest.class
+modules/users/structure/dtos/user/SendConfirmationCodeDTO.class
 modules/users/services/localization/LocalizationService.class
 core/emailservice/MessageOperation.class
 modules/users/structure/dtos/user/UserGetDTO.class

@@ -4,6 +4,7 @@
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/modules/users/converters/user/UserConverter.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/modules/users/structure/dtos/user/UserInativeDTO.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/modules/users/converters/user/UserGetConverter.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/modules/users/structure/dtos/user/SendConfirmationCodeDTO.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/modules/users/structure/dtos/contractorprofile/ContractorProfileDTO.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/modules/users/structure/dtos/localization/LocalizationDTO.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/backend/src/main/java/modules/users/converters/localization/LocalizationConverter.java
