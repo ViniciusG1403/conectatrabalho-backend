@@ -1,5 +1,5 @@
-modules/users/services/UserServiceTest.class
-core/encoder/PBKDF2EncoderTest.class
-META-INF/panache-archive.marker
-modules/users/usecases/GenerateRandomCodeTest.class
-core/emailservice/SendEmailServiceTest.class
+modules\users\usecases\GenerateRandomCodeTest.class
+modules\users\services\UserServiceTest.class
+META-INF\panache-archive.marker
+core\encoder\PBKDF2EncoderTest.class
+core\emailservice\SendEmailServiceTest.class

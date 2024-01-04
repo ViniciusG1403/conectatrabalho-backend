@@ -56,13 +56,13 @@ public class AuthResource {
                 .entity("Usuário inexistente")
                 .build();
         }
-        if (!u.getPassword().equals(passwordEncoder.encode(authRequest.senha))) {
+        if (!u.getPassword().equals(passwordEncoder.encode(authRequest.password))) {
             return Response.status(Response.Status.UNAUTHORIZED).entity("Senha invalida").build();
         }
         if (Objects.equals(u.getStatus(), UserStatus.INACTIVE)) {
             return Response.status(Response.Status.UNAUTHORIZED).entity("Usuário inativo").build();
         }
-        if (u != null && u.getPassword().equals(passwordEncoder.encode(authRequest.senha))) {
+        if (u != null && u.getPassword().equals(passwordEncoder.encode(authRequest.password))) {
             try {
                 Response resp = Response.ok(new AuthResponse(
                     TokenUtils.generateToken(u.getName(), u.getEmail(), u.getRole().toString(),
