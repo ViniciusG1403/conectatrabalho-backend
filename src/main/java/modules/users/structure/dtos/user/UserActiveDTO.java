@@ -16,9 +16,6 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 @Setter
 @RegisterForReflection
 public class UserActiveDTO {
-    @NotNull(message = "O id é obrigatório")
-    private String id;
-
     @NotNull(message = "O código é obrigatório")
     @Size(min = 6, max = 6, message = "O código deve ter 6 caracteres")
     @Schema(description = "Código de verificação do usuário", required = true, example = "12A45B")

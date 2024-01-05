@@ -1,5 +1,7 @@
 package modules.login.resource;
 
+import core.emailservice.MessageOperation;
+import core.emailservice.SendEmailService;
 import core.encoder.PBKDF2Encoder;
 import jakarta.annotation.security.PermitAll;
 import jakarta.inject.Inject;
@@ -13,8 +15,10 @@ import jakarta.ws.rs.core.Response;
 import modules.login.dtos.AuthRequest;
 import modules.login.dtos.AuthResponse;
 import modules.login.usecases.TokenUtils;
+import modules.users.converters.user.UserConverter;
 import modules.users.enumerations.UserStatus;
 import modules.users.structure.entities.User;
+import modules.users.usecases.GenerateRandomCode;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
@@ -36,6 +40,15 @@ public class AuthResource {
     @Inject
     PBKDF2Encoder passwordEncoder;
 
+    @Inject
+    GenerateRandomCode generateRandomCode;
+
+    @Inject
+    SendEmailService sendEmailService;
+
+    @Inject
+    UserConverter userConverter;
+
     @ConfigProperty(name = "com.ard333.quarkusjwt.jwt.duration")
     public Long duration;
     @ConfigProperty(name = "mp.jwt.verify.issuer")
@@ -53,14 +66,20 @@ public class AuthResource {
         final User u = User.find("email", authRequest.email).firstResult();
         if (u == null) {
             return Response.status(Response.Status.UNAUTHORIZED)
-                .entity("Usuário inexistente")
+                .entity("Usuario inexistente")
                 .build();
         }
         if (!u.getPassword().equals(passwordEncoder.encode(authRequest.password))) {
             return Response.status(Response.Status.UNAUTHORIZED).entity("Senha invalida").build();
         }
         if (Objects.equals(u.getStatus(), UserStatus.INACTIVE)) {
-            return Response.status(Response.Status.UNAUTHORIZED).entity("Usuário inativo").build();
+            if(Objects.isNull(u.getCode())) {
+                u.setCode(generateRandomCode.execute());
+                User.persist(u);
+                sendEmailService.sendMail(userConverter.ormToDto(u), "Ativação de conta",
+                    MessageOperation.ATIVACAO);
+            }
+            return Response.status(Response.Status.UNAUTHORIZED).entity("Usuario inativo").build();
         }
         if (u != null && u.getPassword().equals(passwordEncoder.encode(authRequest.password))) {
             try {

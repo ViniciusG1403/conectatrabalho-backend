@@ -128,7 +128,7 @@ public class UserService extends Validators {
 
     @Transactional
     public void activeUser(UserActiveDTO dto) {
-        User user = User.findById(UUID.fromString(dto.getId()));
+        User user = User.find("code", dto.getCode()).firstResult();
         if (user == null) {
             throw new NotFoundException("Usuário não encontrado");
         }
