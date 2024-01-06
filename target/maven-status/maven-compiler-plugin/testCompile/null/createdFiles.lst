@@ -1,4 +1,3 @@
-modules/users/services/UserServiceTest.class
 core/encoder/PBKDF2EncoderTest.class
 META-INF/panache-archive.marker
 modules/users/usecases/GenerateRandomCodeTest.class

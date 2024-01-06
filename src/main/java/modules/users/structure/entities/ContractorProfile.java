@@ -30,6 +30,9 @@ public class ContractorProfile extends PanacheEntityBase {
     @Column(name = "enterprise", nullable = false)
     private String enterprise;
 
+    @Column(name = "nr_telefone", nullable = false)
+    private String nrTelefone;
+
     @Column(name = "sector", nullable = false)
     private String sector;
 
@@ -41,4 +44,7 @@ public class ContractorProfile extends PanacheEntityBase {
 
     @Column(name = "website", nullable = false)
     private String website;
+
+    @Column(name = "img_profile_url", nullable = false)
+    private String imgProfileUrl;
 }

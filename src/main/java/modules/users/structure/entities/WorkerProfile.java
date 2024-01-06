@@ -30,6 +30,9 @@ public class WorkerProfile extends PanacheEntityBase {
     @Column(name = "profession", nullable = false)
     private String profession;
 
+    @Column(name = "nr_telefone", nullable = false)
+    private String nrTelefone;
+
     @Column(name = "sector", nullable = false)
     private String sector;
 
@@ -44,4 +47,7 @@ public class WorkerProfile extends PanacheEntityBase {
 
     @Column(name = "portfolio_url")
     private String portfolioUrl;
+
+    @Column(name = "img_profile_url", nullable = false)
+    private String imgProfileUrl;
 }
