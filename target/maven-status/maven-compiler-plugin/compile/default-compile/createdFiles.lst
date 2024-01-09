@@ -27,6 +27,7 @@ modules/users/converters/user/UserConverter.class
 modules/users/structure/dtos/localization/LocalizationDTO.class
 modules/users/structure/entities/WorkerProfile.class
 modules/users/enumerations/UserType.class
+modules/users/usecases/AlreadyExistsUserByEmail.class
 META-INF/panache-archive.marker
 modules/users/structure/dtos/user/UserChangePasswordDTO.class
 modules/login/resource/AuthResource.class

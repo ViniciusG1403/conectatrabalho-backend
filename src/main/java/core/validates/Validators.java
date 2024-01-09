@@ -14,7 +14,7 @@ import jakarta.enterprise.context.RequestScoped;
 public abstract class Validators {
 
     public void NonNullValidate(final Object t, final String field){
-        if(t == null){
+        if(t == null || t.equals("")){
             throw new NotNullException(field);
         }
     }

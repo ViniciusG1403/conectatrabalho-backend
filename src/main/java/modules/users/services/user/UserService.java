@@ -17,6 +17,7 @@ import modules.users.services.localization.LocalizationService;
 import modules.users.structure.dtos.localization.LocalizationDTO;
 import modules.users.structure.dtos.user.*;
 import modules.users.structure.entities.User;
+import modules.users.usecases.AlreadyExistsUserByEmail;
 import modules.users.usecases.GenerateRandomCode;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
@@ -46,6 +47,8 @@ public class UserService extends Validators {
 
     private final LocalizationService localizationService;
 
+    private final AlreadyExistsUserByEmail alreadyExistsUserByEmail;
+
     @Transactional
     public UserDTO save(UserDTO dto) {
         NonNullValidate(dto.getName(), "Nome");
@@ -53,6 +56,10 @@ public class UserService extends Validators {
         EmailFormatValidate(dto.getEmail());
         NonNullValidate(dto.getPassword(), "Senha");
         NonNullValidate(dto.getType(), "Tipo de usuário");
+
+        if(alreadyExistsUserByEmail.execute(dto.getEmail())) {
+            throw new ValidationException("Já existe um usuário com esse email");
+        }
 
         dto.setDhRegister(new Timestamp(System.currentTimeMillis()));
         dto.setStatus(UserStatus.INACTIVE.ordinal());
