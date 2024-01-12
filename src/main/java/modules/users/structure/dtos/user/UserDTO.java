@@ -39,24 +39,24 @@ public class UserDTO {
     @Schema(description = "Senha do usuário", required = true, example = "123456@JOAO")
     private String password;
 
-    @Schema(description = "Data de registro do usuário", required = true, example = "2024-01-01")
+    @Schema(description = "Data de registro do usuário", example = "2024-01-01")
     private Timestamp dhRegister;
 
     @Min(value = 0, message = "O Status do usuário deve ser 0 - Inativo ou 1 - Ativo")
     @Max(value = 1, message = "O Status do usuário deve ser 0 - Inativo ou 1 - Ativo")
-    @Schema(description = "Status do usuário", required = true, example = "1 - ATIVO")
+    @Schema(description = "Status do usuário", example = "1 - ATIVO")
     private Integer status;
 
-    @Schema(description = "Data do último login do usuário", required = true, example = "2024-01-01")
+    @Schema(description = "Data do último login do usuário", example = "2024-01-01")
     private Timestamp lastLogin;
 
-    @Schema(description = "Data da última atualização do usuário", required = true, example = "2024-01-01")
+    @Schema(description = "Data da última atualização do usuário", example = "2024-01-01")
     private Timestamp lastUpdate;
 
-    @Schema(description = "Código de verificação do usuário", required = true, example = "12A45B")
+    @Schema(description = "Código de verificação do usuário", example = "12A45B")
     private String code;
 
-    @Schema(description = "Regra do usuário", required = true, example = "0 - BASICO")
+    @Schema(description = "Regra do usuário", example = "0 - BASICO")
     private Integer role;
 
     @NotNull(message = "O tipo de usuário é obrigatório")
