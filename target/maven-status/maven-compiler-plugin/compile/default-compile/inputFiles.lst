@@ -9,6 +9,7 @@ C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\modules\user
 C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\modules\users\structure\entities\ContractorProfile.java
 C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\core\emailservice\SendEmailService.java
 C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\modules\users\enumerations\UserStatus.java
+C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\modules\users\usecases\AlreadyExistsUserByEmail.java
 C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\modules\users\structure\dtos\user\UserDTO.java
 C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\modules\users\structure\dtos\workerprofile\WorkerProfileDTO.java
 C:\Users\Vinicius\Documents\Projetos\conecta-trabalho\src\main\java\modules\users\resources\UserResource.java

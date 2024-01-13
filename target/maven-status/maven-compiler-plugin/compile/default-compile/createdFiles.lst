@@ -28,6 +28,7 @@ core\validates\Validators.class
 modules\login\dtos\AuthResponse.class
 modules\users\services\user\UserService.class
 modules\users\enumerations\UserRoles.class
+modules\users\usecases\AlreadyExistsUserByEmail.class
 core\emailservice\MessageOperation.class
 modules\users\structure\dtos\user\UserGetDTO.class
 modules\login\dtos\AuthRequest.class

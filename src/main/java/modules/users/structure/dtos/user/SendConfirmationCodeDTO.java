@@ -20,4 +20,6 @@ public class SendConfirmationCodeDTO {
     @NotNull(message = "O assunto é obrigatório")
     String subject;
 
+    String email;
+
 }

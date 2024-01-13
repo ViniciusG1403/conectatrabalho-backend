@@ -169,7 +169,12 @@ public class UserService extends Validators {
 
     @Transactional
     public void sendConfirmationCode(SendConfirmationCodeDTO dto) {
-        User user = User.findById(UUID.fromString(dto.getId()));
+        User user;
+        if(!Objects.equals(dto.getId(), "")) {
+            user = User.findById(UUID.fromString(dto.getId()));
+        } else {
+            user = User.find("email", dto.getEmail()).firstResult();
+        }
 
         if (Objects.isNull(user)) {
             throw new NotFoundException("Nenhum usuário encontrado");
