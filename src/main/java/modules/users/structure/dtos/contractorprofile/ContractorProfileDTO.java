@@ -35,14 +35,13 @@ public class ContractorProfileDTO {
     @Schema(description = "Setor do usuário", required = true, example = "Construção Civil")
     private String sector;
 
-    @NotNull(message = "A localização é obrigatória")
-    @Schema(description = "Localização do usuário", required = true, example = "Rua dos Bobos, 0 - Centro")
-    private String localization;
-
     @NotNull(message = "A descrição é obrigatória")
     @Schema(description = "Descrição do usuário", required = true, example = "Construtora LTDA")
     private String description;
 
     @Schema(description = "Website do usuário", required = true, example = "www.construtora.com.br")
     private String website;
+
+    @Schema(description = "Imagem de perfil do usuário", required = true, example = "www.construtora.com.br")
+    private String imgProfileUrl;
 }

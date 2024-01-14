@@ -36,9 +36,6 @@ public class WorkerProfile extends PanacheEntityBase {
     @Column(name = "sector", nullable = false)
     private String sector;
 
-    @Column(name = "localization", nullable = false)
-    private String localization;
-
     @Column(name = "habilities", nullable = false)
     private String habilities;
 

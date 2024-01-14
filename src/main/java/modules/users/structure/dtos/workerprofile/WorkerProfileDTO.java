@@ -34,9 +34,9 @@ public class WorkerProfileDTO {
     @Schema(description = "Setor do usuário", required = true, example = "Construção Civil")
     private String sector;
 
-    @NotNull(message = "A localização é obrigatória")
-    @Schema(description = "Localização do usuário", required = true, example = "Rua dos Bobos, 0 - Centro")
-    private String localization;
+    @NotNull(message = "O número de telefone é obrigatório")
+    @Schema(description = "Número de telefone", required = true, example = "(00) 0 0000-0000")
+    private String nrTelefone;
 
     @NotNull(message = "As habilidades são obrigatórias")
     @Schema(description = "Habilidades do usuário", required = true, example = "Pedreiro, Pintor, Eletricista")
@@ -47,4 +47,7 @@ public class WorkerProfileDTO {
 
     @Schema(description = "Portfólio do usuário", required = true, example = "www.construtora.com.br")
     private String portfolioUrl;
+
+    @Schema(description = "Imagem de perfil do usuário", required = true, example = "www.construtora.com.br")
+    private String imgProfileUrl;
 }

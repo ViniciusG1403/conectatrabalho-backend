@@ -1,2 +1,4 @@
-META-INF\panache-archive.marker
-core\emailservice\SendEmailServiceTest.class
+core/encoder/PBKDF2EncoderTest.class
+META-INF/panache-archive.marker
+modules/users/usecases/GenerateRandomCodeTest.class
+core/emailservice/SendEmailServiceTest.class
