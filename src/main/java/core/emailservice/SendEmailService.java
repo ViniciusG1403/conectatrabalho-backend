@@ -4,7 +4,7 @@ import jakarta.enterprise.context.RequestScoped;
 import jakarta.mail.*;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
-import modules.users.structure.dtos.user.UserDTO;
+import modules.usuarios.dtos.UsuarioDTO;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import java.util.Properties;
@@ -19,7 +19,7 @@ public class SendEmailService {
     @ConfigProperty(name = "mail.credentials.password")
     private String passwordMail;
 
-    public void sendMail(UserDTO dto, String assuntoEmail, MessageOperation tpMensagem) {
+    public void sendMail(UsuarioDTO dto, String assuntoEmail, MessageOperation tpMensagem) {
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", "587");
@@ -50,7 +50,7 @@ public class SendEmailService {
         }
     }
 
-    private String selectMessage(MessageOperation tpMensagem, UserDTO dto) {
+    private String selectMessage(MessageOperation tpMensagem, UsuarioDTO dto) {
         if (tpMensagem.equals(MessageOperation.ATIVACAO)) {
             return activationMessage(dto);
         }
@@ -62,15 +62,15 @@ public class SendEmailService {
         }
     }
 
-    private String activationMessage(UserDTO dto) {
+    private String activationMessage(UsuarioDTO dto) {
         return
             "<html><body style='display: flex; justify-content: center; align-items: center; height: 100vh;'>"
                 + "<div style='text-align: center;'>"
                 + "<div style='font-size: 24px; font-weight: bold; color: #4A90E2;'>Bem-vindo ao Conecta Trabalho</div>"
                 + "<div style='margin-top: 20px; font-size: 16px;'>"
-                + "Olá, " + dto.getName()
+                + "Olá, " + dto.getNome()
                 + "! Pronto para explorar novas oportunidades de trabalho? Seu código de ativação é: "
-                + dto.getCode()
+                + dto.getCodigo()
                 + "</div>"
                 + "<div style='margin-top: 20px; font-size: 16px;'>"
                 + "Estamos ansiosos para ajudá-lo a se conectar com empregadores ao redor do mundo!"
@@ -79,14 +79,14 @@ public class SendEmailService {
                 + "</body></html>";
     }
 
-    private String changePassword(UserDTO dto) {
+    private String changePassword(UsuarioDTO dto) {
         return
             "<html><body style='display: flex; justify-content: center; align-items: center; height: 100vh;'>"
                 + "<div style='text-align: center;'>"
                 + "<div style='font-size: 24px; font-weight: bold; color: #4A90E2;'>Alteração de Senha</div>"
                 + "<div style='margin-top: 20px; font-size: 16px;'>"
                 + "Recebemos um pedido para redefinir sua senha. Seu código de redefinição é: <strong>"
-                + dto.getCode() + "</strong>"
+                + dto.getCodigo() + "</strong>"
                 + "</div>"
                 + "<div style='margin-top: 20px; font-size: 16px;'>"
                 + "Se você não solicitou esta alteração, por favor, ignore este e-mail e entre em contato imediatamente com nosso suporte."
@@ -95,17 +95,17 @@ public class SendEmailService {
                 + "</body></html>";
     }
 
-    private String updateUser(UserDTO dto) {
+    private String updateUser(UsuarioDTO dto) {
         return
             "<html><body style='display: flex; justify-content: center; align-items: center; height: 100vh;'>"
                 + "<div style='text-align: center;'>"
                 + "<div style='font-size: 24px; font-weight: bold;'>Atualização de dados</div>"
                 + "<div style='margin-top: 20px; font-size: 16px;'>"
-                + "Olá, " + dto.getName()
+                + "Olá, " + dto.getNome()
                 + ". Recebemos uma solicitação para atualizar alguns dados de sua conta."
                 + "</div>"
                 + "<div style='margin-top: 20px; font-size: 16px;'>"
-                + "Seu código de atualização é: <strong>" + dto.getCode()
+                + "Seu código de atualização é: <strong>" + dto.getCodigo()
                 + "</strong>. Por favor, use este código para confirmar a atualização dos dados."
                 + "</div>"
                 + "<div style='margin-top: 20px; font-size: 16px;'>"

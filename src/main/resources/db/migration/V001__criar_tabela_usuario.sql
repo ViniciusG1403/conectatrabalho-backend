@@ -6,8 +6,8 @@ CREATE TABLE usuarios(
     senha VARCHAR(20) NOT NULL,
     tipo INTEGER NOT NULL,
     status INTEGER NOT NULL DEFAULT 0,
-    registro TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    ultimaAtualizacao TIMESTAMPTZ,
+    dhRegistro TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    dhUltimaAtualizacao TIMESTAMPTZ,
     codigo VARCHAR(6)
 );
 
@@ -19,6 +19,6 @@ COMMENT ON COLUMN usuarios.telefone IS 'Telefone do usuário';
 COMMENT ON COLUMN usuarios.senha IS 'Senha do usuário';
 COMMENT ON COLUMN usuarios.tipo IS E'Tipo do usuário\n 0 - Candidato\n 1 - Empresa';
 COMMENT ON COLUMN usuarios.status IS E'Status do usuário\n 0 - Inativo\n 1 - Ativo\n 2 - Bloqueado\n 3 - Excluído';
-COMMENT ON COLUMN usuarios.registro IS 'Data de registro do usuário';
-COMMENT ON COLUMN usuarios.ultimaAtualizacao IS 'Data da última atualização do usuário';
+COMMENT ON COLUMN usuarios.dhRegistro IS 'Data de registro do usuário';
+COMMENT ON COLUMN usuarios.dhUltimaAtualizacao IS 'Data da última atualização do usuário';
 COMMENT ON COLUMN usuarios.codigo IS 'Código de verificação do usuário';

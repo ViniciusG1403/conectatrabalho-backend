@@ -15,18 +15,16 @@ import jakarta.ws.rs.core.Response;
 import modules.login.dtos.AuthRequest;
 import modules.login.dtos.AuthResponse;
 import modules.login.usecases.TokenUtils;
-import modules.users.converters.user.UserConverter;
-import modules.users.enumerations.UserStatus;
-import modules.users.structure.entities.User;
-import modules.users.usecases.GenerateRandomCode;
+import modules.usuarios.converters.UsuarioConverter;
+import modules.usuarios.enumerations.StatusUsuario;
+import modules.usuarios.infra.entities.Usuario;
+import modules.usuarios.usecases.GenerateRandomCode;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 
-import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -47,7 +45,7 @@ public class AuthResource {
     SendEmailService sendEmailService;
 
     @Inject
-    UserConverter userConverter;
+    UsuarioConverter usuarioConverter;
 
     @ConfigProperty(name = "com.ard333.quarkusjwt.jwt.duration")
     public Long duration;
@@ -63,31 +61,29 @@ public class AuthResource {
     @APIResponse(responseCode = "200", description = "Login realizado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = AuthRequest.class)))
     @Operation(summary = "Login", description = "Realiza o login do usuário")
     public Response login(AuthRequest authRequest) {
-        final User u = User.find("email", authRequest.email).firstResult();
+        final Usuario u = Usuario.find("email", authRequest.email).firstResult();
         if (u == null) {
             return Response.status(Response.Status.UNAUTHORIZED)
                 .entity("Usuario inexistente")
                 .build();
         }
-        if (!u.getPassword().equals(passwordEncoder.encode(authRequest.password))) {
+        if (!u.getSenha().equals(passwordEncoder.encode(authRequest.password))) {
             return Response.status(Response.Status.UNAUTHORIZED).entity("Senha invalida").build();
         }
-        if (Objects.equals(u.getStatus(), UserStatus.INACTIVE)) {
-            if(Objects.isNull(u.getCode())) {
-                u.setCode(generateRandomCode.execute());
-                User.persist(u);
-                sendEmailService.sendMail(userConverter.ormToDto(u), "Ativação de conta",
+        if (Objects.equals(u.getStatus(), StatusUsuario.INATIVO)) {
+            if (Objects.isNull(u.getCodigo())) {
+                u.setCodigo(generateRandomCode.execute());
+                Usuario.persist(u);
+                sendEmailService.sendMail(usuarioConverter.toDTO(u), "Ativação de conta",
                     MessageOperation.ATIVACAO);
             }
             return Response.status(Response.Status.UNAUTHORIZED).entity("Usuario inativo").build();
         }
-        if (u != null && u.getPassword().equals(passwordEncoder.encode(authRequest.password))) {
+        if (u != null && u.getSenha().equals(passwordEncoder.encode(authRequest.password))) {
             try {
                 Response resp = Response.ok(new AuthResponse(
-                    TokenUtils.generateToken(u.getName(), u.getEmail(), u.getRole().toString(),
+                    TokenUtils.generateToken(u.getNome(), u.getEmail(), u.getTipo().toString(),
                         duration, issuer, u.getId().toString()))).build();
-                u.setLastLogin(new Timestamp(System.currentTimeMillis()));
-                User.persist(u);
                 return resp;
             } catch (Exception e) {
                 return Response.status(Response.Status.UNAUTHORIZED).build();
