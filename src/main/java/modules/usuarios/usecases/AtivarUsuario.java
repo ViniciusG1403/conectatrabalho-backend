@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import modules.usuarios.enumerations.StatusUsuario;
 import modules.usuarios.exceptions.UsuarioNotFoundException;
 import modules.usuarios.infra.entities.Usuario;
+import modules.usuarios.repositories.UsuarioRepository;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -19,17 +20,17 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class AtivarUsuario {
 
-    public void execute(String codigo) {
-        Usuario usuario = (Usuario) Optional.ofNullable(
-                Usuario.find("codigo", codigo).firstResult())
-            .orElseThrow(UsuarioNotFoundException::new);
+    private final UsuarioRepository usuarioRepository;
 
-        if(Objects.equals(usuario.getStatus(), StatusUsuario.ATIVO)){
+    public void execute(String codigo) {
+        Usuario usuario = usuarioRepository.findOne("codigo", codigo).orElseThrow(UsuarioNotFoundException::new);
+
+        if (Objects.equals(usuario.getStatus(), StatusUsuario.ATIVO)) {
             throw new ValidationException("Usuário já está ativo");
         }
 
         usuario.setStatus(StatusUsuario.ATIVO);
-        usuario.persist();
+        usuarioRepository.update(usuario);
     }
 
 }
