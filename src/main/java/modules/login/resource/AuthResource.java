@@ -81,10 +81,10 @@ public class AuthResource {
         }
         if (u != null && u.getSenha().equals(passwordEncoder.encode(authRequest.password))) {
             try {
-                Response resp = Response.ok(new AuthResponse(
-                    TokenUtils.generateToken(u.getNome(), u.getEmail(), u.getTipo().toString(),
+                return Response.ok(new AuthResponse(
+                    TokenUtils.generateToken(u.getNome(), u.getEmail(), u.getRole(),
                         duration, issuer, u.getId().toString()))).build();
-                return resp;
+
             } catch (Exception e) {
                 return Response.status(Response.Status.UNAUTHORIZED).build();
             }

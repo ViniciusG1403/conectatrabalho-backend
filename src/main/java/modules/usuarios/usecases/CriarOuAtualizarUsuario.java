@@ -22,20 +22,13 @@ import java.util.Optional;
  */
 @ApplicationScoped
 @RequiredArgsConstructor
-public class CreateOrUpdateUsuario extends Validators {
+public class CriarOuAtualizarUsuario extends Validators {
 
     private final UsuarioConverter converter;
 
     private final PBKDF2Encoder encoder;
 
     public void execute(UsuarioDTO dto) {
-
-        NonNullValidate(dto.getNome(), "Nome");
-        NonNullValidate(dto.getEmail(), "Email");
-        NonNullValidate(dto.getTelefone(), "Telefone");
-        NonNullValidate(dto.getTipo(), "Tipo");
-        NonNullValidate(dto.getStatus(), "Status");
-        NonNullValidate(dto.getSenha(), "Senha");
 
         if (Objects.nonNull(dto.getId())) {
             Usuario usuario = Optional.ofNullable((Usuario) Usuario.findById(dto.getId()))
@@ -55,7 +48,7 @@ public class CreateOrUpdateUsuario extends Validators {
             usuario.setSenha(encoder.encode(dto.getSenha()));
             usuario.setRegistro(new Timestamp(System.currentTimeMillis()));
 
-            usuario.persist();
+            Usuario.persist(usuario);
         }
 
     }

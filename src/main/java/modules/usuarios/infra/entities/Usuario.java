@@ -54,4 +54,7 @@ public class Usuario extends PanacheEntityBase {
 
     @Column(name = "codigo")
     private String codigo;
+
+    @Column(name = "role")
+    private String role;
 }
