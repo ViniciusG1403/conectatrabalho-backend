@@ -12,12 +12,15 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import lombok.RequiredArgsConstructor;
 import modules.login.dtos.AuthRequest;
 import modules.login.dtos.AuthResponse;
 import modules.login.usecases.TokenUtils;
 import modules.usuarios.converters.UsuarioConverter;
 import modules.usuarios.enumerations.StatusUsuario;
+import modules.usuarios.exceptions.UsuarioNotFoundException;
 import modules.usuarios.infra.entities.Usuario;
+import modules.usuarios.repositories.UsuarioRepository;
 import modules.usuarios.usecases.GenerateRandomCode;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -33,19 +36,18 @@ import java.util.Objects;
  * @since 26/11/23
  */
 @Path("/auth")
+@RequiredArgsConstructor
 public class AuthResource {
 
-    @Inject
-    PBKDF2Encoder passwordEncoder;
+   private final PBKDF2Encoder passwordEncoder;
 
-    @Inject
-    GenerateRandomCode generateRandomCode;
+   private final GenerateRandomCode generateRandomCode;
 
-    @Inject
-    SendEmailService sendEmailService;
+   private final SendEmailService sendEmailService;
 
-    @Inject
-    UsuarioConverter usuarioConverter;
+   private final UsuarioConverter usuarioConverter;
+
+   private final UsuarioRepository usuarioRepository;
 
     @ConfigProperty(name = "com.ard333.quarkusjwt.jwt.duration")
     public Long duration;
@@ -61,7 +63,7 @@ public class AuthResource {
     @APIResponse(responseCode = "200", description = "Login realizado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = AuthRequest.class)))
     @Operation(summary = "Login", description = "Realiza o login do usuário")
     public Response login(AuthRequest authRequest) {
-        final Usuario u = Usuario.find("email", authRequest.email).firstResult();
+        final Usuario u = usuarioRepository.findOne("email", authRequest.email).orElse(null);
         if (u == null) {
             return Response.status(Response.Status.UNAUTHORIZED)
                 .entity("Usuario inexistente")
@@ -76,7 +78,7 @@ public class AuthResource {
         if (Objects.equals(u.getStatus(), StatusUsuario.INATIVO)) {
             if (Objects.isNull(u.getCodigo())) {
                 u.setCodigo(generateRandomCode.execute());
-                Usuario.persist(u);
+                usuarioRepository.update(u);
                 sendEmailService.sendMail(usuarioConverter.toDTO(u), "Ativação de conta",
                     MessageOperation.ATIVACAO);
             }

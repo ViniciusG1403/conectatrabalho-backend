@@ -39,7 +39,7 @@ public class CriarOuAtualizarUsuario extends Validators {
     public UsuarioResponseDTO execute(UsuarioDTO dto) {
 
         if (Objects.nonNull(dto.getId())) {
-            Usuario usuario = Optional.ofNullable((Usuario) Usuario.findById(dto.getId()))
+            Usuario usuario = usuarioRepository.findById(dto.getId())
                 .orElseThrow(UsuarioNotFoundException::new);
 
             usuario.setNome(dto.getNome());

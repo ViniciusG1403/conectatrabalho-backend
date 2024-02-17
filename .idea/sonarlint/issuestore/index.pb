@@ -37,3 +37,7 @@ k
 ;src/main/java/modules/usuarios/dtos/UsuarioResponseDTO.java,0\7\07bdd2afbc878187c882b0db9f2b31b75a4350ed
 l
 <src/main/java/modules/usuarios/dtos/EnderecoResponseDTO.java,6\e\6eea94ac07ed51c81edf1ead6703eacc463f3bd4
+l
+<src/main/java/modules/usuarios/usecases/InativarUsuario.java,3\d\3dbb135f1af641ad448054244f99d04ad07f7448
+j
+:src/main/java/modules/usuarios/usecases/AtivarUsuario.java,0\d\0d5d6fe04ef70eede90864c7960723de622bb2bc

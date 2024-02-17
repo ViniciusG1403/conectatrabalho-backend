@@ -23,8 +23,7 @@ public class InativarUsuario {
     private final UsuarioRepository usuarioRepository;
 
     public void execute(String codigo) {
-        Usuario usuario = (Usuario) Optional.ofNullable(
-                Usuario.find("codigo", codigo).firstResult())
+        Usuario usuario = usuarioRepository.findOne("codigo", codigo)
             .orElseThrow(UsuarioNotFoundException::new);
 
         if(Objects.equals(usuario.getStatus(), StatusUsuario.INATIVO)){
