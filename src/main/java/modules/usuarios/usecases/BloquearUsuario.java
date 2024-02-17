@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import modules.usuarios.enumerations.StatusUsuario;
 import modules.usuarios.exceptions.UsuarioNotFoundException;
 import modules.usuarios.infra.entities.Usuario;
+import modules.usuarios.repositories.UsuarioRepository;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -20,17 +21,18 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class BloquearUsuario {
 
-    public void execute(UUID id) {
-        Usuario usuario = (Usuario) Optional.ofNullable(
-                Usuario.findById(id))
-            .orElseThrow(UsuarioNotFoundException::new);
+    private final UsuarioRepository usuarioRepository;
 
-        if(Objects.equals(usuario.getStatus(), StatusUsuario.BLOQUEADO)){
+    public void execute(UUID id) {
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(UsuarioNotFoundException::new);
+
+        if (Objects.equals(usuario.getStatus(), StatusUsuario.BLOQUEADO)) {
             throw new ValidationException("Usuário já está bloqueado");
         }
 
         usuario.setStatus(StatusUsuario.BLOQUEADO);
-        usuario.persist();
+        usuarioRepository.update(usuario);
     }
 
 }

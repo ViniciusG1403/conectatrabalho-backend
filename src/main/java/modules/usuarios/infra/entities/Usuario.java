@@ -46,10 +46,10 @@ public class Usuario extends PanacheEntityBase {
     @Column(name = "status", nullable = false)
     private StatusUsuario status;
 
-    @Column(name = "registro")
+    @Column(name = "dhregistro")
     private Timestamp registro;
 
-    @Column(name = "ultimaAtualizacao")
+    @Column(name = "dhultimaatualizacao")
     private Timestamp ultimaAtualizacao;
 
     @Column(name = "codigo")

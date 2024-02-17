@@ -1,6 +1,7 @@
 package modules.usuarios.usecases;
 
 import core.encoder.PBKDF2Encoder;
+import core.exceptions.ConectaTrabalhoException;
 import core.validates.Validators;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.RequiredArgsConstructor;
@@ -8,8 +9,10 @@ import modules.usuarios.converters.UsuarioConverter;
 import modules.usuarios.dtos.UsuarioDTO;
 import modules.usuarios.enumerations.StatusUsuario;
 import modules.usuarios.enumerations.TipoUsuario;
+import modules.usuarios.exceptions.UsuarioExistenteComMesmoEmail;
 import modules.usuarios.exceptions.UsuarioNotFoundException;
 import modules.usuarios.infra.entities.Usuario;
+import modules.usuarios.repositories.UsuarioRepository;
 
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -28,7 +31,11 @@ public class CriarOuAtualizarUsuario extends Validators {
 
     private final PBKDF2Encoder encoder;
 
-    public void execute(UsuarioDTO dto) {
+    private final UsuarioRepository usuarioRepository;
+
+    private final UsuarioJaExisteComEsteEmail usuarioJaExisteComEsteEmail;
+
+    public UsuarioDTO execute(UsuarioDTO dto) {
 
         if (Objects.nonNull(dto.getId())) {
             Usuario usuario = Optional.ofNullable((Usuario) Usuario.findById(dto.getId()))
@@ -42,13 +49,20 @@ public class CriarOuAtualizarUsuario extends Validators {
             usuario.setRegistro(dto.getRegistro());
             usuario.setUltimaAtualizacao(new Timestamp(System.currentTimeMillis()));
             usuario.setCodigo(dto.getCodigo());
-            usuario.persist();
+
+            return converter.toDTO(usuarioRepository.update(usuario));
         } else {
+
+            if(usuarioJaExisteComEsteEmail.execute(dto)) {
+                throw new UsuarioExistenteComMesmoEmail();
+            }
+
             Usuario usuario = converter.toEntity(dto);
+            usuario.setRole("USER_ROLE");
             usuario.setSenha(encoder.encode(dto.getSenha()));
             usuario.setRegistro(new Timestamp(System.currentTimeMillis()));
 
-            Usuario.persist(usuario);
+            return converter.toDTO(usuarioRepository.save(usuario));
         }
 
     }

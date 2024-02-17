@@ -4,6 +4,7 @@ import core.validates.Validators;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.RequiredArgsConstructor;
 import modules.usuarios.dtos.UsuarioDTO;
+import modules.usuarios.dtos.UsuarioRegistroDTO;
 import modules.usuarios.usecases.*;
 
 import java.util.UUID;
@@ -32,7 +33,6 @@ public class UsuarioService extends Validators {
         NonNullValidate(dto.getEmail(), "Email");
         NonNullValidate(dto.getTelefone(), "Telefone");
         NonNullValidate(dto.getTipo(), "Tipo");
-        NonNullValidate(dto.getStatus(), "Status");
         NonNullValidate(dto.getSenha(), "Senha");
         EmailFormatValidate(dto.getEmail());
 

@@ -2,9 +2,12 @@ package modules.usuarios.converters;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import modules.usuarios.dtos.UsuarioDTO;
+import modules.usuarios.dtos.UsuarioRegistroDTO;
 import modules.usuarios.enumerations.StatusUsuario;
 import modules.usuarios.enumerations.TipoUsuario;
 import modules.usuarios.infra.entities.Usuario;
+
+import java.util.UUID;
 
 /**
  * @author Vinicius Gabriel <vinicius.prado@nexuscloud.com.br>
@@ -41,5 +44,19 @@ public class UsuarioConverter {
         dto.setUltimaAtualizacao(entity.getUltimaAtualizacao());
         dto.setCodigo(entity.getCodigo());
         return dto;
+    }
+
+    public UsuarioDTO registroToDTO(UsuarioRegistroDTO dto){
+        UsuarioDTO usuario = new UsuarioDTO();
+        usuario.setNome(dto.getNome());
+        usuario.setEmail(dto.getEmail());
+        usuario.setTelefone(dto.getTelefone());
+        usuario.setTipo(dto.getTipo());
+        usuario.setSenha(dto.getSenha());
+        usuario.setStatus(StatusUsuario.INATIVO.ordinal());
+        return usuario;
+
+
+
     }
 }

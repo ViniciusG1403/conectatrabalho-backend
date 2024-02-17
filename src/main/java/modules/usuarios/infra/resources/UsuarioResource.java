@@ -6,7 +6,9 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import lombok.RequiredArgsConstructor;
+import modules.usuarios.converters.UsuarioConverter;
 import modules.usuarios.dtos.UsuarioDTO;
+import modules.usuarios.dtos.UsuarioRegistroDTO;
 import modules.usuarios.infra.entities.Usuario;
 import modules.usuarios.services.UsuarioService;
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -25,18 +27,21 @@ public class UsuarioResource {
 
     private final UsuarioService usuarioService;
 
+    private final UsuarioConverter converter;
+
     @POST
     @PermitAll
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @APIResponse(responseCode = "201", description = "Usuário criado/atualizado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = Usuario.class)))
     @Operation(summary = "Criar ou Atualizar", description = "Cria ou atualiza um usuário")
-    public Response criarOuAtualizar(UsuarioDTO dto){
+    public Response criarOuAtualizar(UsuarioRegistroDTO registroDTO){
+        UsuarioDTO dto = converter.registroToDTO(registroDTO);
         return Response.status(Response.Status.CREATED).entity(usuarioService.criarOuAtualizar(dto)).build();
     }
 
     @GET
-    @RolesAllowed({"ROLE_USER", "ROLE_ADMIN"})
+    @RolesAllowed({"USER_ROLE", "ADMIN_ROLE"})
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     @APIResponse(responseCode = "200", description = "Usuário encontrado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = Usuario.class)))
@@ -46,7 +51,7 @@ public class UsuarioResource {
     }
 
     @PUT
-    @RolesAllowed({"ROLE_USER", "ROLE_ADMIN"})
+    @RolesAllowed({"USER_ROLE", "ADMIN_ROLE"})
     @Path("/ativar/{codigo}")
     @APIResponse(responseCode = "204", description = "Usuário ativado com sucesso")
     @Operation(summary = "Ativar", description = "Ativa um usuário")
@@ -56,7 +61,7 @@ public class UsuarioResource {
     }
 
     @PUT
-    @RolesAllowed({"ROLE_USER", "ROLE_ADMIN"})
+    @RolesAllowed({"USER_ROLE", "ADMIN_ROLE"})
     @Path("/inativar/{codigo}")
     @APIResponse(responseCode = "204", description = "Usuário inativado com sucesso")
     @Operation(summary = "Inativar", description = "Inativa um usuário")
@@ -66,7 +71,7 @@ public class UsuarioResource {
     }
 
     @PUT
-    @RolesAllowed({"ROLE_ADMIN"})
+    @RolesAllowed({"ADMIN_ROLE"})
     @Path("/bloquear/{id}")
     @APIResponse(responseCode = "204", description = "Usuário bloqueado com sucesso")
     @Operation(summary = "Bloquear", description = "Bloqueia um usuário")
