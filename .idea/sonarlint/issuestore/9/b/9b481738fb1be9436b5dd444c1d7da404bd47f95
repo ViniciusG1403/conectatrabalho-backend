@@ -1,0 +1,15 @@
+
+R
+java:S2589U"7Remove this expression which always evaluates to "true"(‰ˆüÁùÿÿÿÿ
+]
+java:S6813&"BRemove this field injection and use constructor injection instead.(Áº–üÿÿÿÿ
+]
+java:S6813)"BRemove this field injection and use constructor injection instead.(Áº–üÿÿÿÿ
+]
+java:S6813,"BRemove this field injection and use constructor injection instead.(Áº–üÿÿÿÿ
+]
+java:S6813/"BRemove this field injection and use constructor injection instead.(Áº–üÿÿÿÿ
+r
+java:S3252@"WUse static access with "io.quarkus.hibernate.orm.panache.PanacheEntityBase" for "find".(–¿Ü†úÿÿÿÿ
+u
+java:S3252O"ZUse static access with "io.quarkus.hibernate.orm.panache.PanacheEntityBase" for "persist".(Æ™ıÿÿÿÿ

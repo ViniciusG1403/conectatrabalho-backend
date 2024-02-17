@@ -3,8 +3,7 @@ package modules.usuarios.usecases;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.RequiredArgsConstructor;
 import modules.usuarios.converters.UsuarioConverter;
-import modules.usuarios.dtos.UsuarioDTO;
-import modules.usuarios.infra.entities.Usuario;
+import modules.usuarios.dtos.UsuarioResponseDTO;
 import modules.usuarios.repositories.UsuarioRepository;
 
 import java.util.List;
@@ -24,8 +23,8 @@ public class BuscarTodosOsUsuarios {
     private final UsuarioRepository usuarioRepository;
 
 
-    public List<UsuarioDTO> execute() {
-       return usuarioRepository.findAll().stream().map(usuarioConverter::toDTO).collect(Collectors.toList());
+    public List<UsuarioResponseDTO> execute() {
+       return usuarioRepository.findAll().stream().map(usuarioConverter::toResponse).collect(Collectors.toList());
     }
 
 

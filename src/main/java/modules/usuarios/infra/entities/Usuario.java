@@ -57,4 +57,7 @@ public class Usuario extends PanacheEntityBase {
 
     @Column(name = "role")
     private String role;
+
+    @OneToOne(mappedBy = "usuario", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private Endereco endereco;
 }

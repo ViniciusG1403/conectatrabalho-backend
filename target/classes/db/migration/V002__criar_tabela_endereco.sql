@@ -22,3 +22,10 @@ COMMENT ON COLUMN endereco.bairro IS 'Bairro do endereço';
 COMMENT ON COLUMN endereco.logradouro IS 'Logradouro do endereço';
 COMMENT ON COLUMN endereco.numero IS 'Número do endereço';
 COMMENT ON COLUMN endereco.complemento IS 'Complemento do endereço';
+
+
+ALTER TABLE endereco
+ADD CONSTRAINT fk_endereco_usuario
+FOREIGN KEY (usuario_id)
+REFERENCES usuarios(id)
+ON DELETE CASCADE;

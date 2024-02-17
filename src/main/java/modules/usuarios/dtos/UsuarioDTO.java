@@ -56,4 +56,7 @@ public class UsuarioDTO {
     @Size(min = 6, max = 6, message = "O código deve ter 6 caracteres")
     private String codigo;
 
+    @NotNull(message = "O endereço não pode ser nulo")
+    private EnderecoDTO endereco;
+
 }

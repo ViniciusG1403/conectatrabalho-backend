@@ -1,8 +1,10 @@
 package modules.usuarios.converters;
 
 import jakarta.enterprise.context.ApplicationScoped;
+import lombok.RequiredArgsConstructor;
 import modules.usuarios.dtos.UsuarioDTO;
 import modules.usuarios.dtos.UsuarioRegistroDTO;
+import modules.usuarios.dtos.UsuarioResponseDTO;
 import modules.usuarios.enumerations.StatusUsuario;
 import modules.usuarios.enumerations.TipoUsuario;
 import modules.usuarios.infra.entities.Usuario;
@@ -15,7 +17,10 @@ import java.util.UUID;
  * @since 13/02/24
  */
 @ApplicationScoped
+@RequiredArgsConstructor
 public class UsuarioConverter {
+
+    private final EnderecoConverter enderecoConverter;
 
     public Usuario toEntity(UsuarioDTO dto) {
         Usuario entity = new Usuario();
@@ -29,6 +34,10 @@ public class UsuarioConverter {
         entity.setRegistro(dto.getRegistro());
         entity.setUltimaAtualizacao(dto.getUltimaAtualizacao());
         entity.setCodigo(dto.getCodigo());
+        entity.setEndereco(enderecoConverter.toEntity(dto.getEndereco()));
+        if(entity.getEndereco() != null){
+            entity.getEndereco().setUsuario(entity);
+        }
         return entity;
     }
 
@@ -43,6 +52,7 @@ public class UsuarioConverter {
         dto.setRegistro(entity.getRegistro());
         dto.setUltimaAtualizacao(entity.getUltimaAtualizacao());
         dto.setCodigo(entity.getCodigo());
+        dto.setEndereco(enderecoConverter.toDto(entity.getEndereco()));
         return dto;
     }
 
@@ -54,9 +64,21 @@ public class UsuarioConverter {
         usuario.setTipo(dto.getTipo());
         usuario.setSenha(dto.getSenha());
         usuario.setStatus(StatusUsuario.INATIVO.ordinal());
+        usuario.setEndereco(dto.getEndereco());
         return usuario;
 
+    }
 
-
+    public UsuarioResponseDTO toResponse(Usuario entity) {
+        UsuarioResponseDTO dto = new UsuarioResponseDTO();
+        dto.setId(entity.getId());
+        dto.setNome(entity.getNome());
+        dto.setEmail(entity.getEmail());
+        dto.setTelefone(entity.getTelefone());
+        dto.setTipo(TipoUsuario.valueOf(entity.getTipo()));
+        dto.setStatus(StatusUsuario.valueOf(entity.getStatus()));
+        dto.setRegistro(entity.getRegistro());
+        dto.setEndereco(enderecoConverter.toResponseDto(entity.getEndereco()));
+        return dto;
     }
 }

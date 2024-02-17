@@ -5,6 +5,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import lombok.RequiredArgsConstructor;
 import modules.usuarios.dtos.UsuarioDTO;
 import modules.usuarios.dtos.UsuarioRegistroDTO;
+import modules.usuarios.dtos.UsuarioResponseDTO;
 import modules.usuarios.usecases.*;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class UsuarioService extends Validators {
 
     private final BuscarTodosOsUsuarios buscarTodosOsUsuarios;
 
-    public UsuarioDTO criarOuAtualizar(UsuarioDTO dto) {
+    public UsuarioResponseDTO criarOuAtualizar(UsuarioDTO dto) {
         NonNullValidate(dto.getNome(), "Nome");
         NonNullValidate(dto.getEmail(), "Email");
         NonNullValidate(dto.getTelefone(), "Telefone");
@@ -39,11 +40,10 @@ public class UsuarioService extends Validators {
         NonNullValidate(dto.getSenha(), "Senha");
         EmailFormatValidate(dto.getEmail());
 
-        criarOuAtualizarUsuario.execute(dto);
-        return dto;
+        return criarOuAtualizarUsuario.execute(dto);
     }
 
-    public UsuarioDTO buscarPeloId(String id) {
+    public UsuarioResponseDTO buscarPeloId(String id) {
         return buscarUsuarioPeloID.execute(UUID.fromString(id));
     }
 
@@ -59,6 +59,6 @@ public class UsuarioService extends Validators {
         bloquearUsuario.execute(UUID.fromString(id));
     }
 
-    public List<UsuarioDTO> buscarTodosUsuarios() { return buscarTodosOsUsuarios.execute(); }
+    public List<UsuarioResponseDTO> buscarTodosUsuarios() { return buscarTodosOsUsuarios.execute(); }
 
 }

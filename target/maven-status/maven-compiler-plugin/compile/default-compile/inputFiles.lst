@@ -1,3 +1,4 @@
+C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\usuarios\dtos\UsuarioResponseDTO.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\core\encoder\PBKDF2Encoder.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\usuarios\usecases\AtivarUsuario.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\usuarios\exceptions\UsuarioNotFoundException.java
@@ -9,6 +10,7 @@ C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\core\shared\PostgreSQLEnumType.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\login\dtos\AuthRequest.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\login\dtos\AuthResponse.java
+C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\usuarios\dtos\EnderecoResponseDTO.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\usuarios\usecases\BuscarTodosOsUsuarios.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\core\repositories\GenericRepository.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\core\repositories\GenericRepositoryImpl.java
@@ -21,12 +23,15 @@ C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\usuarios\usecases\UsuarioJaExisteComEsteEmail.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\usuarios\dtos\UsuarioRegistroDTO.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\usuarios\usecases\GenerateRandomCode.java
+C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\usuarios\converters\EnderecoConverter.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\usuarios\enumerations\StatusUsuario.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\usuarios\usecases\BloquearUsuario.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\usuarios\infra\repositories\UsuarioRepositoryImpl.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\usuarios\dtos\UsuarioDTO.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\usuarios\infra\resources\UsuarioResource.java
+C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\usuarios\dtos\EnderecoDTO.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\core\exceptions\ConectaTrabalhoException.java
+C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\usuarios\infra\entities\Endereco.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\usuarios\services\UsuarioService.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\usuarios\usecases\BuscarUsuarioPeloID.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\core\exceptions\InvalidFormatEmailException.java

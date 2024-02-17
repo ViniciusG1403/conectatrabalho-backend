@@ -42,4 +42,7 @@ public class UsuarioRegistroDTO {
     @Max(value = 1, message = "O tipo deve ser 0 - CANDIDATO ou 1 - EMPRESA")
     private Integer tipo;
 
+    @NotNull(message = "O endereço não pode ser nulo")
+    private EnderecoDTO endereco;
+
 }

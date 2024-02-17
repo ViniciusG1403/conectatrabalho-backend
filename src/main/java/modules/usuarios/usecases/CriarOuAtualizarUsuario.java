@@ -7,6 +7,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import lombok.RequiredArgsConstructor;
 import modules.usuarios.converters.UsuarioConverter;
 import modules.usuarios.dtos.UsuarioDTO;
+import modules.usuarios.dtos.UsuarioResponseDTO;
 import modules.usuarios.enumerations.StatusUsuario;
 import modules.usuarios.enumerations.TipoUsuario;
 import modules.usuarios.exceptions.UsuarioExistenteComMesmoEmail;
@@ -35,7 +36,7 @@ public class CriarOuAtualizarUsuario extends Validators {
 
     private final UsuarioJaExisteComEsteEmail usuarioJaExisteComEsteEmail;
 
-    public UsuarioDTO execute(UsuarioDTO dto) {
+    public UsuarioResponseDTO execute(UsuarioDTO dto) {
 
         if (Objects.nonNull(dto.getId())) {
             Usuario usuario = Optional.ofNullable((Usuario) Usuario.findById(dto.getId()))
@@ -50,7 +51,7 @@ public class CriarOuAtualizarUsuario extends Validators {
             usuario.setUltimaAtualizacao(new Timestamp(System.currentTimeMillis()));
             usuario.setCodigo(dto.getCodigo());
 
-            return converter.toDTO(usuarioRepository.update(usuario));
+            return converter.toResponse(usuarioRepository.update(usuario));
         } else {
 
             if(usuarioJaExisteComEsteEmail.execute(dto)) {
@@ -62,7 +63,7 @@ public class CriarOuAtualizarUsuario extends Validators {
             usuario.setSenha(encoder.encode(dto.getSenha()));
             usuario.setRegistro(new Timestamp(System.currentTimeMillis()));
 
-            return converter.toDTO(usuarioRepository.save(usuario));
+            return converter.toResponse(usuarioRepository.save(usuario));
         }
 
     }
