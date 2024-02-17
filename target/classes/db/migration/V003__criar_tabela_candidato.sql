@@ -22,3 +22,9 @@ COMMENT ON COLUMN candidato.disponibilidade IS 'Disponibilidade do candidato';
 COMMENT ON COLUMN candidato.pretensao_salarial IS 'Pretensão salarial do candidato';
 COMMENT ON COLUMN candidato.url_curriculum IS 'URL do currículo do candidato';
 COMMENT ON COLUMN candidato.url_fotoperfil IS 'URL da foto de perfil do candidato';
+
+ALTER TABLE candidato
+ADD CONSTRAINT fk_candidato_usuario
+FOREIGN KEY (usuario_id)
+REFERENCES usuarios(id)
+ON DELETE CASCADE;

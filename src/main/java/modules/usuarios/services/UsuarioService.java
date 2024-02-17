@@ -32,6 +32,8 @@ public class UsuarioService extends Validators {
 
     private final BuscarTodosOsUsuarios buscarTodosOsUsuarios;
 
+    private final BuscarTodosOsUsuariosAtivos buscarTodosOsUsuariosAtivos;
+
     public UsuarioResponseDTO criarOuAtualizar(UsuarioDTO dto) {
         NonNullValidate(dto.getNome(), "Nome");
         NonNullValidate(dto.getEmail(), "Email");
@@ -60,5 +62,7 @@ public class UsuarioService extends Validators {
     }
 
     public List<UsuarioResponseDTO> buscarTodosUsuarios() { return buscarTodosOsUsuarios.execute(); }
+
+    public List<UsuarioResponseDTO> buscarTodosUsuariosAtivos() { return buscarTodosOsUsuariosAtivos.execute(); }
 
 }

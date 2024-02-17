@@ -1,19 +1,17 @@
 
-t
-java:S1488j"^Immediately return this expression instead of assigning it to the temporary variable "result".(”çë
-u
-java:S1488„"^Immediately return this expression instead of assigning it to the temporary variable "result".(”çë
+|
+java:S1488ƒ"^Immediately return this expression instead of assigning it to the temporary variable "result".(”çë8ÆÒÄ¿Û1
 n
 java:S1602O"SRemove useless curly braces around statement and then remove useless return keyword(½û—Óşÿÿÿÿ
-S
-java:S1854g"8Remove this useless assignment to local variable "root".(¯ºßÊıÿÿÿÿ
-D
-java:S1481g")Remove this unused "root" local variable.(¯ºßÊıÿÿÿÿ
+Z
+java:S1854g"8Remove this useless assignment to local variable "root".(¯ºßÊıÿÿÿÿ8çÒÄ¿Û1
+K
+java:S1481g")Remove this unused "root" local variable.(¯ºßÊıÿÿÿÿ8¶ßĞ¿Û1
 n
-java:S1602{"SRemove useless curly braces around statement and then remove useless return keyword(½û—Óşÿÿÿÿ
+java:S1602z"SRemove useless curly braces around statement and then remove useless return keyword(½û—Óşÿÿÿÿ
 x
-java:S6201š"\Replace this instanceof check and cast with 'instanceof ParameterizedType parameterizedtype'(åƒ£ğıÿÿÿÿ
-Q
-java:S1128";Remove this unused import 'io.quarkus.panache.common.Sort'.(ôãàØ
-S
-java:S1128"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ
+java:S6201™"\Replace this instanceof check and cast with 'instanceof ParameterizedType parameterizedtype'(åƒ£ğıÿÿÿÿ
+X
+java:S1128";Remove this unused import 'io.quarkus.panache.common.Sort'.(ôãàØ8¸ßĞ¿Û1
+Z
+java:S1128"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ8¹ßĞ¿Û1

@@ -1,10 +1,12 @@
 package modules.usuarios.usecases;
 
+import core.pesquisa.CondicaoPesquisa;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import modules.usuarios.converters.UsuarioConverter;
 import modules.usuarios.dtos.UsuarioResponseDTO;
+import modules.usuarios.enumerations.StatusUsuario;
 import modules.usuarios.repositories.UsuarioRepository;
 
 import java.util.List;
@@ -18,15 +20,18 @@ import java.util.stream.Collectors;
 @Transactional
 @ApplicationScoped
 @RequiredArgsConstructor
-public class BuscarTodosOsUsuarios {
-
-    private final UsuarioConverter usuarioConverter;
+public class BuscarTodosOsUsuariosAtivos {
 
     private final UsuarioRepository usuarioRepository;
 
+    private final UsuarioConverter usuarioConverter;
 
     public List<UsuarioResponseDTO> execute() {
-       return usuarioRepository.findAll().stream().map(usuarioConverter::toResponse).collect(Collectors.toList());
+        CondicaoPesquisa condicaoPesquisa = new CondicaoPesquisa();
+        condicaoPesquisa.setChave("status");
+        condicaoPesquisa.setValor(StatusUsuario.ATIVO.ordinal());
+
+        return usuarioRepository.findAll(List.of(condicaoPesquisa)).stream().map(usuarioConverter::toResponse).collect(Collectors.toList());
     }
 
 

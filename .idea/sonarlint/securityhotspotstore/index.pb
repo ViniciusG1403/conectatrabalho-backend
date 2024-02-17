@@ -41,3 +41,5 @@ l
 <src/main/java/modules/usuarios/usecases/InativarUsuario.java,3\d\3dbb135f1af641ad448054244f99d04ad07f7448
 j
 :src/main/java/modules/usuarios/usecases/AtivarUsuario.java,0\d\0d5d6fe04ef70eede90864c7960723de622bb2bc
+x
+Hsrc/main/java/modules/usuarios/usecases/BuscarTodosOsUsuariosAtivos.java,2\f\2fead8264643a6cabe32a89b8dcc8211c2d4d19d

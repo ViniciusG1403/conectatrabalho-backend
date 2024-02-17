@@ -103,9 +103,8 @@ public class GenericRepositoryImpl<T> implements GenericRepository<T> {
             Root<T> root = query.from(entityClass);
 
 
-            final List<T> result = entityManager.createQuery(query).getResultList();
+            return entityManager.createQuery(query).getResultList();
 
-            return result;
         } catch (NoResultException ex) {
             return Collections.emptyList();
         } catch (Exception ex) {

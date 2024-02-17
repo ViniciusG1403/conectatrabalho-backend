@@ -5,6 +5,7 @@ modules\usuarios\infra\entities\Endereco.class
 modules\usuarios\dtos\UsuarioRegistroDTO.class
 modules\usuarios\exceptions\UsuarioNotFoundException.class
 modules\usuarios\dtos\EnderecoResponseDTO.class
+modules\usuarios\usecases\BuscarTodosOsUsuariosAtivos.class
 modules\login\resource\AuthResource.class
 modules\usuarios\converters\UsuarioConverter.class
 modules\usuarios\usecases\BuscarTodosOsUsuarios.class

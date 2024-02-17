@@ -33,7 +33,7 @@ public class UsuarioResource {
     @PermitAll
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @APIResponse(responseCode = "201", description = "Usuário criado/atualizado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = Usuario.class)))
+    @APIResponse(responseCode = "201", description = "Usuário criado/atualizado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = UsuarioRegistroDTO.class)))
     @Operation(summary = "Criar ou Atualizar", description = "Cria ou atualiza um usuário")
     public Response criarOuAtualizar(UsuarioRegistroDTO registroDTO){
         UsuarioDTO dto = converter.registroToDTO(registroDTO);
@@ -47,6 +47,16 @@ public class UsuarioResource {
     @Operation(summary = "Buscar todos", description = "Busca todos os usuários")
     public Response buscarTodos(){
         return Response.status(Response.Status.OK).entity(usuarioService.buscarTodosUsuarios()).build();
+    }
+
+    @GET
+    @Path("/ativos")
+    @RolesAllowed({"ADMIN_ROLE"})
+    @Produces(MediaType.APPLICATION_JSON)
+    @APIResponse(responseCode = "200", description = "Usuários encontrados com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = Usuario.class)))
+    @Operation(summary = "Buscar todos", description = "Busca todos os usuários")
+    public Response buscarTodosAtivos(){
+        return Response.status(Response.Status.OK).entity(usuarioService.buscarTodosUsuariosAtivos()).build();
     }
 
     @GET
