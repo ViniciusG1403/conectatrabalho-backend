@@ -18,3 +18,9 @@ COMMENT ON COLUMN contratante.descricao IS 'Descrição da empresa';
 COMMENT ON COLUMN contratante.website IS 'Website da empresa';
 COMMENT ON COLUMN contratante.linkedin IS 'Perfil do linkedin da empresa';
 COMMENT ON COLUMN contratante.url_fotoperfil IS 'URL da foto de perfil da empresa';
+
+ALTER TABLE contratante
+ADD CONSTRAINT fk_contratante_usuario
+FOREIGN KEY (usuario_id)
+REFERENCES usuarios(id)
+ON DELETE CASCADE;

@@ -20,3 +20,8 @@ COMMENT ON COLUMN vagas.tipo IS E'Tipo da vaga\n 0 - CLT\n 1 - PJ\n 2 - Estágio
 COMMENT ON COLUMN vagas.nivel IS 'Nível da vaga';
 COMMENT ON COLUMN vagas.status IS 'Status da vaga\n 0 - Inativa\n 1 - Ativa\n 2 - Pausada\n 3 - Encerrada';
 COMMENT ON COLUMN vagas.data_criacao IS 'Data de criação da vaga';
+
+ALTER TABLE vagas
+ADD CONSTRAINT fk_vagas_perfilcontratante
+FOREIGN KEY (id_perfilcontratante)
+REFERENCES contratante(id)
