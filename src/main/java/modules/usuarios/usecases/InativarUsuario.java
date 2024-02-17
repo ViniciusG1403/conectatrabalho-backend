@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import modules.usuarios.enumerations.StatusUsuario;
 import modules.usuarios.exceptions.UsuarioNotFoundException;
 import modules.usuarios.infra.entities.Usuario;
+import modules.usuarios.repositories.UsuarioRepository;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -19,6 +20,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class InativarUsuario {
 
+    private final UsuarioRepository usuarioRepository;
 
     public void execute(String codigo) {
         Usuario usuario = (Usuario) Optional.ofNullable(
@@ -30,7 +32,8 @@ public class InativarUsuario {
         }
 
         usuario.setStatus(StatusUsuario.INATIVO);
-        usuario.persist();
+        usuario.setCodigo(null);
+        usuarioRepository.update(usuario);
     }
 
 

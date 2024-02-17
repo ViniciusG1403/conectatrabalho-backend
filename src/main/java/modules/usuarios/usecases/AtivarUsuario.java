@@ -30,6 +30,7 @@ public class AtivarUsuario {
         }
 
         usuario.setStatus(StatusUsuario.ATIVO);
+        usuario.setCodigo(null);
         usuarioRepository.update(usuario);
     }
 

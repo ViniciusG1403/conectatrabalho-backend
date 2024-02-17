@@ -7,6 +7,7 @@ import modules.usuarios.dtos.UsuarioDTO;
 import modules.usuarios.dtos.UsuarioRegistroDTO;
 import modules.usuarios.usecases.*;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -27,6 +28,8 @@ public class UsuarioService extends Validators {
     private final InativarUsuario inativarUsuario;
 
     private final BloquearUsuario bloquearUsuario;
+
+    private final BuscarTodosOsUsuarios buscarTodosOsUsuarios;
 
     public UsuarioDTO criarOuAtualizar(UsuarioDTO dto) {
         NonNullValidate(dto.getNome(), "Nome");
@@ -55,5 +58,7 @@ public class UsuarioService extends Validators {
     public void bloquearUsuario(String id) {
         bloquearUsuario.execute(UUID.fromString(id));
     }
+
+    public List<UsuarioDTO> buscarTodosUsuarios() { return buscarTodosOsUsuarios.execute(); }
 
 }

@@ -21,6 +21,10 @@ public interface GenericRepository<T> {
 
     Optional<T> findOne(final List<CondicaoPesquisa> condicaoPesquisaList);
 
+    List<T> findAll();
+
+    List<T> findAll(final List<CondicaoPesquisa> condicaoPesquisaList);
+
     T update(T object);
 
 

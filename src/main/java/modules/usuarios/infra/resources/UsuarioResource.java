@@ -41,6 +41,15 @@ public class UsuarioResource {
     }
 
     @GET
+    @RolesAllowed({"ADMIN_ROLE"})
+    @Produces(MediaType.APPLICATION_JSON)
+    @APIResponse(responseCode = "200", description = "Usuários encontrados com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = Usuario.class)))
+    @Operation(summary = "Buscar todos", description = "Busca todos os usuários")
+    public Response buscarTodos(){
+        return Response.status(Response.Status.OK).entity(usuarioService.buscarTodosUsuarios()).build();
+    }
+
+    @GET
     @RolesAllowed({"USER_ROLE", "ADMIN_ROLE"})
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
@@ -51,7 +60,7 @@ public class UsuarioResource {
     }
 
     @PUT
-    @RolesAllowed({"USER_ROLE", "ADMIN_ROLE"})
+    @PermitAll
     @Path("/ativar/{codigo}")
     @APIResponse(responseCode = "204", description = "Usuário ativado com sucesso")
     @Operation(summary = "Ativar", description = "Ativa um usuário")

@@ -9,6 +9,7 @@ C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\core\shared\PostgreSQLEnumType.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\login\dtos\AuthRequest.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\login\dtos\AuthResponse.java
+C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\usuarios\usecases\BuscarTodosOsUsuarios.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\core\repositories\GenericRepository.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\core\repositories\GenericRepositoryImpl.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\usuarios\repositories\UsuarioRepository.java

@@ -70,6 +70,9 @@ public class AuthResource {
         if (!u.getSenha().equals(passwordEncoder.encode(authRequest.password))) {
             return Response.status(Response.Status.UNAUTHORIZED).entity("Senha invalida").build();
         }
+        if(Objects.equals(u.getStatus(), StatusUsuario.BLOQUEADO)){
+            return Response.status(Response.Status.UNAUTHORIZED).entity("Usuario bloqueado, entre em contato com o suporte").build();
+        }
         if (Objects.equals(u.getStatus(), StatusUsuario.INATIVO)) {
             if (Objects.isNull(u.getCodigo())) {
                 u.setCodigo(generateRandomCode.execute());

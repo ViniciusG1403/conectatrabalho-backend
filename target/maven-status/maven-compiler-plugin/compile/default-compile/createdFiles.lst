@@ -12,6 +12,7 @@ modules\login\resource\AuthResource.class
 META-INF\panache-archive.marker
 modules\usuarios\converters\UsuarioConverter.class
 core\exceptions\InvalidFormatEmailException.class
+modules\usuarios\usecases\BuscarTodosOsUsuarios.class
 modules\usuarios\usecases\InativarUsuario.class
 core\exceptions\ConectaTrabalhoException.class
 modules\usuarios\usecases\CriarOuAtualizarUsuario.class

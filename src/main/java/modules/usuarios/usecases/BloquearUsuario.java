@@ -32,6 +32,7 @@ public class BloquearUsuario {
         }
 
         usuario.setStatus(StatusUsuario.BLOQUEADO);
+        usuario.setCodigo(null);
         usuarioRepository.update(usuario);
     }
 

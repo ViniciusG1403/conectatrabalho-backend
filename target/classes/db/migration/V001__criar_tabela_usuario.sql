@@ -3,7 +3,7 @@ CREATE TABLE usuarios(
     nome VARCHAR(60) NOT NULL,
     email VARCHAR(60) NOT NULL,
     telefone VARCHAR(20) NOT NULL,
-    senha VARCHAR(20) NOT NULL,
+    senha TEXT NOT NULL,
     tipo INTEGER NOT NULL,
     status INTEGER NOT NULL DEFAULT 0,
     dhRegistro TIMESTAMPTZ NOT NULL DEFAULT NOW(),
