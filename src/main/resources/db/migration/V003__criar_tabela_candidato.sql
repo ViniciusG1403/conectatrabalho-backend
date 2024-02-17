@@ -7,7 +7,7 @@ CREATE TABLE candidato (
     portfolio TEXT  NULL,
     disponibilidade VARCHAR(40) NOT NULL,
     pretensao_salarial DECIMAL(10,2) NOT NULL,
-    url_curriculum TEXT NOT NULL,
+    url_curriculum TEXT NULL,
     url_fotoperfil TEXT NOT NULL
 );
 
