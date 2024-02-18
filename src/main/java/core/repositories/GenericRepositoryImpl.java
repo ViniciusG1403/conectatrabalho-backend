@@ -120,7 +120,7 @@ public class GenericRepositoryImpl<T> implements GenericRepository<T> {
             Root<T> root = query.from(entityClass);
 
             List<Predicate> predicateList = condicaoPesquisaList.stream().map(condicao -> {
-                return criteriaBuilder.equal(root.get(condicao.getChave()), condicao.getValor());
+                return criteriaBuilder.like(root.get(condicao.getChave()), "%" + condicao.getValor() + "%");
             }).toList();
 
             Predicate[] predicates = predicateList.toArray(new Predicate[0]);

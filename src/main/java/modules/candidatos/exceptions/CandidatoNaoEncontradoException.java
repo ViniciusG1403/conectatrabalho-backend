@@ -10,6 +10,6 @@ import jakarta.ws.rs.NotFoundException;
 public class CandidatoNaoEncontradoException extends NotFoundException {
 
 
-    CandidatoNaoEncontradoException() {super ("Candidato não encontrado!");}
+    public CandidatoNaoEncontradoException() {super ("Candidato não encontrado!");}
 
 }

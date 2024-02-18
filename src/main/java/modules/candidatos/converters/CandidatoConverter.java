@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import modules.candidatos.dtos.CandidatoDTO;
 import modules.candidatos.infra.entities.Candidato;
 import modules.usuarios.converters.UsuarioConverter;
+import modules.usuarios.dtos.UsuarioDTO;
+import modules.usuarios.infra.entities.Usuario;
 
 /**
  * @author Vinicius Gabriel <vinicius.prado@nexuscloud.com.br>

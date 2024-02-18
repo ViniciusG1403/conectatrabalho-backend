@@ -2,13 +2,14 @@ package modules.candidatos.services;
 
 import core.validates.Validators;
 import jakarta.enterprise.context.ApplicationScoped;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import modules.candidatos.dtos.CandidatoDTO;
 import modules.candidatos.usecases.AtualizarCandidato;
+import modules.candidatos.usecases.BuscarCandidatoPeloID;
 import modules.candidatos.usecases.CriarCandidato;
 
 import java.util.Objects;
+import java.util.UUID;
 
 /**
  * @author Vinicius Gabriel <vinicius.prado@nexuscloud.com.br>
@@ -23,8 +24,10 @@ public class CandidatoService extends Validators {
 
     private final CriarCandidato criarCandidato;
 
+    private final BuscarCandidatoPeloID buscarCandidatoPeloID;
+
     public CandidatoDTO criarCandidato(CandidatoDTO dto) {
-        try {
+
             NonNullValidate(dto, "Candidato");
             NonNullValidate(dto.getUsuario(), "Usuario");
             NonNullValidate(dto.getDisponibilidade(), "Disponibilidade");
@@ -34,9 +37,6 @@ public class CandidatoService extends Validators {
                 dto.setUrlFotoPerfil("");
             }
             return criarCandidato.execute(dto);
-        } catch (Exception e) {
-            throw new RuntimeException("Erro ao criar candidato", e);
-        }
 
 
     }
@@ -59,5 +59,13 @@ public class CandidatoService extends Validators {
         }
     }
 
+    public CandidatoDTO buscarCandidatoPeloID(String id) {
+        try {
+            NonNullValidate(id, "ID");
+            return buscarCandidatoPeloID.execute(UUID.fromString(id));
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao buscar usuário", e);
+        }
+    }
 
 }

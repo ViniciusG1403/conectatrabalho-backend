@@ -25,7 +25,7 @@ public class Candidato {
     private UUID id;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_usuario")
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
     @Column(name = "habilidades")
