@@ -43,12 +43,6 @@ j
 :src/main/java/modules/usuarios/usecases/AtivarUsuario.java,0\d\0d5d6fe04ef70eede90864c7960723de622bb2bc
 x
 Hsrc/main/java/modules/usuarios/usecases/BuscarTodosOsUsuariosAtivos.java,2\f\2fead8264643a6cabe32a89b8dcc8211c2d4d19d
-Z
-*src/main/java/modules/candidatos/hsdrsagar,a\0\a0bad0cfcefda0b7ef2b8a928eba9ccd00c4804a
-o
-?src/main/java/modules/candidatos/infra/entities/Candidatos.java,6\f\6fa6ff8e7edb3c219a3e9f127f25934ce06c76b0
-h
-8src/main/java/modules/candidatos/dtos/CandidatosDTO.java,d\6\d69510320c9d11f9535229826d4d9b785922c584
 n
 >src/main/java/modules/candidatos/infra/entities/Candidato.java,5\4\548adbbd543d2e6bb9c053414877e4ba8b9009fc
 g
@@ -71,3 +65,13 @@ o
 ?src/main/java/modules/candidatos/services/CandidatoService.java,8\0\809cf9d97fd126e7c2a4285edbd5736a471755e9
 w
 Gsrc/main/java/modules/candidatos/infra/resources/CandidatoResource.java,e\b\eb48fa181439610dc5827b437f6f7a5ff0501846
+o
+?src/main/java/modules/candidatos/dtos/CandidatoResponseDTO.java,a\6\a6db3f9d636a563798d9e87d454eed4ff60be1db
+o
+?src/main/java/modules/candidatos/usecases/BuscarCandidatos.java,a\2\a25e8b0c85c364ef8231e70e9eb9ae12a73a6ccf
+t
+Dsrc/main/java/modules/candidatos/usecases/BuscarCandidatoPeloID.java,a\c\aca61fd81eab189ce2853a2633ae94b252d09fb1
+l
+<src/main/java/modules/usuarios/enumerations/TipoUsuario.java,0\5\055b9e4cdc1b20305389b483599438a45987c6a3
+n
+>src/main/java/modules/usuarios/enumerations/StatusUsuario.java,0\8\0839d404497d33c94b9c4b779cf4b1a23e752a7e

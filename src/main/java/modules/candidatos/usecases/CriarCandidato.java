@@ -5,6 +5,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import modules.candidatos.converters.CandidatoConverter;
 import modules.candidatos.dtos.CandidatoDTO;
+import modules.candidatos.dtos.CandidatoResponseDTO;
 import modules.candidatos.infra.entities.Candidato;
 import modules.candidatos.repositories.CandidatoRepository;
 import modules.usuarios.converters.UsuarioConverter;
@@ -32,7 +33,7 @@ public class CriarCandidato {
 
     private final UsuarioConverter usuarioConverter;
     @Transactional
-    public CandidatoDTO execute(CandidatoDTO dto) {
+    public CandidatoResponseDTO execute(CandidatoDTO dto) {
         Boolean candidato = repository.alreadyExistsCandidatoByUser(dto.getUsuario().getId()).isPresent();
         if (candidato) {
             throw new RuntimeException("Candidato já cadastrado para esse usuário");
@@ -44,7 +45,7 @@ public class CriarCandidato {
 
         Candidato entity = converter.toEntity(dto);
         repository.save(entity);
-        return converter.toDTO(entity);
+        return converter.toResponse(entity);
     }
 
 }

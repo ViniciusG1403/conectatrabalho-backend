@@ -4,6 +4,7 @@ import core.validates.Validators;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.RequiredArgsConstructor;
 import modules.candidatos.dtos.CandidatoDTO;
+import modules.candidatos.dtos.CandidatoResponseDTO;
 import modules.candidatos.usecases.AtualizarCandidato;
 import modules.candidatos.usecases.BuscarCandidatoPeloID;
 import modules.candidatos.usecases.CriarCandidato;
@@ -26,7 +27,7 @@ public class CandidatoService extends Validators {
 
     private final BuscarCandidatoPeloID buscarCandidatoPeloID;
 
-    public CandidatoDTO criarCandidato(CandidatoDTO dto) {
+    public CandidatoResponseDTO criarCandidato(CandidatoDTO dto) {
 
             NonNullValidate(dto, "Candidato");
             NonNullValidate(dto.getUsuario(), "Usuario");
@@ -59,7 +60,7 @@ public class CandidatoService extends Validators {
         }
     }
 
-    public CandidatoDTO buscarCandidatoPeloID(String id) {
+    public CandidatoResponseDTO buscarCandidatoPeloID(String id) {
         try {
             NonNullValidate(id, "ID");
             return buscarCandidatoPeloID.execute(UUID.fromString(id));

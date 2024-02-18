@@ -6,6 +6,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import modules.candidatos.converters.CandidatoConverter;
 import modules.candidatos.dtos.CandidatoDTO;
+import modules.candidatos.dtos.CandidatoResponseDTO;
 import modules.candidatos.infra.entities.Candidato;
 import modules.candidatos.repositories.CandidatoRepository;
 
@@ -25,9 +26,9 @@ public class BuscarCandidatos {
 
     private final CandidatoConverter converter;
 
-    public List<CandidatoDTO> execute(List<CondicaoPesquisa> condicoes) {
+    public List<CandidatoResponseDTO> execute(List<CondicaoPesquisa> condicoes) {
         final List<Candidato> candidatos =  repository.findAll(condicoes);
-        return candidatos.stream().map(converter::toDTO).toList();
+        return candidatos.stream().map(converter::toResponse).toList();
     }
 
 }

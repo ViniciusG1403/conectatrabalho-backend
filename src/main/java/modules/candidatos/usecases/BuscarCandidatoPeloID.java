@@ -5,6 +5,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import modules.candidatos.converters.CandidatoConverter;
 import modules.candidatos.dtos.CandidatoDTO;
+import modules.candidatos.dtos.CandidatoResponseDTO;
 import modules.candidatos.exceptions.CandidatoNaoEncontradoException;
 import modules.candidatos.infra.entities.Candidato;
 import modules.candidatos.repositories.CandidatoRepository;
@@ -25,9 +26,9 @@ public class BuscarCandidatoPeloID {
 
     private final CandidatoConverter converter;
 
-    public CandidatoDTO execute(UUID id) {
+    public CandidatoResponseDTO execute(UUID id) {
         Candidato candidato = repository.findById(id).orElseThrow(CandidatoNaoEncontradoException::new);
-        return converter.toDTO(candidato);
+        return converter.toResponse(candidato);
     }
 
 

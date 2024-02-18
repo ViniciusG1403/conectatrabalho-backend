@@ -71,9 +71,9 @@ public class CandidatoResource {
     @APIResponse(responseCode = "200", description = "Candidato encontrado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = CandidatoDTO.class)))
     @APIResponse(responseCode = "404", description = "Candidato não encontrado")
     @Operation(summary = "Buscar", description = "Busca uma lista de candidatos")
-    public List<CandidatoDTO> testeQuery(@QueryParam("search") String search){
+    public Response testeQuery(@QueryParam("search") String search){
         List<CondicaoPesquisa> condicaoPesquisaList = prepararFiltros.execute(search);
-        return buscarCandidatos.execute(condicaoPesquisaList);
+        return Response.status(Response.Status.OK).entity(buscarCandidatos.execute(condicaoPesquisaList)).build();
     }
 
 }

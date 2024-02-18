@@ -35,7 +35,7 @@ public class Usuario {
     @Column(name = "telefone", nullable = false, length = 20)
     private String telefone;
 
-    @Column(name = "senha", nullable = false, length = 20)
+    @Column(name = "senha", nullable = false)
     private String senha;
 
     @Enumerated(EnumType.ORDINAL)
