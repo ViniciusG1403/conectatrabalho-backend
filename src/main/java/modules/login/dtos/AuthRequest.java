@@ -15,5 +15,5 @@ import lombok.ToString;
 public class AuthRequest {
 
     public String email;
-    public String password;
+    public String senha;
 }

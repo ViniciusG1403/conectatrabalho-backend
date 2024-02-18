@@ -69,7 +69,7 @@ public class AuthResource {
                 .entity("Usuario inexistente")
                 .build();
         }
-        if (!u.getSenha().equals(passwordEncoder.encode(authRequest.password))) {
+        if (!u.getSenha().equals(passwordEncoder.encode(authRequest.senha))) {
             return Response.status(Response.Status.UNAUTHORIZED).entity("Senha invalida").build();
         }
         if(Objects.equals(u.getStatus(), StatusUsuario.BLOQUEADO)){
@@ -84,7 +84,7 @@ public class AuthResource {
             }
             return Response.status(Response.Status.UNAUTHORIZED).entity("Usuario inativo").build();
         }
-        if (u != null && u.getSenha().equals(passwordEncoder.encode(authRequest.password))) {
+        if (u.getSenha().equals(passwordEncoder.encode(authRequest.senha))) {
             try {
                 return Response.ok(new AuthResponse(
                     TokenUtils.generateToken(u.getNome(), u.getEmail(), u.getRole(),
