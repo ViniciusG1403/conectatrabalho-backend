@@ -105,5 +105,3 @@ w
 Gsrc/main/java/modules/contratante/usecases/BuscarContratantePeloID.java,0\e\0ed984c38c983e810eb9bfafe7abefb3f0cd442c
 r
 Bsrc/main/java/modules/contratante/usecases/BuscarContratantes.java,8\5\851146600df70837355bb264cda7c048f870eca0
-l
-<src/main/java/modules/usuarios/dtos/EnderecoResumidoDTO.java,d\0\d0babfdfa6812fdc5916522f38436a899153ff6d
