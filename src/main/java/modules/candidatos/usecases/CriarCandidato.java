@@ -2,6 +2,7 @@ package modules.candidatos.usecases;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
+import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import modules.candidatos.converters.CandidatoConverter;
 import modules.candidatos.dtos.CandidatoDTO;
@@ -10,6 +11,7 @@ import modules.candidatos.infra.entities.Candidato;
 import modules.candidatos.repositories.CandidatoRepository;
 import modules.usuarios.converters.UsuarioConverter;
 import modules.usuarios.dtos.UsuarioDTO;
+import modules.usuarios.enumerations.TipoUsuario;
 import modules.usuarios.exceptions.UsuarioNotFoundException;
 import modules.usuarios.infra.entities.Usuario;
 import modules.usuarios.repositories.UsuarioRepository;
@@ -34,12 +36,16 @@ public class CriarCandidato {
     private final UsuarioConverter usuarioConverter;
     @Transactional
     public CandidatoResponseDTO execute(CandidatoDTO dto) {
-        Boolean candidato = repository.alreadyExistsCandidatoByUser(dto.getUsuario().getId()).isPresent();
+        boolean candidato = repository.alreadyExistsCandidatoByUser(dto.getUsuario().getId()).isPresent();
         if (candidato) {
-            throw new RuntimeException("Candidato já cadastrado para esse usuário");
+            throw new ValidationException("Candidato já cadastrado para esse usuário");
         }
         Usuario usuario = usuarioRepository.findById(dto.getUsuario().getId()).orElseThrow(
             UsuarioNotFoundException::new);
+
+        if(Objects.equals(usuario.getTipo(), TipoUsuario.CONTRATANTE)){
+            throw new ValidationException("Usuário do tipo contratante não pode ser cadastrado como candidato");
+        }
 
         dto.setUsuario(usuarioConverter.toDTO(usuario));
 

@@ -7,7 +7,7 @@ package modules.usuarios.enumerations;
  */
 public enum TipoUsuario {
 
-    CANDIDATO, EMPRESA;
+    CANDIDATO, CONTRATANTE;
 
     public static TipoUsuario valueOf(Integer value) {
         return value == null ? null : values()[value];
