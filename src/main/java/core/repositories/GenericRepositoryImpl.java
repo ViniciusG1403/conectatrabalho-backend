@@ -113,23 +113,24 @@ public class GenericRepositoryImpl<T> implements GenericRepository<T> {
     }
 
     @Override
-    public List<T> findAll(final List<CondicaoPesquisa> condicaoPesquisaList){
+    public List<T> findAll(final List<CondicaoPesquisa> condicaoPesquisaList) {
         try {
             CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
             CriteriaQuery<T> query = criteriaBuilder.createQuery(entityClass);
             Root<T> root = query.from(entityClass);
 
-            List<Predicate> predicateList = condicaoPesquisaList.stream().map(condicao -> {
-                return criteriaBuilder.like(root.get(condicao.getChave()), "%" + condicao.getValor() + "%");
-            }).toList();
+            if (condicaoPesquisaList != null && !condicaoPesquisaList.isEmpty()) {
+                List<Predicate> predicateList = condicaoPesquisaList.stream().map(condicao -> {
+                    Path<String> path = root.get(condicao.getChave());
+                    String valor = condicao.getValor().toString().toLowerCase();
+                    return criteriaBuilder.like(criteriaBuilder.lower(path), "%" + valor + "%");
+                }).collect(Collectors.toList());
 
-            Predicate[] predicates = predicateList.toArray(new Predicate[0]);
-            Predicate finalPredicate = criteriaBuilder.and(predicates);
-
-            query.where(finalPredicate);
+                Predicate finalPredicate = criteriaBuilder.and(predicateList.toArray(new Predicate[0]));
+                query.where(finalPredicate);
+            }
 
             final List<T> result = entityManager.createQuery(query).getResultList();
-
             return result;
         } catch (NoResultException ex) {
             return Collections.emptyList();
@@ -138,6 +139,34 @@ public class GenericRepositoryImpl<T> implements GenericRepository<T> {
         }
     }
 
+    @Override
+    public List<T> findAll(final List<CondicaoPesquisa> condicaoPesquisaList, int pageNumber, int pageSize) {
+        try {
+            CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+            CriteriaQuery<T> query = criteriaBuilder.createQuery(entityClass);
+            Root<T> root = query.from(entityClass);
+
+            if (condicaoPesquisaList != null && !condicaoPesquisaList.isEmpty()) {
+                List<Predicate> predicateList = condicaoPesquisaList.stream().map(condicao -> {
+                    Path<String> path = root.get(condicao.getChave());
+                    String valor = condicao.getValor().toString().toLowerCase();
+                    return criteriaBuilder.like(criteriaBuilder.lower(path), "%" + valor + "%");
+                }).toList();
+
+                Predicate finalPredicate = criteriaBuilder.and(predicateList.toArray(new Predicate[0]));
+                query.where(finalPredicate);
+            }
+
+            return entityManager.createQuery(query)
+                .setFirstResult((pageNumber - 1) * pageSize)
+                .setMaxResults(pageSize)
+                .getResultList();
+        } catch (NoResultException ex) {
+            return Collections.emptyList();
+        } catch (Exception ex) {
+            throw new ConectaTrabalhoException(ex);
+        }
+    }
 
     @Override
     public T update(final T entity) {

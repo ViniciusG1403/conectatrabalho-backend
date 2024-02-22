@@ -1,6 +1,7 @@
 package modules.contratante.usecases;
 
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ import java.util.Objects;
  * @version 1.0
  * @since 20/02/2024
  */
+@Transactional
 @ApplicationScoped
 @RequiredArgsConstructor
 public class CriarContratante {

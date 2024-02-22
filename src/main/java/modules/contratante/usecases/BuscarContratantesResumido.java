@@ -19,7 +19,7 @@ import java.util.List;
 @Transactional
 @ApplicationScoped
 @RequiredArgsConstructor
-public class BuscarContratantes {
+public class BuscarContratantesResumido {
 
     private final ContratanteRepository repository;
 

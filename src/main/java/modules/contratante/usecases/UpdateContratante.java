@@ -1,6 +1,7 @@
 package modules.contratante.usecases;
 
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import modules.contratante.dtos.ContratanteUpdateDTO;
@@ -13,6 +14,7 @@ import modules.contratante.repositories.ContratanteRepository;
  * @version 1.0
  * @since 20/02/2024
  */
+@Transactional
 @ApplicationScoped
 @RequiredArgsConstructor
 public class UpdateContratante {

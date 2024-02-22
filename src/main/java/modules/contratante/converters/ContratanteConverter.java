@@ -4,6 +4,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import lombok.RequiredArgsConstructor;
 import modules.contratante.dtos.ContratanteDTO;
 import modules.contratante.dtos.ContratanteResponseDTO;
+import modules.contratante.dtos.ContratanteResumidoDTO;
 import modules.contratante.infra.entities.Contratante;
 import modules.usuarios.converters.EnderecoConverter;
 import modules.usuarios.converters.UsuarioConverter;
@@ -49,6 +50,7 @@ public class ContratanteConverter {
 
     public ContratanteResponseDTO toResponse(Contratante entity){
         ContratanteResponseDTO responseDTO = new ContratanteResponseDTO();
+        responseDTO.setId(entity.getId());
         responseDTO.setNome(entity.getUsuario().getNome());
         responseDTO.setEmail(entity.getUsuario().getEmail());
         responseDTO.setTelefone(entity.getUsuario().getTelefone());
@@ -60,6 +62,15 @@ public class ContratanteConverter {
         responseDTO.setUrlFotoPerfil(entity.getUrlFotoPerfil());
         responseDTO.setEndereco(enderecoConverter.toResponseDto(entity.getUsuario().getEndereco()));
         return responseDTO;
+    }
+
+    public ContratanteResumidoDTO toResumido(Contratante entity){
+        ContratanteResumidoDTO resumidoDTO = new ContratanteResumidoDTO();
+        resumidoDTO.setEmpresa(entity.getEmpresa());
+        resumidoDTO.setDescricao(entity.getDescricao());
+        resumidoDTO.setSetor(entity.getSetor());
+        resumidoDTO.setUrlFotoPerfil(entity.getUrlFotoPerfil());
+        return resumidoDTO;
     }
 
 

@@ -14,6 +14,9 @@ import java.util.List;
 public class PrepararFiltros {
 
     public List<CondicaoPesquisa> execute(String search){
+        if(search == null || search.isEmpty()){
+            return new ArrayList<>();
+        }
         final String[] filtros = search.split(",");
         final List<CondicaoPesquisa> condicaoPesquisaList = new ArrayList<>();
         for(int i = 0; i < filtros.length; i++){
