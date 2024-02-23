@@ -105,3 +105,13 @@ w
 Gsrc/main/java/modules/contratante/usecases/BuscarContratantePeloID.java,0\e\0ed984c38c983e810eb9bfafe7abefb3f0cd442c
 r
 Bsrc/main/java/modules/contratante/usecases/BuscarContratantes.java,8\5\851146600df70837355bb264cda7c048f870eca0
+r
+Bsrc/main/java/modules/contratante/dtos/ContratanteResumidoDTO.java,3\0\307c2b63d3d81cfb2ee141ba154372313aea4c8c
+w
+Gsrc/main/java/modules/candidatos/usecases/BuscarCandidatosResumido.java,b\b\bb7da8a1ab6c382e2adb94cec4956c294f245d43
+o
+?src/main/java/modules/candidatos/dtos/CandidatoResumidoDTO.java,e\7\e7ae9bd6e0b87a93095fcecdb244c9b6eca3fca4
+z
+Jsrc/main/java/modules/contratante/usecases/BuscarContratantesResumido.java,4\b\4b9d57db04b2b801727ceb1dc15c3c0ade267a5f
+k
+;src/main/java/core/exceptions/ConectaTrabalhoException.java,5\2\5256486d4b4378cca68fc3daada19b0ce99f0119

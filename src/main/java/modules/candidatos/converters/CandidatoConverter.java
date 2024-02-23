@@ -4,6 +4,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import lombok.RequiredArgsConstructor;
 import modules.candidatos.dtos.CandidatoDTO;
 import modules.candidatos.dtos.CandidatoResponseDTO;
+import modules.candidatos.dtos.CandidatoResumidoDTO;
 import modules.candidatos.infra.entities.Candidato;
 import modules.usuarios.converters.EnderecoConverter;
 import modules.usuarios.converters.UsuarioConverter;
@@ -70,6 +71,15 @@ public class CandidatoConverter {
         responseDTO.setEndereco(enderecoConverter.toDto(entity.getUsuario().getEndereco()));
 
         return responseDTO;
+    }
+
+    public CandidatoResumidoDTO toResumido(Candidato entity){
+        CandidatoResumidoDTO resumidoDTO = new CandidatoResumidoDTO();
+        resumidoDTO.setNome(entity.getUsuario().getNome());
+        resumidoDTO.setHabilidades(entity.getHabilidades());
+        resumidoDTO.setUrlFotoPerfil(entity.getUrlFotoPerfil());
+        resumidoDTO.setCidadeEstado(entity.getUsuario().getEndereco().getMunicipio() + "/" + entity.getUsuario().getEndereco().getEstado());
+        return resumidoDTO;
     }
 
 }

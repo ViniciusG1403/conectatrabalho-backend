@@ -8,8 +8,10 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import lombok.RequiredArgsConstructor;
 import modules.candidatos.dtos.CandidatoDTO;
+import modules.candidatos.dtos.CandidatoResumidoDTO;
 import modules.candidatos.services.CandidatoService;
 import modules.candidatos.usecases.BuscarCandidatos;
+import modules.candidatos.usecases.BuscarCandidatosResumido;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
@@ -32,6 +34,8 @@ public class CandidatoResource {
     private final PrepararFiltros prepararFiltros;
 
     private final BuscarCandidatos buscarCandidatos;
+
+    private final BuscarCandidatosResumido buscarCandidatosResumido;
 
     @POST
     @RolesAllowed({"USER_ROLE", "ADMIN_ROLE"})
@@ -71,9 +75,22 @@ public class CandidatoResource {
     @APIResponse(responseCode = "200", description = "Candidato encontrado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = CandidatoDTO.class)))
     @APIResponse(responseCode = "404", description = "Candidato não encontrado")
     @Operation(summary = "Buscar", description = "Busca uma lista de candidatos")
-    public Response testeQuery(@QueryParam("search") String search){
+    public Response buscarTodos(@QueryParam("search") String search){
         List<CondicaoPesquisa> condicaoPesquisaList = prepararFiltros.execute(search);
-        return Response.status(Response.Status.OK).entity(buscarCandidatos.execute(condicaoPesquisaList)).build();
+        return Response.status(Response.Status.OK).entity(candidatoService.buscarCandidatos(condicaoPesquisaList)).build();
+    }
+
+    @GET
+    @Path("/resumido")
+    @RolesAllowed({"USER_ROLE", "ADMIN_ROLE"})
+    @Produces(MediaType.APPLICATION_JSON)
+    @APIResponse(responseCode = "200", description = "Candidato encontrado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = CandidatoResumidoDTO.class)))
+    @APIResponse(responseCode = "404", description = "Candidato não encontrado")
+    @Operation(summary = "Buscar", description = "Busca uma lista de candidatos resumido")
+    public Response buscarResumido(@QueryParam("search") String search,
+                                  @QueryParam("page") Integer page, @QueryParam("size") Integer size){
+        List<CondicaoPesquisa> condicaoPesquisaList = prepararFiltros.execute(search);
+        return Response.status(Response.Status.OK).entity(candidatoService.buscarCandidatosResumido(condicaoPesquisaList, page, size)).build();
     }
 
 }

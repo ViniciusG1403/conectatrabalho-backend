@@ -70,6 +70,7 @@ public class ContratanteConverter {
         resumidoDTO.setDescricao(entity.getDescricao());
         resumidoDTO.setSetor(entity.getSetor());
         resumidoDTO.setUrlFotoPerfil(entity.getUrlFotoPerfil());
+        resumidoDTO.setCidadeEstado(entity.getUsuario().getEndereco().getMunicipio() + "/" + entity.getUsuario().getEndereco().getEstado());
         return resumidoDTO;
     }
 

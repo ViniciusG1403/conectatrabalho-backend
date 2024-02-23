@@ -140,33 +140,48 @@ public class GenericRepositoryImpl<T> implements GenericRepository<T> {
     }
 
     @Override
-    public List<T> findAll(final List<CondicaoPesquisa> condicaoPesquisaList, int pageNumber, int pageSize) {
+    public List<T> findAll(List<CondicaoPesquisa> condicaoPesquisaList, int pageNumber, int pageSize) {
         try {
             CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
             CriteriaQuery<T> query = criteriaBuilder.createQuery(entityClass);
             Root<T> root = query.from(entityClass);
 
             if (condicaoPesquisaList != null && !condicaoPesquisaList.isEmpty()) {
-                List<Predicate> predicateList = condicaoPesquisaList.stream().map(condicao -> {
-                    Path<String> path = root.get(condicao.getChave());
-                    String valor = condicao.getValor().toString().toLowerCase();
-                    return criteriaBuilder.like(criteriaBuilder.lower(path), "%" + valor + "%");
-                }).toList();
+                List<Predicate> predicateList = new ArrayList<>();
+
+                for (CondicaoPesquisa condicao : condicaoPesquisaList) {
+                    String chave = condicao.getChave();
+                    String[] partesChave = chave.split("\\.");
+
+                    Path<?> path = root;
+
+                    for (String parteChave : partesChave) {
+                        path = path.get(parteChave);
+                    }
+
+                    Object valor = condicao.getValor();
+                    if (valor instanceof String) {
+                        predicateList.add(criteriaBuilder.like(criteriaBuilder.lower((Path<String>) path), "%" + valor.toString().toLowerCase() + "%"));
+                    } else {
+                        predicateList.add(criteriaBuilder.equal(path, valor));
+                    }
+                }
 
                 Predicate finalPredicate = criteriaBuilder.and(predicateList.toArray(new Predicate[0]));
                 query.where(finalPredicate);
             }
 
             return entityManager.createQuery(query)
-                .setFirstResult((pageNumber - 1) * pageSize)
-                .setMaxResults(pageSize)
-                .getResultList();
+                    .setFirstResult((pageNumber - 1) * pageSize)
+                    .setMaxResults(pageSize)
+                    .getResultList();
         } catch (NoResultException ex) {
             return Collections.emptyList();
         } catch (Exception ex) {
             throw new ConectaTrabalhoException(ex);
         }
     }
+
 
     @Override
     public T update(final T entity) {
