@@ -1,6 +1,6 @@
 CREATE TABLE vagas(
     id UUID PRIMARY KEY,
-    id_perfilcontratante UUID NOT NULL,
+    id_perfilempresa UUID NOT NULL,
     titulo VARCHAR(100) NOT NULL,
     descricao TEXT NOT NULL,
     remuneracao DECIMAL(18,2) NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE vagas(
 
 COMMENT ON TABLE vagas IS 'Tabela de vagas de emprego';
 COMMENT ON COLUMN vagas.id IS 'Identificador único da vaga';
-COMMENT ON COLUMN vagas.id_perfilcontratante IS 'Identificador único do perfil do contratante';
+COMMENT ON COLUMN vagas.id_perfilempresa IS 'Identificador único do perfil da empresa';
 COMMENT ON COLUMN vagas.titulo IS 'Título da vaga';
 COMMENT ON COLUMN vagas.descricao IS 'Descrição da vaga';
 COMMENT ON COLUMN vagas.remuneracao IS 'Remuneração da vaga';
@@ -22,6 +22,6 @@ COMMENT ON COLUMN vagas.status IS 'Status da vaga\n 0 - Inativa\n 1 - Ativa\n 2 
 COMMENT ON COLUMN vagas.data_criacao IS 'Data de criação da vaga';
 
 ALTER TABLE vagas
-ADD CONSTRAINT fk_vagas_perfilcontratante
-FOREIGN KEY (id_perfilcontratante)
-REFERENCES contratante(id)
+ADD CONSTRAINT fk_vagas_perfilempresa
+FOREIGN KEY (id_perfilempresa)
+REFERENCES empresa(id)
