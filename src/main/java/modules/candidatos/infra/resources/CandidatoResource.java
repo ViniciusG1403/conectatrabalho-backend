@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import modules.candidatos.dtos.CandidatoCadastroDTO;
 import modules.candidatos.dtos.CandidatoDTO;
 import modules.candidatos.dtos.CandidatoResumidoDTO;
+import modules.candidatos.dtos.CandidatoUpdateDTO;
 import modules.candidatos.services.CandidatoService;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
@@ -35,7 +36,7 @@ public class CandidatoResource {
     @RolesAllowed({ "USER_ROLE", "ADMIN_ROLE" })
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @APIResponse(responseCode = "201", description = "Candidato criado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = CandidatoDTO.class)))
+    @APIResponse(responseCode = "201", description = "Candidato criado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = CandidatoCadastroDTO.class)))
     @Operation(summary = "Criar", description = "Cria um candidato")
     public Response criar(CandidatoCadastroDTO candidatoDTO) {
         return Response.status(Response.Status.CREATED)
@@ -47,9 +48,9 @@ public class CandidatoResource {
     @RolesAllowed({ "USER_ROLE", "ADMIN_ROLE" })
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @APIResponse(responseCode = "200", description = "Candidato atualizado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = CandidatoDTO.class)))
+    @APIResponse(responseCode = "200", description = "Candidato atualizado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = CandidatoUpdateDTO.class)))
     @Operation(summary = "Atualizar", description = "Atualiza um candidato")
-    public Response atualizar(CandidatoDTO candidatoDTO) {
+    public Response atualizar(CandidatoUpdateDTO candidatoDTO) {
         candidatoService.atualizarCandidato(candidatoDTO);
         return Response.status(Response.Status.OK).build();
     }

@@ -31,7 +31,7 @@ public class UpdateEmpresa {
         empresa.setLinkedin(dto.getLinkedin());
         empresa.setUrlFotoPerfil(dto.getUrlFotoPerfil());
 
-        repository.save(empresa);
+        repository.update(empresa);
     }
 
 

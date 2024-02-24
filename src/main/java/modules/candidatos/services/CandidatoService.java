@@ -5,10 +5,7 @@ import core.validates.Validators;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import modules.candidatos.dtos.CandidatoCadastroDTO;
-import modules.candidatos.dtos.CandidatoDTO;
-import modules.candidatos.dtos.CandidatoResponseDTO;
-import modules.candidatos.dtos.CandidatoResumidoDTO;
+import modules.candidatos.dtos.*;
 import modules.candidatos.usecases.*;
 
 import java.util.List;
@@ -50,11 +47,10 @@ public class CandidatoService extends Validators {
 
     }
 
-    public void atualizarCandidato(CandidatoDTO dto) {
+    public void atualizarCandidato(CandidatoUpdateDTO dto) {
 
         NonNullValidate(dto, "Candidato");
         NonNullValidate(dto.getId(), "ID");
-        NonNullValidate(dto.getUsuario(), "Usuario");
         NonNullValidate(dto.getDisponibilidade(), "Disponibilidade");
         NonNullValidate(dto.getPretensaoSalarial(), "Pretensão Salarial");
 

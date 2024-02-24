@@ -121,10 +121,18 @@ public class GenericRepositoryImpl<T> implements GenericRepository<T> {
 
             if (condicaoPesquisaList != null && !condicaoPesquisaList.isEmpty()) {
                 List<Predicate> predicateList = condicaoPesquisaList.stream().map(condicao -> {
-                    Path<String> path = root.get(condicao.getChave());
-                    String valor = condicao.getValor().toString().toLowerCase();
-                    return criteriaBuilder.like(criteriaBuilder.lower(path), "%" + valor + "%");
-                }).collect(Collectors.toList());
+                    Path<Object> path = root.get(condicao.getChave());
+                    Object valor = condicao.getValor();
+                    if (valor instanceof String) {
+                        String valorString = ((String) valor).toLowerCase();
+                        return criteriaBuilder.like(criteriaBuilder.lower(path.as(String.class)), "%" + valorString + "%");
+                    } else if (valor instanceof Integer || valor instanceof Long) {
+                        return criteriaBuilder.equal(path, valor);
+                    } else {
+
+                        return null;
+                    }
+                }).filter(Objects::nonNull).collect(Collectors.toList());
 
                 Predicate finalPredicate = criteriaBuilder.and(predicateList.toArray(new Predicate[0]));
                 query.where(finalPredicate);
@@ -138,6 +146,7 @@ public class GenericRepositoryImpl<T> implements GenericRepository<T> {
             throw new ConectaTrabalhoException(ex);
         }
     }
+
 
     @Override
     public List<T> findAll(List<CondicaoPesquisa> condicaoPesquisaList, int pageNumber, int pageSize) {
