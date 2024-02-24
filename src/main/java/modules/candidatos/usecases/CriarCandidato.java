@@ -42,8 +42,9 @@ public class CriarCandidato {
         Usuario usuario = usuarioRepository.findById(dto.getIdUsuario()).orElseThrow(
             UsuarioNotFoundException::new);
 
-        if(Objects.equals(usuario.getTipo(), TipoUsuario.EMPRESA)){
-            throw new ValidationException("Usuário do tipo empresa não pode ser cadastrado como candidato");
+        if (Objects.equals(usuario.getTipo(), TipoUsuario.EMPRESA)) {
+            throw new ValidationException(
+                "Usuário do tipo empresa não pode ser cadastrado como candidato");
         }
 
         Candidato entity = new Candidato();

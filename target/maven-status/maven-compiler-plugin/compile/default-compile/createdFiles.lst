@@ -20,6 +20,7 @@ modules/candidatos/infra/resources/CandidatoResource.class
 modules/candidatos/infra/entities/Candidato.class
 modules/empresa/infra/resources/EmpresaResource.class
 modules/candidatos/exceptions/CandidatoNaoEncontradoException.class
+modules/candidatos/dtos/CandidatoUpdateDTO.class
 core/encoder/PBKDF2Encoder.class
 modules/empresa/usecases/CriarEmpresa.class
 modules/usuarios/infra/entities/Endereco.class

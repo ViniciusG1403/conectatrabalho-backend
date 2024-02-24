@@ -3,7 +3,6 @@ package modules.candidatos.usecases;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.RequiredArgsConstructor;
 import modules.candidatos.converters.CandidatoConverter;
-import modules.candidatos.dtos.CandidatoDTO;
 import modules.candidatos.dtos.CandidatoUpdateDTO;
 import modules.candidatos.exceptions.CandidatoNaoEncontradoException;
 import modules.candidatos.infra.entities.Candidato;
@@ -22,9 +21,9 @@ public class AtualizarCandidato {
 
     private final CandidatoRepository repository;
 
-    public void execute(CandidatoUpdateDTO dto){
+    public void execute(CandidatoUpdateDTO dto) {
         Candidato candidato = repository.findById(dto.getId()).orElseThrow(
-             CandidatoNaoEncontradoException::new);
+            CandidatoNaoEncontradoException::new);
 
         candidato.setPretensaoSalarial(dto.getPretensaoSalarial());
         candidato.setDisponibilidade(dto.getDisponibilidade());
@@ -34,7 +33,6 @@ public class AtualizarCandidato {
         candidato.setGithub(dto.getGithub());
         candidato.setPortfolio(dto.getPortfolio());
         candidato.setUrlCurriculum(dto.getUrlCurriculum());
-
 
         repository.update(candidato);
     }
