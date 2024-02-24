@@ -3,6 +3,7 @@ package modules.login.dtos;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 /**
  * @author Vinicius Gabriel <vinicius.prado@nexuscloud.com.br>
@@ -14,5 +15,6 @@ import lombok.ToString;
 @ToString
 public class AuthResponse {
 
+    @Schema(name = "Token", required = true, title = "Token de autenticação", example = "token")
     public String token;
 }

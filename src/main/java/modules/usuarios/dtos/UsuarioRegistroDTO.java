@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import java.sql.Timestamp;
 import java.util.UUID;
@@ -23,26 +24,32 @@ public class UsuarioRegistroDTO {
 
     @NotNull(message = "O nome não pode ser nulo")
     @Size(min = 3, max = 60, message = "O nome deve ter entre 3 e 60 caracteres")
+    @Schema(name = "Nome do usuário", required = true, title = "Nome do usuário", example = "Vinicius Gabriel")
     private String nome;
 
     @NotNull(message = "O email não pode ser nulo")
     @Size(min = 3, max = 60, message = "O email deve ter entre 3 e 60 caracteres")
+    @Schema(name = "Email do usuário", required = true, title = "Email do usuário", example = "vinicius@email.com")
     private String email;
 
     @NotNull(message = "O telefone não pode ser nulo")
     @Size(min = 3, max = 20, message = "O telefone deve ter entre 3 e 20 caracteres")
+    @Schema(name = "Telefone do usuário", required = true, title = "Telefone do usuário", example = "11999999999")
     private String telefone;
 
     @NotNull(message = "A senha não pode ser nula")
     @Size(min = 3, max = 20, message = "A senha deve ter entre 3 e 20 caracteres")
+    @Schema(name = "Senha do usuário", required = true, title = "Senha do usuário", example = "123456")
     private String senha;
 
     @NotNull(message = "O tipo não pode ser nulo")
     @Min(value = 0, message = "O tipo deve ser 0 - CANDIDATO ou 1 - EMPRESA")
     @Max(value = 1, message = "O tipo deve ser 0 - CANDIDATO ou 1 - EMPRESA")
+    @Schema(name = "Tipo do usuário", required = true, title = "Tipo do usuário", example = "0 - CANDIDATO, 1 - EMPRESA")
     private Integer tipo;
 
     @NotNull(message = "O endereço não pode ser nulo")
+    @Schema(name = "Endereço do usuário", required = true, title = "Endereço do usuário")
     private EnderecoDTO endereco;
 
 }

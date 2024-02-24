@@ -4,7 +4,6 @@ import core.emailservice.MessageOperation;
 import core.emailservice.SendEmailService;
 import core.encoder.PBKDF2Encoder;
 import jakarta.annotation.security.PermitAll;
-import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
@@ -18,7 +17,6 @@ import modules.login.dtos.AuthResponse;
 import modules.login.usecases.TokenUtils;
 import modules.usuarios.converters.UsuarioConverter;
 import modules.usuarios.enumerations.StatusUsuario;
-import modules.usuarios.exceptions.UsuarioNotFoundException;
 import modules.usuarios.infra.entities.Usuario;
 import modules.usuarios.repositories.UsuarioRepository;
 import modules.usuarios.usecases.GenerateRandomCode;
@@ -39,56 +37,59 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class AuthResource {
 
-   private final PBKDF2Encoder passwordEncoder;
+    private final PBKDF2Encoder passwordEncoder;
 
-   private final GenerateRandomCode generateRandomCode;
+    private final GenerateRandomCode generateRandomCode;
 
-   private final SendEmailService sendEmailService;
+    private final SendEmailService sendEmailService;
 
-   private final UsuarioConverter usuarioConverter;
+    private final UsuarioConverter usuarioConverter;
 
-   private final UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
 
     @ConfigProperty(name = "com.ard333.quarkusjwt.jwt.duration")
     public Long duration;
     @ConfigProperty(name = "mp.jwt.verify.issuer")
     public String issuer;
 
-    @Transactional
-    @PermitAll
     @POST
+    @PermitAll
+    @Transactional
     @Path("/login")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @APIResponse(responseCode = "200", description = "Login realizado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = AuthRequest.class)))
     @Operation(summary = "Login", description = "Realiza o login do usuário")
+    @APIResponse(responseCode = "200", description = "Login realizado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = AuthRequest.class)))
     public Response login(AuthRequest authRequest) {
-        final Usuario u = usuarioRepository.findOne("email", authRequest.email).orElse(null);
-        if (u == null) {
+        final Usuario usuario = usuarioRepository.findOne("email", authRequest.email).orElse(null);
+        if (usuario == null) {
             return Response.status(Response.Status.UNAUTHORIZED)
                 .entity("Usuario inexistente")
                 .build();
         }
-        if (!u.getSenha().equals(passwordEncoder.encode(authRequest.senha))) {
+        if (!usuario.getSenha().equals(passwordEncoder.encode(authRequest.senha))) {
             return Response.status(Response.Status.UNAUTHORIZED).entity("Senha invalida").build();
         }
-        if(Objects.equals(u.getStatus(), StatusUsuario.BLOQUEADO)){
-            return Response.status(Response.Status.UNAUTHORIZED).entity("Usuario bloqueado, entre em contato com o suporte").build();
+        if (Objects.equals(usuario.getStatus(), StatusUsuario.BLOQUEADO)) {
+            return Response.status(Response.Status.UNAUTHORIZED)
+                .entity("Usuario bloqueado, entre em contato com o suporte")
+                .build();
         }
-        if (Objects.equals(u.getStatus(), StatusUsuario.INATIVO)) {
-            if (Objects.isNull(u.getCodigo())) {
-                u.setCodigo(generateRandomCode.execute());
-                usuarioRepository.update(u);
-                sendEmailService.sendMail(usuarioConverter.toDTO(u), "Ativação de conta",
+        if (Objects.equals(usuario.getStatus(), StatusUsuario.INATIVO)) {
+            if (Objects.isNull(usuario.getCodigo())) {
+                usuario.setCodigo(generateRandomCode.execute());
+                usuarioRepository.update(usuario);
+                sendEmailService.sendMail(usuarioConverter.toDTO(usuario), "Ativação de conta",
                     MessageOperation.ATIVACAO);
             }
             return Response.status(Response.Status.UNAUTHORIZED).entity("Usuario inativo").build();
         }
-        if (u.getSenha().equals(passwordEncoder.encode(authRequest.senha))) {
+        if (usuario.getSenha().equals(passwordEncoder.encode(authRequest.senha))) {
             try {
                 return Response.ok(new AuthResponse(
-                    TokenUtils.generateToken(u.getNome(), u.getEmail(), u.getRole(),
-                        duration, issuer, u.getId().toString()))).build();
+                    TokenUtils.generateToken(usuario.getNome(), usuario.getEmail(),
+                        usuario.getRole(),
+                        duration, issuer, usuario.getId().toString()))).build();
 
             } catch (Exception e) {
                 return Response.status(Response.Status.UNAUTHORIZED).build();
