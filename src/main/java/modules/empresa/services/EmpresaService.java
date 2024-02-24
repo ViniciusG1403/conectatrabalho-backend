@@ -37,7 +37,6 @@ public class EmpresaService extends Validators {
 
     public EmpresaResponseDTO criar(EmpresaRegisterDTO dto) {
         NonNullValidate(dto.getIdUsuario(), "Usuário");
-        NonNullValidate(dto.getEmpresa(), "Nome da empresa");
         NonNullValidate(dto.getSetor(), "Setor");
         NonNullValidate(dto.getDescricao(), "Descrição");
 
@@ -50,7 +49,6 @@ public class EmpresaService extends Validators {
 
     public void atualizar(EmpresaUpdateDTO dto) {
         NonNullValidate(dto.getId(), "ID");
-        NonNullValidate(dto.getEmpresa(), "Nome da empresa");
         NonNullValidate(dto.getSetor(), "Setor");
         NonNullValidate(dto.getDescricao(), "Descrição");
 

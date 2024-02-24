@@ -5,6 +5,7 @@ modules/usuarios/usecases/InativarUsuario.class
 core/exceptions/InvalidFormatEmailException.class
 modules/usuarios/dtos/UsuarioRegistroDTO.class
 modules/empresa/converters/EmpresaConverter.class
+modules/candidatos/usecases/BuscarCandidatoResumidoPeloID.class
 modules/usuarios/dtos/UsuarioDTO.class
 modules/candidatos/services/CandidatoService.class
 modules/candidatos/converters/CandidatoConverter.class
@@ -48,6 +49,7 @@ modules/usuarios/usecases/BloquearUsuario.class
 modules/candidatos/dtos/CandidatoResumidoDTO.class
 core/pesquisa/PrepararFiltros.class
 core/exceptions/ConectaTrabalhoException.class
+modules/empresa/usecases/BuscarEmpresaResumidoByID.class
 core/emailservice/SendEmailService$1.class
 modules/usuarios/enumerations/StatusUsuario.class
 core/repositories/GenericRepositoryImpl.class
@@ -60,6 +62,7 @@ modules/candidatos/usecases/AtualizarCandidato.class
 core/pesquisa/CondicaoPesquisa.class
 modules/candidatos/repositories/CandidatoRepository.class
 modules/usuarios/usecases/UsuarioJaExisteComEsteEmail.class
+modules/candidatos/dtos/CandidatoCadastroDTO.class
 core/validates/Validators.class
 modules/usuarios/dtos/EnderecoDTO.class
 modules/empresa/services/EmpresaService.class
@@ -70,7 +73,5 @@ modules/usuarios/infra/repositories/UsuarioRepositoryImpl.class
 modules/usuarios/dtos/EnderecoResponseDTO.class
 modules/empresa/usecases/UpdateEmpresa.class
 modules/usuarios/exceptions/UsuarioNotFoundException.class
-modules/empresa/usecases/BuscarEmpresasResumido.class
-modules/candidatos/usecases/BuscarCandidatosResumido.class
 modules/candidatos/dtos/CandidatoResponseDTO.class
 modules/usuarios/converters/UsuarioConverter.class

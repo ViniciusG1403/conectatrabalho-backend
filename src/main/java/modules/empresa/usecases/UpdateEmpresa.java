@@ -25,7 +25,6 @@ public class UpdateEmpresa {
         Empresa empresa = repository.findById(dto.getId()).orElseThrow(
             EmpresaNaoEncontradoException::new);
 
-        empresa.setEmpresa(dto.getEmpresa());
         empresa.setSetor(dto.getSetor());
         empresa.setDescricao(dto.getDescricao());
         empresa.setWebsite(dto.getWebsite());

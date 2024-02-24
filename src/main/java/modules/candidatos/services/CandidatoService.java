@@ -3,6 +3,7 @@ package modules.candidatos.services;
 import core.pesquisa.CondicaoPesquisa;
 import core.validates.Validators;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import modules.candidatos.dtos.CandidatoDTO;
 import modules.candidatos.dtos.CandidatoResponseDTO;
@@ -18,6 +19,7 @@ import java.util.UUID;
  * @version 1.0
  * @since 17/02/2024
  */
+@Transactional
 @ApplicationScoped
 @RequiredArgsConstructor
 public class CandidatoService extends Validators {
@@ -30,7 +32,7 @@ public class CandidatoService extends Validators {
 
     private final BuscarCandidatos buscarCandidatos;
 
-    private final BuscarCandidatosResumido buscarCandidatosResumido;
+    private final BuscarCandidatoResumidoPeloID buscarCandidatoResumidoPeloID;
 
     public CandidatoResponseDTO criarCandidato(CandidatoDTO dto) {
 
@@ -68,12 +70,12 @@ public class CandidatoService extends Validators {
 
     }
 
-    public List<CandidatoResumidoDTO> buscarCandidatos(List<CondicaoPesquisa> condicoes) {
-        return buscarCandidatos.execute(condicoes);
+    public List<CandidatoResumidoDTO> buscarCandidatos(List<CondicaoPesquisa> condicoes, int page, int size) {
+        return buscarCandidatos.execute(condicoes, page, size);
     }
 
-    public List<CandidatoResumidoDTO> buscarCandidatosResumido(List<CondicaoPesquisa> condicaoPesquisaList, int page, int size) {
-        return buscarCandidatosResumido.execute(condicaoPesquisaList, page, size);
+    public CandidatoResumidoDTO buscarCandidatosResumido(String id) {
+        return buscarCandidatoResumidoPeloID.execute(UUID.fromString(id));
     }
 
 }

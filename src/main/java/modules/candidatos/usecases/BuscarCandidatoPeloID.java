@@ -17,7 +17,6 @@ import java.util.UUID;
  * @version 1.0
  * @since 17/02/24
  */
-@Transactional
 @ApplicationScoped
 @RequiredArgsConstructor
 public class BuscarCandidatoPeloID {

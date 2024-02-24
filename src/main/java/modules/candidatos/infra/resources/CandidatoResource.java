@@ -10,8 +10,6 @@ import lombok.RequiredArgsConstructor;
 import modules.candidatos.dtos.CandidatoDTO;
 import modules.candidatos.dtos.CandidatoResumidoDTO;
 import modules.candidatos.services.CandidatoService;
-import modules.candidatos.usecases.BuscarCandidatos;
-import modules.candidatos.usecases.BuscarCandidatosResumido;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
@@ -28,27 +26,24 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CandidatoResource {
 
-
     private final CandidatoService candidatoService;
 
     private final PrepararFiltros prepararFiltros;
 
-    private final BuscarCandidatos buscarCandidatos;
-
-    private final BuscarCandidatosResumido buscarCandidatosResumido;
-
     @POST
-    @RolesAllowed({"USER_ROLE", "ADMIN_ROLE"})
+    @RolesAllowed({ "USER_ROLE", "ADMIN_ROLE" })
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @APIResponse(responseCode = "201", description = "Candidato criado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = CandidatoDTO.class)))
     @Operation(summary = "Criar", description = "Cria um candidato")
     public Response criar(CandidatoDTO candidatoDTO) {
-        return Response.status(Response.Status.CREATED).entity(candidatoService.criarCandidato(candidatoDTO)).build();
+        return Response.status(Response.Status.CREATED)
+            .entity(candidatoService.criarCandidato(candidatoDTO))
+            .build();
     }
 
     @PUT
-    @RolesAllowed({"USER_ROLE", "ADMIN_ROLE"})
+    @RolesAllowed({ "USER_ROLE", "ADMIN_ROLE" })
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @APIResponse(responseCode = "200", description = "Candidato atualizado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = CandidatoDTO.class)))
@@ -60,37 +55,42 @@ public class CandidatoResource {
 
     @GET
     @Path("/{id}")
-    @RolesAllowed({"USER_ROLE", "ADMIN_ROLE"})
+    @RolesAllowed({ "USER_ROLE", "ADMIN_ROLE" })
     @Produces(MediaType.APPLICATION_JSON)
     @APIResponse(responseCode = "200", description = "Candidato encontrado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = CandidatoDTO.class)))
     @APIResponse(responseCode = "404", description = "Candidato não encontrado")
     @Operation(summary = "Buscar", description = "Busca um candidato pelo ID")
     public Response buscar(@PathParam("id") String id) {
-        return Response.status(Response.Status.OK).entity(candidatoService.buscarCandidatoPeloID(id)).build();
+        return Response.status(Response.Status.OK)
+            .entity(candidatoService.buscarCandidatoPeloID(id))
+            .build();
     }
 
     @GET
-    @RolesAllowed({"USER_ROLE", "ADMIN_ROLE"})
+    @RolesAllowed({ "USER_ROLE", "ADMIN_ROLE" })
     @Produces(MediaType.APPLICATION_JSON)
     @APIResponse(responseCode = "200", description = "Candidato encontrado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = CandidatoDTO.class)))
     @APIResponse(responseCode = "404", description = "Candidato não encontrado")
     @Operation(summary = "Buscar", description = "Busca uma lista de candidatos")
-    public Response buscarTodos(@QueryParam("search") String search){
+    public Response buscarTodos(@QueryParam("search") String search,
+        @QueryParam("page") Integer page, @QueryParam("size") Integer size) {
         List<CondicaoPesquisa> condicaoPesquisaList = prepararFiltros.execute(search);
-        return Response.status(Response.Status.OK).entity(candidatoService.buscarCandidatos(condicaoPesquisaList)).build();
+        return Response.status(Response.Status.OK)
+            .entity(candidatoService.buscarCandidatos(condicaoPesquisaList, page, size))
+            .build();
     }
 
     @GET
-    @Path("/resumido")
-    @RolesAllowed({"USER_ROLE", "ADMIN_ROLE"})
+    @Path("/{id}/resumido")
+    @RolesAllowed({ "USER_ROLE", "ADMIN_ROLE" })
     @Produces(MediaType.APPLICATION_JSON)
     @APIResponse(responseCode = "200", description = "Candidato encontrado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = CandidatoResumidoDTO.class)))
     @APIResponse(responseCode = "404", description = "Candidato não encontrado")
     @Operation(summary = "Buscar", description = "Busca uma lista de candidatos resumido")
-    public Response buscarResumido(@QueryParam("search") String search,
-                                  @QueryParam("page") Integer page, @QueryParam("size") Integer size){
-        List<CondicaoPesquisa> condicaoPesquisaList = prepararFiltros.execute(search);
-        return Response.status(Response.Status.OK).entity(candidatoService.buscarCandidatosResumido(condicaoPesquisaList, page, size)).build();
+    public Response buscarResumido(@PathParam("id") String id) {
+        return Response.status(Response.Status.OK)
+            .entity(candidatoService.buscarCandidatosResumido(id))
+            .build();
     }
 
 }

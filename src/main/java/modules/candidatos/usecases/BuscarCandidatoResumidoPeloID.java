@@ -1,31 +1,34 @@
 package modules.candidatos.usecases;
 
-import core.pesquisa.CondicaoPesquisa;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import modules.candidatos.converters.CandidatoConverter;
+import modules.candidatos.dtos.CandidatoResponseDTO;
 import modules.candidatos.dtos.CandidatoResumidoDTO;
+import modules.candidatos.exceptions.CandidatoNaoEncontradoException;
+import modules.candidatos.infra.entities.Candidato;
 import modules.candidatos.repositories.CandidatoRepository;
 
-import java.util.List;
+import java.util.UUID;
 
 /**
  * @author Vinicius Gabriel <vinicius.prado@nexuscloud.com.br>
  * @version 1.0
- * @since 22/02/2024
+ * @since 17/02/24
  */
-@Transactional
 @ApplicationScoped
 @RequiredArgsConstructor
-public class BuscarCandidatosResumido {
+public class BuscarCandidatoResumidoPeloID {
 
     private final CandidatoRepository repository;
 
     private final CandidatoConverter converter;
 
-    public List<CandidatoResumidoDTO> execute(List<CondicaoPesquisa> condicaoPesquisaList, int page, int size) {
-
-        return repository.findAll(condicaoPesquisaList, page, size).stream().map(converter::toResumido).toList();
+    public CandidatoResumidoDTO execute(UUID id) {
+        Candidato candidato = repository.findById(id).orElseThrow(CandidatoNaoEncontradoException::new);
+        return converter.toResumido(candidato);
     }
+
+
 }

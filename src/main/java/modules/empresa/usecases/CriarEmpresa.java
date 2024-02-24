@@ -42,7 +42,6 @@ public class CriarEmpresa {
 
         Empresa empresa = new Empresa();
         empresa.setUsuario(usuario);
-        empresa.setEmpresa(dto.getEmpresa());
         empresa.setSetor(dto.getSetor());
         empresa.setDescricao(dto.getDescricao());
         empresa.setWebsite(dto.getWebsite());

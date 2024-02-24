@@ -22,11 +22,10 @@ public class EmpresaConverter {
 
     private final EnderecoConverter enderecoConverter;
 
-    public Empresa toEntity(EmpresaDTO dto){
+    public Empresa toEntity(EmpresaDTO dto) {
         Empresa empresa = new Empresa();
         empresa.setId(dto.getId());
         empresa.setUsuario(usuarioConverter.toEntity(dto.getUsuario()));
-        empresa.setEmpresa(dto.getEmpresa());
         empresa.setSetor(dto.getSetor());
         empresa.setDescricao(dto.getDescricao());
         empresa.setWebsite(dto.getWebsite());
@@ -35,11 +34,10 @@ public class EmpresaConverter {
         return empresa;
     }
 
-    public EmpresaDTO toDTO(Empresa entity){
+    public EmpresaDTO toDTO(Empresa entity) {
         EmpresaDTO empresaDTO = new EmpresaDTO();
         empresaDTO.setId(entity.getId());
         empresaDTO.setUsuario(usuarioConverter.toDTO(entity.getUsuario()));
-        empresaDTO.setEmpresa(entity.getEmpresa());
         empresaDTO.setSetor(entity.getSetor());
         empresaDTO.setDescricao(entity.getDescricao());
         empresaDTO.setWebsite(entity.getWebsite());
@@ -48,13 +46,12 @@ public class EmpresaConverter {
         return empresaDTO;
     }
 
-    public EmpresaResponseDTO toResponse(Empresa entity){
+    public EmpresaResponseDTO toResponse(Empresa entity) {
         EmpresaResponseDTO responseDTO = new EmpresaResponseDTO();
         responseDTO.setId(entity.getId());
         responseDTO.setNome(entity.getUsuario().getNome());
         responseDTO.setEmail(entity.getUsuario().getEmail());
         responseDTO.setTelefone(entity.getUsuario().getTelefone());
-        responseDTO.setEmpresa(entity.getEmpresa());
         responseDTO.setSetor(entity.getSetor());
         responseDTO.setDescricao(entity.getDescricao());
         responseDTO.setWebsite(entity.getWebsite());
@@ -64,15 +61,16 @@ public class EmpresaConverter {
         return responseDTO;
     }
 
-    public EmpresaResumidoDTO toResumido(Empresa entity){
+    public EmpresaResumidoDTO toResumido(Empresa entity) {
         EmpresaResumidoDTO resumidoDTO = new EmpresaResumidoDTO();
-        resumidoDTO.setEmpresa(entity.getEmpresa());
         resumidoDTO.setDescricao(entity.getDescricao());
         resumidoDTO.setSetor(entity.getSetor());
         resumidoDTO.setUrlFotoPerfil(entity.getUrlFotoPerfil());
-        resumidoDTO.setCidadeEstado(entity.getUsuario().getEndereco().getMunicipio() + "/" + entity.getUsuario().getEndereco().getEstado());
+        resumidoDTO.setCidadeEstado(
+            entity.getUsuario().getEndereco().getMunicipio() + "/" + entity.getUsuario()
+                .getEndereco()
+                .getEstado());
         return resumidoDTO;
     }
-
 
 }

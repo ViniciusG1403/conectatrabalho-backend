@@ -28,9 +28,6 @@ public class Empresa {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    @Column(name = "empresa", length = 100, nullable = false)
-    private String empresa;
-
     @Column(name = "setor", length = 100, nullable = false)
     private String setor;
 

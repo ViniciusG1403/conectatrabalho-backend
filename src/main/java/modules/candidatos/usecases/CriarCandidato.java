@@ -34,7 +34,7 @@ public class CriarCandidato {
     private final UsuarioRepository usuarioRepository;
 
     private final UsuarioConverter usuarioConverter;
-    @Transactional
+
     public CandidatoResponseDTO execute(CandidatoDTO dto) {
         boolean candidato = repository.alreadyExistsCandidatoByUser(dto.getUsuario().getId()).isPresent();
         if (candidato) {

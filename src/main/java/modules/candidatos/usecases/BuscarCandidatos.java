@@ -18,7 +18,6 @@ import java.util.List;
  * @version 1.0
  * @since 17/02/24
  */
-@Transactional
 @ApplicationScoped
 @RequiredArgsConstructor
 public class BuscarCandidatos {
@@ -27,9 +26,13 @@ public class BuscarCandidatos {
 
     private final CandidatoConverter converter;
 
-    public List<CandidatoResumidoDTO> execute(List<CondicaoPesquisa> condicoes) {
-        final List<Candidato> candidatos =  repository.findAll(condicoes);
-        return candidatos.stream().map(converter::toResumido).toList();
+    public List<CandidatoResumidoDTO> execute(List<CondicaoPesquisa> condicaoPesquisaList, int page,
+        int size) {
+
+        return repository.findAll(condicaoPesquisaList, page, size)
+            .stream()
+            .map(converter::toResumido)
+            .toList();
     }
 
 }

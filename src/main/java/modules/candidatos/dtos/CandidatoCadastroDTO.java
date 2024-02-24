@@ -1,13 +1,10 @@
 package modules.candidatos.dtos;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
-import jakarta.persistence.*;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
 import modules.usuarios.dtos.UsuarioDTO;
-import modules.usuarios.infra.entities.Usuario;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import java.math.BigDecimal;
@@ -16,19 +13,14 @@ import java.util.UUID;
 /**
  * @author Vinicius Gabriel <vinicius.prado@nexuscloud.com.br>
  * @version 1.0
- * @since 17/02/2024
+ * @since 23/02/24
  */
-@Getter
-@Setter
 @RegisterForReflection
-public class CandidatoDTO {
-
-    @Schema(name = "ID do candidato", required = true, title = "ID do candidato", example = "123e4567-e89b-12d3-a456-426614174000")
-    private UUID id;
+public class CandidatoCadastroDTO {
 
     @NotNull(message = "O candidato deve estar associado a um usuário")
-    @Schema(name = "Usuário", required = true, title = "Usuário referenciado ao candidato")
-    private UsuarioDTO usuario;
+    @Schema(name = "ID do usuário", required = true, title = "ID usuário referenciado ao candidato", example = "123e4567-e89b-12d3-a456-426614174000")
+    private UUID idUsuario;
 
     @Schema(name = "Habilidades do candidato", title = "Habilidades do candidato", example = "Java, Spring Boot, Angular")
     private String habilidades;
