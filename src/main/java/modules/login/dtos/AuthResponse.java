@@ -15,6 +15,6 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 @ToString
 public class AuthResponse {
 
-    @Schema(name = "Token", required = true, title = "Token de autenticação", example = "token")
+    @Schema(name = "token", required = true, title = "Token de autenticação", example = "token")
     public String token;
 }

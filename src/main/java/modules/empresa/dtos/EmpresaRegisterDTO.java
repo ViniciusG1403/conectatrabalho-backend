@@ -20,26 +20,26 @@ import java.util.UUID;
 @RegisterForReflection
 public class EmpresaRegisterDTO {
 
-    @Schema(name = "ID do usuário", required = true, title = "ID usuário referenciado a empresa", example = "123e4567-e89b-12d3-a456-426614174000")
+    @Schema(name = "idUsuario", required = true, title = "ID do usuário", example = "123e4567-e89b-12d3-a456-426614174000")
     @NotNull(message = "Usuário não pode ser nulo")
     private UUID idUsuario;
 
     @NotNull(message = "Setor não pode ser nulo")
     @Size(min = 0, max = 100, message = "Setor deve ter entre 0 e 100 caracteres")
-    @Schema(name = "Setor da empresa", required = true, title = "Setor da empresa", example = "Tecnologia")
+    @Schema(name = "setor", required = true, title = "Setor da empresa", example = "Tecnologia")
     private String setor;
 
     @NotNull(message = "Descrição não pode ser nula")
-    @Schema(name = "Descrição da empresa", required = true, title = "Descrição da empresa", example = "Empresa de desenvolvimento de software")
+    @Schema(name = "descricao", required = true, title = "Descrição da empresa", example = "Empresa de desenvolvimento de software")
     private String descricao;
 
-    @Schema(name = "Website da empresa", title = "Website da empresa", example = "www.pradosoftwares.com.br")
+    @Schema(name = "website", title = "Website da empresa", example = "www.pradosoftwares.com.br")
     private String website;
 
-    @Schema(name = "LinkedIn da empresa", title = "LinkedIn da empresa", example = "www.linkedin.com/company/pradosoftwares")
+    @Schema(name = "linkedin", title = "LinkedIn da empresa", example = "www.linkedin.com/company/pradosoftwares")
     private String linkedin;
 
-    @Schema(name = "URL da foto de perfil da empresa", title = "URL da foto de perfil da empresa", example = "www.pradosoftwares.com.br/foto-perfil")
+    @Schema(name = "urlFotoPerfil", title = "URL da foto de perfil da empresa", example = "www.pradosoftwares.com.br/foto-perfil")
     private String urlFotoPerfil;
 
 }

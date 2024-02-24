@@ -5,6 +5,7 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import modules.candidatos.converters.CandidatoConverter;
+import modules.candidatos.dtos.CandidatoCadastroDTO;
 import modules.candidatos.dtos.CandidatoDTO;
 import modules.candidatos.dtos.CandidatoResponseDTO;
 import modules.candidatos.infra.entities.Candidato;
@@ -33,24 +34,30 @@ public class CriarCandidato {
 
     private final UsuarioRepository usuarioRepository;
 
-    private final UsuarioConverter usuarioConverter;
-
-    public CandidatoResponseDTO execute(CandidatoDTO dto) {
-        boolean candidato = repository.alreadyExistsCandidatoByUser(dto.getUsuario().getId()).isPresent();
+    public CandidatoResponseDTO execute(CandidatoCadastroDTO dto) {
+        boolean candidato = repository.alreadyExistsCandidatoByUser(dto.getIdUsuario()).isPresent();
         if (candidato) {
             throw new ValidationException("Candidato já cadastrado para esse usuário");
         }
-        Usuario usuario = usuarioRepository.findById(dto.getUsuario().getId()).orElseThrow(
+        Usuario usuario = usuarioRepository.findById(dto.getIdUsuario()).orElseThrow(
             UsuarioNotFoundException::new);
 
         if(Objects.equals(usuario.getTipo(), TipoUsuario.EMPRESA)){
             throw new ValidationException("Usuário do tipo empresa não pode ser cadastrado como candidato");
         }
 
-        dto.setUsuario(usuarioConverter.toDTO(usuario));
-
-        Candidato entity = converter.toEntity(dto);
+        Candidato entity = new Candidato();
+        entity.setUsuario(usuario);
+        entity.setDisponibilidade(dto.getDisponibilidade());
+        entity.setHabilidades(dto.getHabilidades());
+        entity.setLinkedin(dto.getLinkedin());
+        entity.setGithub(dto.getGithub());
+        entity.setPortfolio(dto.getPortfolio());
+        entity.setPretensaoSalarial(dto.getPretensaoSalarial());
+        entity.setUrlCurriculum(dto.getUrlCurriculum());
+        entity.setUrlFotoPerfil(dto.getUrlFotoPerfil());
         repository.save(entity);
+
         return converter.toResponse(entity);
     }
 

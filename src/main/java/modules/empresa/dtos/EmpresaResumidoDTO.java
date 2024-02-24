@@ -26,4 +26,5 @@ public class EmpresaResumidoDTO {
 
     @Schema(name = "cidadeEstado", required = true, title = "Cidade e estado da empresa", example = "São Paulo - SP")
     private String cidadeEstado;
+
 }

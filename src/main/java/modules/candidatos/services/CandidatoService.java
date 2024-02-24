@@ -5,6 +5,7 @@ import core.validates.Validators;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import modules.candidatos.dtos.CandidatoCadastroDTO;
 import modules.candidatos.dtos.CandidatoDTO;
 import modules.candidatos.dtos.CandidatoResponseDTO;
 import modules.candidatos.dtos.CandidatoResumidoDTO;
@@ -34,10 +35,10 @@ public class CandidatoService extends Validators {
 
     private final BuscarCandidatoResumidoPeloID buscarCandidatoResumidoPeloID;
 
-    public CandidatoResponseDTO criarCandidato(CandidatoDTO dto) {
+    public CandidatoResponseDTO criarCandidato(CandidatoCadastroDTO dto) {
 
         NonNullValidate(dto, "Candidato");
-        NonNullValidate(dto.getUsuario(), "Usuario");
+        NonNullValidate(dto.getIdUsuario(), "Usuario");
         NonNullValidate(dto.getDisponibilidade(), "Disponibilidade");
         NonNullValidate(dto.getPretensaoSalarial(), "Pretensão Salarial");
 

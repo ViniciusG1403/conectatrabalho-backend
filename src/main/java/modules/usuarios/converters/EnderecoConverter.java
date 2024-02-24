@@ -19,7 +19,6 @@ public class EnderecoConverter {
 
     public Endereco toEntity(EnderecoDTO dto) {
         Endereco entity = new Endereco();
-        entity.setId(dto.getId());
         entity.setCep(dto.getCep());
         entity.setEstado(dto.getEstado());
         entity.setPais(dto.getPais());
@@ -33,7 +32,6 @@ public class EnderecoConverter {
 
     public EnderecoDTO toDto(Endereco entity) {
         EnderecoDTO dto = new EnderecoDTO();
-        dto.setId(entity.getId());
         dto.setCep(entity.getCep());
         dto.setEstado(entity.getEstado());
         dto.setPais(entity.getPais());
@@ -58,6 +56,5 @@ public class EnderecoConverter {
         dto.setComplemento(entity.getComplemento());
         return dto;
     }
-    
 
 }

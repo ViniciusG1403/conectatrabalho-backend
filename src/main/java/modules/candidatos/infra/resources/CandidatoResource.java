@@ -7,6 +7,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import lombok.RequiredArgsConstructor;
+import modules.candidatos.dtos.CandidatoCadastroDTO;
 import modules.candidatos.dtos.CandidatoDTO;
 import modules.candidatos.dtos.CandidatoResumidoDTO;
 import modules.candidatos.services.CandidatoService;
@@ -36,7 +37,7 @@ public class CandidatoResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @APIResponse(responseCode = "201", description = "Candidato criado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = CandidatoDTO.class)))
     @Operation(summary = "Criar", description = "Cria um candidato")
-    public Response criar(CandidatoDTO candidatoDTO) {
+    public Response criar(CandidatoCadastroDTO candidatoDTO) {
         return Response.status(Response.Status.CREATED)
             .entity(candidatoService.criarCandidato(candidatoDTO))
             .build();

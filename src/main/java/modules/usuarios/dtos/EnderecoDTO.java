@@ -17,33 +17,31 @@ import java.util.UUID;
 @RegisterForReflection
 public class EnderecoDTO {
 
-    @Schema(name = "ID", required = true, title = "ID do endereço", example = "123e4567-e89b-12d3-a456-426614174000")
-    private UUID id;
+    @Schema(name = "idUsuario", required = true, title = "ID do usuário", example = "123e4567-e89b-12d3-a456-426614174000")
+    private UUID idUsuario;
 
-    @Schema(name = "Usuário", required = true, title = "Usuário referenciado ao endereço")
-    private UsuarioDTO usuario;
-
-    @Schema(name = "CEP", required = true, title = "CEP do endereço", example = "12345-678")
+    @Schema(name = "cep", required = true, title = "CEP do endereço", example = "12345678")
     private String cep;
 
-    @Schema(name = "Estado", required = true, title = "Estado do endereço", example = "São Paulo")
+    @Schema(name = "estado", required = true, title = "Estado do endereço", example = "SP")
     private String estado;
 
-    @Schema(name = "País", required = true, title = "País do endereço", example = "Brasil")
+    @Schema(name = "pais", required = true, title = "País do endereço", example = "Brasil")
     private String pais;
 
-    @Schema(name = "Município", required = true, title = "Município do endereço", example = "São Paulo")
+    @Schema(name = "municipio", required = true, title = "Município do endereço", example = "São Paulo")
     private String municipio;
 
-    @Schema(name = "Bairro", required = true, title = "Bairro do endereço", example = "Vila Mariana")
+    @Schema(name = "bairro", required = true, title = "Bairro do endereço", example = "Vila Mariana")
     private String bairro;
 
-    @Schema(name = "Logradouro", required = true, title = "Logradouro do endereço", example = "Rua Domingos de Morais")
+    @Schema(name = "logradouro", required = true, title = "Logradouro do endereço", example = "Rua Domingos de Morais")
     private String logradouro;
 
-    @Schema(name = "Número", required = true, title = "Número do endereço", example = "123")
+    @Schema(name = "numero", required = true, title = "Número do endereço", example = "123")
     private String numero;
 
-    @Schema(name = "Complemento", title = "Complemento do endereço", example = "Apto 123")
+    @Schema(name = "complemento", title = "Complemento do endereço", example = "Apto 123")
     private String complemento;
+
 }

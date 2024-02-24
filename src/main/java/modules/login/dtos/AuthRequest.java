@@ -15,9 +15,10 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 @ToString
 public class AuthRequest {
 
-    @Schema(name = "Email", required = true, title = "Email do usuário", example = "mail@email.com")
+    @Schema(name = "email", required = true, title = "Email do usuário", example = "mail@email.com")
     public String email;
 
-    @Schema(name = "Senha", required = true, title = "Senha do usuário", example = "123456")
+    @Schema(name = "senha", required = true, title = "Senha do usuário", example = "123456")
     public String senha;
+
 }

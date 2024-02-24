@@ -20,40 +20,41 @@ import java.math.BigDecimal;
 @RegisterForReflection
 public class CandidatoResponseDTO {
 
-    @Schema(name = "Nome do candidato", required = true, title = "Nome", example = "Vinicius Gabriel")
+    @Schema(name = "nome", required = true, title = "Nome do candidato", example = "Vinicius Gabriel")
     private String nome;
 
-    @Schema(name = "E-mail do candidato", required = true, title = "E-mail", example = "email@mail.com")
+    @Schema(name = "email", required = true, title = "E-mail do candidato", example = "email@mail.com")
     private String email;
 
-    @Schema(name = "Telefone do candidato", title = "Telefone", example = "(11) 99999-9999")
+    @Schema(name = "telefone", title = "Telefone do candidato", example = "(11) 99999-9999")
     private String telefone;
 
-    @Schema(name = "Habilidades do candidato", title = "Habilidades", example = "Java, Spring Boot, Angular")
+    @Schema(name = "habilidades", title = "Habilidades do candidato", example = "Java, Spring Boot, Angular")
     private String habilidades;
 
-    @Schema(name = "LinkedIn do candidato", title = "LinkedIn", example = "www.linkedin.com/in/viniciusgabriel")
+    @Schema(name = "linkedin", title = "LinkedIn do candidato", example = "www.linkedin.com/in/viniciusgabriel")
     private String linkedin;
 
-    @Schema(name = "GitHub do candidato", title = "GitHub", example = "www.github.com/viniciusgabriel")
+    @Schema(name = "github", title = "GitHub do candidato", example = "www.github.com/viniciusgabriel")
     private String github;
 
-    @Schema(name = "Portfolio do candidato", title = "Portfolio", example = "www.viniciusgabriel.com.br")
+    @Schema(name = "portfolio", title = "Portfolio do candidato", example = "www.viniciusgabriel.com.br")
     private String portfolio;
 
-    @Schema(name = "Disponibilidade do candidato", title = "Disponibilidade", example = "Disponível para viagens")
+    @Schema(name = "disponibilidade", title = "Disponibilidade do candidato", example = "Disponível para viagens")
     private String disponibilidade;
 
-    @Schema(name = "Pretensão salarial do candidato", title = "Pretensão salarial", example = "5000.00")
+    @Schema(name = "pretensaoSalarial", title = "Pretensão salarial do candidato", example = "5000.00")
     private BigDecimal pretensaoSalarial;
 
-    @Schema(name = "URL do currículo do candidato", title = "URL do currículo", example = "www.viniciusgabriel.com.br/curriculo")
+    @Schema(name = "urlCurriculum", title = "URL do currículo do candidato", example = "www.viniciusgabriel.com.br/curriculo")
     private String urlCurriculum;
 
-    @Schema(name = "URL da foto de perfil do candidato", title = "URL da foto de perfil", example = "www.viniciusgabriel.com.br/foto-perfil")
+    @Schema(name = "urlFotoPerfil", title = "URL da foto de perfil do candidato", example = "www.viniciusgabriel.com.br/foto-perfil")
     private String urlFotoPerfil;
 
-    @Schema(name = "Endereço do candidato", title = "Endereço")
+    @Schema(name = "endereco", title = "Endereço do candidato")
     private EnderecoDTO endereco;
+
 
 }
