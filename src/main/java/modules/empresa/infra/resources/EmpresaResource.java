@@ -2,7 +2,6 @@ package modules.empresa.infra.resources;
 
 import core.pesquisa.CondicaoPesquisa;
 import core.pesquisa.PrepararFiltros;
-import core.shared.ProcessImageService;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;

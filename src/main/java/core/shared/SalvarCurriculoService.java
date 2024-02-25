@@ -1,26 +1,14 @@
 package core.shared;
 
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.validation.ValidationException;
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
-import software.amazon.awssdk.services.s3.model.GetObjectRequest;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
-import software.amazon.awssdk.services.s3.model.PutObjectResponse;
-import software.amazon.awssdk.services.s3.presigner.S3Presigner;
-import software.amazon.awssdk.services.s3.presigner.model.GetObjectPresignRequest;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +18,7 @@ import java.util.Map;
  * @since 24/02/24
  */
 @ApplicationScoped
-public class ProcessCurriculoService {
+public class SalvarCurriculoService {
 
     public void execute(MultipartFormDataInput input, String id) {
         try {

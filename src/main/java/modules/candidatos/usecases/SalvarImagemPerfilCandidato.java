@@ -1,6 +1,6 @@
 package modules.candidatos.usecases;
 
-import core.shared.ProcessImageService;
+import core.shared.ProcessarESalvarImageService;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.RequiredArgsConstructor;
 import modules.candidatos.exceptions.CandidatoNaoEncontradoException;
@@ -22,13 +22,13 @@ public class SalvarImagemPerfilCandidato {
 
     final private CandidatoRepository candidatoRepository;
 
-    final private ProcessImageService processImageService;
+    final private ProcessarESalvarImageService processarESalvarImageService;
 
     public void execute(MultipartFormDataInput input) {
         try {
             final String id = getBodyAsString(input);
 
-            final String urlImageSaved = processImageService.execute(input, id);
+            final String urlImageSaved = processarESalvarImageService.execute(input, id);
 
             Candidato candidato = candidatoRepository.findById(UUID.fromString(id))
                 .orElseThrow(CandidatoNaoEncontradoException::new);

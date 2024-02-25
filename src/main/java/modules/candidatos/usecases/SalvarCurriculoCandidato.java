@@ -1,16 +1,11 @@
 package modules.candidatos.usecases;
 
-import core.shared.ProcessCurriculoService;
-import core.shared.ProcessImageService;
+import core.shared.SalvarCurriculoService;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.RequiredArgsConstructor;
-import modules.candidatos.exceptions.CandidatoNaoEncontradoException;
-import modules.candidatos.infra.entities.Candidato;
-import modules.candidatos.repositories.CandidatoRepository;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
 import java.io.IOException;
-import java.util.UUID;
 
 /**
  * @author Vinicius Gabriel <vinicius.prado@nexuscloud.com.br>
@@ -21,12 +16,12 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class SalvarCurriculoCandidato {
 
-    final private ProcessCurriculoService processCurriculoService;
+    final private SalvarCurriculoService salvarCurriculoService;
 
     public void execute(MultipartFormDataInput input) {
         try {
             final String id = getBodyAsString(input);
-            processCurriculoService.execute(input, id);
+            salvarCurriculoService.execute(input, id);
         } catch (IOException e) {
             throw new RuntimeException("Erro ao salvar curriculo do candidato");
         }

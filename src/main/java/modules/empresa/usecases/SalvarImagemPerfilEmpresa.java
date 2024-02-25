@@ -1,15 +1,11 @@
 package modules.empresa.usecases;
 
-import core.shared.ProcessImageService;
+import core.shared.ProcessarESalvarImageService;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.RequiredArgsConstructor;
-import modules.empresa.exceptions.EmpresaNaoEncontradoException;
-import modules.empresa.infra.entities.Empresa;
-import modules.empresa.repositories.EmpresaRepository;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
 import java.io.IOException;
-import java.util.UUID;
 
 /**
  * @author Vinicius Gabriel <vinicius.prado@nexuscloud.com.br>
@@ -20,13 +16,13 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class SalvarImagemPerfilEmpresa {
 
-    private final ProcessImageService processImageService;
+    private final ProcessarESalvarImageService processarESalvarImageService;
 
     public void execute(MultipartFormDataInput input) {
         try {
             final String id = getBodyAsString(input);
 
-            processImageService.execute(input, id);
+            processarESalvarImageService.execute(input, id);
 
         } catch (IOException e) {
             throw new RuntimeException("Erro ao salvar imagem de perfil da empresa");

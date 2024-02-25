@@ -6,7 +6,6 @@
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/usuarios/services/UsuarioService.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/candidatos/dtos/CandidatoResponseDTO.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/candidatos/usecases/BuscarCandidatoResumidoPeloID.java
-/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/core/shared/ProcessCurriculoService.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/empresa/exceptions/EmpresaNaoEncontradoException.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/candidatos/services/CandidatoService.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/usuarios/usecases/BuscarUsuarioPeloID.java
@@ -17,6 +16,7 @@
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/empresa/infra/resources/EmpresaResource.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/usuarios/infra/entities/Usuario.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/core/repositories/GenericRepository.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/core/shared/ProcessarESalvarImageService.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/login/usecases/TokenUtils.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/empresa/infra/entities/Empresa.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/usuarios/usecases/InativarUsuario.java
@@ -71,12 +71,12 @@
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/empresa/usecases/SalvarImagemPerfilEmpresa.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/usuarios/converters/EnderecoConverter.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/login/dtos/AuthRequest.java
-/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/core/shared/ProcessImageService.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/core/shared/PostgreSQLEnumType.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/candidatos/dtos/CandidatoDTO.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/usuarios/usecases/UsuarioJaExisteComEsteEmail.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/usuarios/dtos/UsuarioResponseDTO.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/empresa/usecases/CriarEmpresa.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/core/shared/SalvarCurriculoService.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/candidatos/infra/entities/Candidato.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/usuarios/usecases/GenerateRandomCode.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/usuarios/repositories/UsuarioRepository.java

@@ -1,6 +1,5 @@
 modules/usuarios/infra/resources/UsuarioResource.class
 core/shared/RecuperarImagemPerfil.class
-core/shared/ProcessCurriculoService.class
 modules/empresa/infra/repositories/EmpresaRepositoryImpl.class
 modules/candidatos/dtos/CandidatoDTO.class
 modules/usuarios/usecases/InativarUsuario.class
@@ -23,6 +22,7 @@ modules/usuarios/usecases/AtivarUsuario.class
 modules/candidatos/infra/resources/CandidatoResource.class
 modules/candidatos/infra/entities/Candidato.class
 modules/empresa/infra/resources/EmpresaResource.class
+core/shared/SalvarCurriculoService.class
 modules/candidatos/exceptions/CandidatoNaoEncontradoException.class
 modules/candidatos/dtos/CandidatoUpdateDTO.class
 modules/candidatos/usecases/BuscarImagemPerfilCandidato.class
@@ -65,6 +65,7 @@ modules/candidatos/infra/repositories/CandidatoRepositoryImpl.class
 modules/empresa/infra/entities/Empresa.class
 modules/usuarios/usecases/CriarOuAtualizarUsuario.class
 modules/usuarios/services/UsuarioService.class
+core/shared/ProcessarESalvarImageService.class
 modules/candidatos/usecases/AtualizarCandidato.class
 core/pesquisa/CondicaoPesquisa.class
 modules/candidatos/repositories/CandidatoRepository.class
@@ -77,7 +78,6 @@ modules/empresa/services/EmpresaService.class
 modules/empresa/usecases/BuscarEmpresaPeloID.class
 modules/login/dtos/AuthResponse.class
 modules/candidatos/usecases/BuscarCandidatos.class
-core/shared/ProcessImageService.class
 modules/usuarios/infra/repositories/UsuarioRepositoryImpl.class
 modules/usuarios/dtos/EnderecoResponseDTO.class
 modules/empresa/usecases/UpdateEmpresa.class
