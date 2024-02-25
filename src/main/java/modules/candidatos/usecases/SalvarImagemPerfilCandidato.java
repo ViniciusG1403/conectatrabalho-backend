@@ -20,20 +20,14 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class SalvarImagemPerfilCandidato {
 
-    final private CandidatoRepository candidatoRepository;
-
     final private ProcessarESalvarImageService processarESalvarImageService;
 
     public void execute(MultipartFormDataInput input) {
         try {
             final String id = getBodyAsString(input);
 
-            final String urlImageSaved = processarESalvarImageService.execute(input, id);
+            processarESalvarImageService.execute(input, id);
 
-            Candidato candidato = candidatoRepository.findById(UUID.fromString(id))
-                .orElseThrow(CandidatoNaoEncontradoException::new);
-
-            candidatoRepository.update(candidato);
         } catch (IOException e) {
             throw new RuntimeException("Erro ao salvar imagem de perfil do candidato");
         }

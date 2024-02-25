@@ -2,12 +2,15 @@ package modules.candidatos.services;
 
 import core.pesquisa.CondicaoPesquisa;
 import core.validates.Validators;
+import io.smallrye.mutiny.Multi;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import modules.candidatos.dtos.*;
 import modules.candidatos.usecases.*;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
+import software.amazon.awssdk.core.ResponseInputStream;
+import software.amazon.awssdk.services.s3.model.GetObjectResponse;
 
 import java.io.InputStream;
 import java.util.List;
@@ -37,6 +40,10 @@ public class CandidatoService extends Validators {
     private final SalvarImagemPerfilCandidato salvarImagemPerfilCandidato;
 
     private final BuscarImagemPerfilCandidato buscarImagemPerfilCandidato;
+
+    private final SalvarCurriculoCandidato salvarCurriculoCandidato;
+
+    private final BuscarCurriculoCandidato buscarCurriculoCandidato;
 
     public CandidatoResponseDTO criarCandidato(CandidatoCadastroDTO dto) {
 
@@ -80,6 +87,14 @@ public class CandidatoService extends Validators {
 
     public InputStream buscarImagemPerfilCandidato(String id) {
         return buscarImagemPerfilCandidato.execute(id);
+    }
+
+    public void salvarCurriculoCandidato(MultipartFormDataInput input) {
+        salvarCurriculoCandidato.execute(input);
+    }
+
+    public ResponseInputStream<GetObjectResponse> buscarCurriculoCandidato(String id) {
+        return buscarCurriculoCandidato.execute(id);
     }
 
 }

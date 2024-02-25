@@ -96,7 +96,7 @@ public class CandidatoResource {
             .build();
     }
 
-    @PUT
+    @POST
     @Path("/salvar-imagem")
     @RolesAllowed({ "USER_ROLE", "ADMIN_ROLE" })
     @APIResponse(responseCode = "200", description = "Imagem salva com sucesso")
@@ -106,12 +106,31 @@ public class CandidatoResource {
         return Response.status(Response.Status.OK).entity("Imagem de perfil salva com sucesso.").build();
     }
 
+    @POST
+    @Path("/salvar-curriculo")
+    @RolesAllowed({ "USER_ROLE", "ADMIN_ROLE" })
+    @APIResponse(responseCode = "200", description = "Curriculo salvo com sucesso")
+    @Operation(summary = "Salvar curriculo", description = "Salva o curriculo do candidato")
+    public Response salvarCurriculo(MultipartFormDataInput input) {
+        candidatoService.salvarCurriculoCandidato(input);
+        return Response.status(Response.Status.OK).entity("Curriculo salvo com sucesso.").build();
+    }
+
     @GET
     @Path("/{id}/imagem-perfil")
     @RolesAllowed({ "USER_ROLE", "ADMIN_ROLE" })
     public Response buscarImagemPerfil(@PathParam("id") String id) {
         return Response.status(Response.Status.OK)
             .entity(candidatoService.buscarImagemPerfilCandidato(id))
+            .build();
+    }
+
+    @GET
+    @Path("/{id}/curriculo")
+    @RolesAllowed({ "USER_ROLE", "ADMIN_ROLE" })
+    public Response buscarCurriculo(@PathParam("id") String id) {
+        return Response.status(Response.Status.OK)
+            .entity(candidatoService.buscarCurriculoCandidato(id))
             .build();
     }
 
