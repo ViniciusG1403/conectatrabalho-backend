@@ -25,6 +25,13 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+      <dependency>
+        <groupId>${quarkus.platform.group-id}</groupId>
+        <artifactId>quarkus-amazon-services-bom</artifactId>
+        <version>${quarkus.platform.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
     </dependencies>
   </dependencyManagement>
   <dependencies>
@@ -39,6 +46,14 @@
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-hibernate-orm</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-resteasy-multipart</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkiverse.amazonservices</groupId>
+      <artifactId>quarkus-amazon-s3</artifactId>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
@@ -61,12 +76,12 @@
       <groupId>com.github.database-rider</groupId>
       <artifactId>rider-cdi</artifactId>
       <version>1.38.1</version>
-      <scope>test</scope>
       <classifier>jakarta</classifier>
+      <scope>test</scope>
       <exclusions>
         <exclusion>
-          <artifactId>stax-api</artifactId>
           <groupId>stax</groupId>
+          <artifactId>stax-api</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -87,7 +102,6 @@
       <version>2.1.1</version>
       <scope>provided</scope>
     </dependency>
-    <!-- github.com/eclipse-ee4j/angus-mail -->
     <dependency>
       <groupId>org.eclipse.angus</groupId>
       <artifactId>jakarta.mail</artifactId>
@@ -97,7 +111,6 @@
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-smallrye-openapi</artifactId>
     </dependency>
-
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-rest-client-jackson</artifactId>
@@ -118,6 +131,10 @@
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-resteasy-jackson</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>software.amazon.awssdk</groupId>
+      <artifactId>apache-client</artifactId>
     </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>

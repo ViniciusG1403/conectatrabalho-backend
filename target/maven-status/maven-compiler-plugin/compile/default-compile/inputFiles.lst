@@ -62,8 +62,10 @@
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/candidatos/usecases/BuscarCandidatoPeloID.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/empresa/dtos/EmpresaDTO.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/core/pesquisa/CondicaoPesquisa.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/empresa/usecases/SalvarImagemPerfilEmpresa.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/usuarios/converters/EnderecoConverter.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/login/dtos/AuthRequest.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/core/shared/ProcessImageService.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/core/shared/PostgreSQLEnumType.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/candidatos/dtos/CandidatoDTO.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/usuarios/usecases/UsuarioJaExisteComEsteEmail.java

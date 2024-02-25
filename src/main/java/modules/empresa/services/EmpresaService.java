@@ -10,6 +10,7 @@ import modules.empresa.dtos.EmpresaResponseDTO;
 import modules.empresa.dtos.EmpresaResumidoDTO;
 import modules.empresa.dtos.EmpresaUpdateDTO;
 import modules.empresa.usecases.*;
+import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
 import java.util.List;
 import java.util.Objects;
@@ -35,14 +36,12 @@ public class EmpresaService extends Validators {
 
     private final BuscarEmpresaResumidoByID buscarEmpresaResumidoByID;
 
+    private final SalvarImagemPerfilEmpresa salvarImagemPerfilEmpresa;
+
     public EmpresaResponseDTO criar(EmpresaRegisterDTO dto) {
         NonNullValidate(dto.getIdUsuario(), "Usuário");
         NonNullValidate(dto.getSetor(), "Setor");
         NonNullValidate(dto.getDescricao(), "Descrição");
-
-        if(Objects.isNull(dto.getUrlFotoPerfil())){
-            dto.setUrlFotoPerfil(" ");
-        }
 
         return criarEmpresa.execute(dto);
     }
@@ -70,5 +69,9 @@ public class EmpresaService extends Validators {
 
     public List<EmpresaResumidoDTO> buscarEmpresaResumidoByID(String id) {
         return buscarEmpresaResumidoByID.execute(UUID.fromString(id));
+    }
+
+    public void salvarImagemPerfilEmpresa(MultipartFormDataInput input){
+        salvarImagemPerfilEmpresa.execute(input);
     }
 }

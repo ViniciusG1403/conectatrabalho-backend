@@ -2,6 +2,7 @@ package modules.empresa.infra.resources;
 
 import core.pesquisa.CondicaoPesquisa;
 import core.pesquisa.PrepararFiltros;
+import core.shared.ProcessImageService;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -16,6 +17,7 @@ import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
 import java.util.List;
 
@@ -92,5 +94,16 @@ public class EmpresaResource {
         return Response.status(Response.Status.OK)
             .entity(service.buscarEmpresaResumidoByID(id))
             .build();
+    }
+
+    @PUT
+    @RolesAllowed({ "USER_ROLE", "ADMIN_ROLE" })
+    @APIResponse(responseCode = "200", description = "Imagem salva com sucesso")
+    @Operation(summary = "Salvar imagem", description = "Salva a imagem de perfil da empresa")
+    @Path("/salvar-imagem")
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    public Response salvarImagem(MultipartFormDataInput input) {
+        service.salvarImagemPerfilEmpresa(input);
+        return Response.status(Response.Status.OK).entity("Imagem de perfil salva com sucesso").build();
     }
 }

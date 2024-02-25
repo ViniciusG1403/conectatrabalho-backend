@@ -50,8 +50,5 @@ public class CandidatoCadastroDTO {
     @Schema(name = "urlCurriculum", title = "URL do currículo do candidato", example = "www.viniciusgabriel.com.br/curriculo")
     private String urlCurriculum;
 
-    @Schema(name = "urlFotoPerfil", title = "URL da foto de perfil do candidato", example = "www.viniciusgabriel.com.br/foto-perfil")
-    private String urlFotoPerfil;
-
 
 }

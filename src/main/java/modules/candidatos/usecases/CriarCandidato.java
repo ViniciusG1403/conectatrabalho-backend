@@ -56,7 +56,7 @@ public class CriarCandidato {
         entity.setPortfolio(dto.getPortfolio());
         entity.setPretensaoSalarial(dto.getPretensaoSalarial());
         entity.setUrlCurriculum(dto.getUrlCurriculum());
-        entity.setUrlFotoPerfil(dto.getUrlFotoPerfil());
+        entity.setUrlFotoPerfil("");
         repository.save(entity);
 
         return converter.toResponse(entity);

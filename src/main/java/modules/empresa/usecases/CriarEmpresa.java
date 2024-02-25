@@ -46,7 +46,7 @@ public class CriarEmpresa {
         empresa.setDescricao(dto.getDescricao());
         empresa.setWebsite(dto.getWebsite());
         empresa.setLinkedin(dto.getLinkedin());
-        empresa.setUrlFotoPerfil(dto.getUrlFotoPerfil());
+        empresa.setUrlFotoPerfil("");
 
 
         repository.save(empresa);

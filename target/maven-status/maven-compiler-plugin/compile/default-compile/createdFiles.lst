@@ -62,6 +62,7 @@ modules/usuarios/services/UsuarioService.class
 modules/candidatos/usecases/AtualizarCandidato.class
 core/pesquisa/CondicaoPesquisa.class
 modules/candidatos/repositories/CandidatoRepository.class
+modules/empresa/usecases/SalvarImagemPerfilEmpresa.class
 modules/usuarios/usecases/UsuarioJaExisteComEsteEmail.class
 modules/candidatos/dtos/CandidatoCadastroDTO.class
 core/validates/Validators.class
@@ -70,6 +71,7 @@ modules/empresa/services/EmpresaService.class
 modules/empresa/usecases/BuscarEmpresaPeloID.class
 modules/login/dtos/AuthResponse.class
 modules/candidatos/usecases/BuscarCandidatos.class
+core/shared/ProcessImageService.class
 modules/usuarios/infra/repositories/UsuarioRepositoryImpl.class
 modules/usuarios/dtos/EnderecoResponseDTO.class
 modules/empresa/usecases/UpdateEmpresa.class
