@@ -46,10 +46,4 @@ public class Candidato {
     @Column(name = "pretensao_salarial")
     private BigDecimal pretensaoSalarial;
 
-    @Column(name = "url_curriculum")
-    private String urlCurriculum;
-
-    @Column(name = "url_fotoperfil")
-    private String urlFotoPerfil;
-
 }

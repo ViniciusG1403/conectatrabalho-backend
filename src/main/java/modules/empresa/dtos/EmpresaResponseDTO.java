@@ -42,9 +42,6 @@ public class EmpresaResponseDTO {
     @Schema(name = "linkedin", title = "LinkedIn da empresa", example = "www.linkedin.com/company/pradosoftwares")
     private String linkedin;
 
-    @Schema(name = "urlFotoPerfil", title = "URL da foto de perfil da empresa", example = "www.pradosoftwares.com.br/foto-perfil")
-    private String urlFotoPerfil;
-
     @Schema(name = "endereco", title = "Endereço da empresa")
     private EnderecoResponseDTO endereco;
 

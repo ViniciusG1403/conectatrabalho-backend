@@ -6,9 +6,7 @@ CREATE TABLE candidato (
     github TEXT  NULL,
     portfolio TEXT  NULL,
     disponibilidade VARCHAR(40) NOT NULL,
-    pretensao_salarial DECIMAL(10,2) NOT NULL,
-    url_curriculum TEXT NULL,
-    url_fotoperfil TEXT NOT NULL
+    pretensao_salarial DECIMAL(10,2) NOT NULL
 );
 
 COMMENT ON TABLE candidato IS 'Tabela de candidatos';
@@ -20,8 +18,6 @@ COMMENT ON COLUMN candidato.github IS 'Perfil do candidato no GitHub';
 COMMENT ON COLUMN candidato.portfolio IS 'Perfil do candidato no Portfolio';
 COMMENT ON COLUMN candidato.disponibilidade IS 'Disponibilidade do candidato';
 COMMENT ON COLUMN candidato.pretensao_salarial IS 'Pretensão salarial do candidato';
-COMMENT ON COLUMN candidato.url_curriculum IS 'URL do currículo do candidato';
-COMMENT ON COLUMN candidato.url_fotoperfil IS 'URL da foto de perfil do candidato';
 
 ALTER TABLE candidato
 ADD CONSTRAINT fk_candidato_usuario

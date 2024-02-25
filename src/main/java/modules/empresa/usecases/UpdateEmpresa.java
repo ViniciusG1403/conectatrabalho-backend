@@ -29,8 +29,6 @@ public class UpdateEmpresa {
         empresa.setDescricao(dto.getDescricao());
         empresa.setWebsite(dto.getWebsite());
         empresa.setLinkedin(dto.getLinkedin());
-        empresa.setUrlFotoPerfil(dto.getUrlFotoPerfil());
-
         repository.update(empresa);
     }
 

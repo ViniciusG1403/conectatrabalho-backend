@@ -1,5 +1,6 @@
 package modules.candidatos.usecases;
 
+import core.shared.ProcessCurriculoService;
 import core.shared.ProcessImageService;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.RequiredArgsConstructor;
@@ -18,29 +19,20 @@ import java.util.UUID;
  */
 @ApplicationScoped
 @RequiredArgsConstructor
-public class SalvarImagemPerfilCandidato {
+public class SalvarCurriculoCandidato {
 
-    final private CandidatoRepository candidatoRepository;
-
-    final private ProcessImageService processImageService;
+    final private ProcessCurriculoService processCurriculoService;
 
     public void execute(MultipartFormDataInput input) {
         try {
             final String id = getBodyAsString(input);
-
-            final String urlImageSaved = processImageService.execute(input, id);
-
-            Candidato candidato = candidatoRepository.findById(UUID.fromString(id))
-                .orElseThrow(CandidatoNaoEncontradoException::new);
-
-            candidatoRepository.update(candidato);
+            processCurriculoService.execute(input, id);
         } catch (IOException e) {
-            throw new RuntimeException("Erro ao salvar imagem de perfil do candidato");
+            throw new RuntimeException("Erro ao salvar curriculo do candidato");
         }
     }
 
     private String getBodyAsString(MultipartFormDataInput input) throws IOException {
         return input.getFormDataMap().get("id").get(0).getBodyAsString();
     }
-
 }

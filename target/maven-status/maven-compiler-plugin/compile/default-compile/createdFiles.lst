@@ -1,10 +1,12 @@
 modules/usuarios/infra/resources/UsuarioResource.class
 core/shared/RecuperarImagemPerfil.class
+core/shared/ProcessCurriculoService.class
 modules/empresa/infra/repositories/EmpresaRepositoryImpl.class
 modules/candidatos/dtos/CandidatoDTO.class
 modules/usuarios/usecases/InativarUsuario.class
 core/exceptions/InvalidFormatEmailException.class
 modules/usuarios/dtos/UsuarioRegistroDTO.class
+modules/candidatos/usecases/SalvarCurriculoCandidato.class
 modules/empresa/converters/EmpresaConverter.class
 modules/candidatos/usecases/BuscarCandidatoResumidoPeloID.class
 modules/usuarios/dtos/UsuarioDTO.class
@@ -12,6 +14,7 @@ modules/candidatos/services/CandidatoService.class
 modules/candidatos/converters/CandidatoConverter.class
 modules/candidatos/usecases/BuscarCandidatoPeloID.class
 modules/login/usecases/TokenUtils.class
+modules/empresa/usecases/BuscarImagemPerfilEmpresa.class
 modules/empresa/usecases/BuscarEmpresas.class
 modules/empresa/dtos/EmpresaDTO.class
 modules/usuarios/dtos/UsuarioResponseDTO.class

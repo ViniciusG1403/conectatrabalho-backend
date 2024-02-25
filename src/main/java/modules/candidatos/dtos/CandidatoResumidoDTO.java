@@ -21,9 +21,6 @@ public class CandidatoResumidoDTO {
     @Schema(name = "habilidades", title = "Habilidades do candidato", example = "Java, Spring Boot, Angular")
     private String habilidades;
 
-    @Schema(name = "urlFotoPerfil", title = "URL da foto de perfil do candidato", example = "www.viniciusgabriel.com.br/foto-perfil")
-    private String urlFotoPerfil;
-
     @Schema(name = "cidadeEstado", title = "Cidade e estado do candidato", example = "São Paulo - SP")
     private String cidadeEstado;
 

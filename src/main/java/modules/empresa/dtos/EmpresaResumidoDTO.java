@@ -21,9 +21,6 @@ public class EmpresaResumidoDTO {
     @Schema(name = "setor", required = true, title = "setor", example = "Tecnologia")
     private String setor;
 
-    @Schema(name = "urlFotoPerfil", required = true, title = "urlFotoPerfil", example = "www.pradosoftwares.com.br/foto-perfil")
-    private String urlFotoPerfil;
-
     @Schema(name = "cidadeEstado", required = true, title = "Cidade e estado da empresa", example = "São Paulo - SP")
     private String cidadeEstado;
 

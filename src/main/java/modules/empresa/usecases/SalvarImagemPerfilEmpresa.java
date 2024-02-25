@@ -22,20 +22,12 @@ public class SalvarImagemPerfilEmpresa {
 
     private final ProcessImageService processImageService;
 
-    private final EmpresaRepository empresaRepository;
-
     public void execute(MultipartFormDataInput input) {
         try {
             final String id = getBodyAsString(input);
 
-            final String urlImageSaved = processImageService.execute(input, id);
+            processImageService.execute(input, id);
 
-            Empresa empresa = empresaRepository.findById(UUID.fromString(id))
-                .orElseThrow(EmpresaNaoEncontradoException::new);
-
-            empresa.setUrlFotoPerfil(urlImageSaved);
-
-            empresaRepository.update(empresa);
         } catch (IOException e) {
             throw new RuntimeException("Erro ao salvar imagem de perfil da empresa");
         }

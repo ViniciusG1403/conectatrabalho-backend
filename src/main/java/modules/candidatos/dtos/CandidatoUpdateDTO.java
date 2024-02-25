@@ -43,12 +43,4 @@ public class CandidatoUpdateDTO {
     @NotNull(message = "A pretensão salarial do candidato deve ser informada")
     @Schema(name = "pretensaoSalarial", required = true, title = "Pretensão salarial do candidato", example = "5000.00")
     private BigDecimal pretensaoSalarial;
-
-    @Schema(name = "urlCurriculum", title = "URL do currículo do candidato", example = "www.viniciusgabriel.com.br/curriculo")
-    private String urlCurriculum;
-
-    @Schema(name = "urlFotoPerfil", title = "URL da foto de perfil do candidato", example = "www.viniciusgabriel.com.br/foto-perfil")
-    private String urlFotoPerfil;
-
-
 }

@@ -30,7 +30,6 @@ public class EmpresaConverter {
         empresa.setDescricao(dto.getDescricao());
         empresa.setWebsite(dto.getWebsite());
         empresa.setLinkedin(dto.getLinkedin());
-        empresa.setUrlFotoPerfil(dto.getUrlFotoPerfil());
         return empresa;
     }
 
@@ -42,7 +41,6 @@ public class EmpresaConverter {
         empresaDTO.setDescricao(entity.getDescricao());
         empresaDTO.setWebsite(entity.getWebsite());
         empresaDTO.setLinkedin(entity.getLinkedin());
-        empresaDTO.setUrlFotoPerfil(entity.getUrlFotoPerfil());
         return empresaDTO;
     }
 
@@ -56,7 +54,6 @@ public class EmpresaConverter {
         responseDTO.setDescricao(entity.getDescricao());
         responseDTO.setWebsite(entity.getWebsite());
         responseDTO.setLinkedin(entity.getLinkedin());
-        responseDTO.setUrlFotoPerfil(entity.getUrlFotoPerfil());
         responseDTO.setEndereco(enderecoConverter.toResponseDto(entity.getUsuario().getEndereco()));
         return responseDTO;
     }
@@ -65,7 +62,6 @@ public class EmpresaConverter {
         EmpresaResumidoDTO resumidoDTO = new EmpresaResumidoDTO();
         resumidoDTO.setDescricao(entity.getDescricao());
         resumidoDTO.setSetor(entity.getSetor());
-        resumidoDTO.setUrlFotoPerfil(entity.getUrlFotoPerfil());
         resumidoDTO.setCidadeEstado(
             entity.getUsuario().getEndereco().getMunicipio() + "/" + entity.getUsuario()
                 .getEndereco()

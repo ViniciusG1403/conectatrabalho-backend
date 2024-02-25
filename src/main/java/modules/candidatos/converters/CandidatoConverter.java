@@ -35,8 +35,6 @@ public class CandidatoConverter {
         candidato.setPortfolio(dto.getPortfolio());
         candidato.setDisponibilidade(dto.getDisponibilidade());
         candidato.setPretensaoSalarial(dto.getPretensaoSalarial());
-        candidato.setUrlCurriculum(dto.getUrlCurriculum());
-        candidato.setUrlFotoPerfil(dto.getUrlFotoPerfil());
         return candidato;
     }
 
@@ -50,8 +48,6 @@ public class CandidatoConverter {
         candidatoDTO.setPortfolio(entity.getPortfolio());
         candidatoDTO.setDisponibilidade(entity.getDisponibilidade());
         candidatoDTO.setPretensaoSalarial(entity.getPretensaoSalarial());
-        candidatoDTO.setUrlCurriculum(entity.getUrlCurriculum());
-        candidatoDTO.setUrlFotoPerfil(entity.getUrlFotoPerfil());
         return candidatoDTO;
     }
 
@@ -66,8 +62,6 @@ public class CandidatoConverter {
         responseDTO.setPortfolio(entity.getPortfolio());
         responseDTO.setDisponibilidade(entity.getDisponibilidade());
         responseDTO.setPretensaoSalarial(entity.getPretensaoSalarial());
-        responseDTO.setUrlCurriculum(entity.getUrlCurriculum());
-        responseDTO.setUrlFotoPerfil(entity.getUrlFotoPerfil());
         responseDTO.setEndereco(enderecoConverter.toDto(entity.getUsuario().getEndereco()));
 
         return responseDTO;
@@ -77,7 +71,6 @@ public class CandidatoConverter {
         CandidatoResumidoDTO resumidoDTO = new CandidatoResumidoDTO();
         resumidoDTO.setNome(entity.getUsuario().getNome());
         resumidoDTO.setHabilidades(entity.getHabilidades());
-        resumidoDTO.setUrlFotoPerfil(entity.getUrlFotoPerfil());
         resumidoDTO.setCidadeEstado(entity.getUsuario().getEndereco().getMunicipio() + "/" + entity.getUsuario().getEndereco().getEstado());
         return resumidoDTO;
     }

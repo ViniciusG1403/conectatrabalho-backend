@@ -27,12 +27,10 @@ public class AtualizarCandidato {
 
         candidato.setPretensaoSalarial(dto.getPretensaoSalarial());
         candidato.setDisponibilidade(dto.getDisponibilidade());
-        candidato.setUrlFotoPerfil(dto.getUrlFotoPerfil());
         candidato.setHabilidades(dto.getHabilidades());
         candidato.setLinkedin(dto.getLinkedin());
         candidato.setGithub(dto.getGithub());
         candidato.setPortfolio(dto.getPortfolio());
-        candidato.setUrlCurriculum(dto.getUrlCurriculum());
 
         repository.update(candidato);
     }

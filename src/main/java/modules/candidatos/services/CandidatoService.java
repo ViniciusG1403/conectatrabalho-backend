@@ -57,10 +57,6 @@ public class CandidatoService extends Validators {
         NonNullValidate(dto.getDisponibilidade(), "Disponibilidade");
         NonNullValidate(dto.getPretensaoSalarial(), "Pretensão Salarial");
 
-        if (Objects.isNull(dto.getUrlFotoPerfil())) {
-            dto.setUrlFotoPerfil("");
-        }
-
         atualizarCandidato.execute(dto);
     }
 

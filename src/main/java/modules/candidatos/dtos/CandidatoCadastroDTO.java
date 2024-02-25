@@ -47,8 +47,4 @@ public class CandidatoCadastroDTO {
     @Schema(name = "pretensaoSalarial", required = true, title = "Pretensão salarial do candidato", example = "5000.00")
     private BigDecimal pretensaoSalarial;
 
-    @Schema(name = "urlCurriculum", title = "URL do currículo do candidato", example = "www.viniciusgabriel.com.br/curriculo")
-    private String urlCurriculum;
-
-
 }

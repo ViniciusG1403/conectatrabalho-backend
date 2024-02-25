@@ -39,8 +39,4 @@ public class Empresa {
 
     @Column(name = "linkedin")
     private String linkedin;
-
-    @Column(name = "url_fotoperfil")
-    private String urlFotoPerfil;
-
 }

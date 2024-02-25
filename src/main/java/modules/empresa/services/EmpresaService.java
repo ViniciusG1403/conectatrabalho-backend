@@ -54,10 +54,6 @@ public class EmpresaService extends Validators {
         NonNullValidate(dto.getSetor(), "Setor");
         NonNullValidate(dto.getDescricao(), "Descrição");
 
-        if(Objects.isNull(dto.getUrlFotoPerfil())){
-            dto.setUrlFotoPerfil(" ");
-        }
-
         updateEmpresa.execute(dto);
     }
 
