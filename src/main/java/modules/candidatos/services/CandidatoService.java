@@ -7,6 +7,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import modules.candidatos.dtos.*;
 import modules.candidatos.usecases.*;
+import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
 import java.util.List;
 import java.util.Objects;
@@ -31,6 +32,8 @@ public class CandidatoService extends Validators {
     private final BuscarCandidatos buscarCandidatos;
 
     private final BuscarCandidatoResumidoPeloID buscarCandidatoResumidoPeloID;
+
+    private final SalvarImagemPerfilCandidato salvarImagemPerfilCandidato;
 
     public CandidatoResponseDTO criarCandidato(CandidatoCadastroDTO dto) {
 
@@ -70,6 +73,10 @@ public class CandidatoService extends Validators {
 
     public CandidatoResumidoDTO buscarCandidatosResumido(String id) {
         return buscarCandidatoResumidoPeloID.execute(UUID.fromString(id));
+    }
+
+    public void salvarImagemPerfilCandidato(MultipartFormDataInput input) {
+        salvarImagemPerfilCandidato.execute(input);
     }
 
 }

@@ -16,6 +16,7 @@ import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
 import java.util.List;
 
@@ -93,6 +94,16 @@ public class CandidatoResource {
         return Response.status(Response.Status.OK)
             .entity(candidatoService.buscarCandidatosResumido(id))
             .build();
+    }
+
+    @PUT
+    @Path("/salvar-imagem")
+    @RolesAllowed({ "USER_ROLE", "ADMIN_ROLE" })
+    @APIResponse(responseCode = "200", description = "Imagem salva com sucesso")
+    @Operation(summary = "Salvar imagem", description = "Salva a imagem de perfil do candidato")
+    public Response salvarImagem(MultipartFormDataInput input) {
+        candidatoService.salvarImagemPerfilCandidato(input);
+        return Response.status(Response.Status.OK).entity("Imagem de perfil salva com sucesso.").build();
     }
 
 }
