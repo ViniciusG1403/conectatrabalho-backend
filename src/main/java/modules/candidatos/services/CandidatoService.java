@@ -9,6 +9,7 @@ import modules.candidatos.dtos.*;
 import modules.candidatos.usecases.*;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
+import java.io.InputStream;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -34,6 +35,8 @@ public class CandidatoService extends Validators {
     private final BuscarCandidatoResumidoPeloID buscarCandidatoResumidoPeloID;
 
     private final SalvarImagemPerfilCandidato salvarImagemPerfilCandidato;
+
+    private final BuscarImagemPerfilCandidato buscarImagemPerfilCandidato;
 
     public CandidatoResponseDTO criarCandidato(CandidatoCadastroDTO dto) {
 
@@ -77,6 +80,10 @@ public class CandidatoService extends Validators {
 
     public void salvarImagemPerfilCandidato(MultipartFormDataInput input) {
         salvarImagemPerfilCandidato.execute(input);
+    }
+
+    public InputStream buscarImagemPerfilCandidato(String id) {
+        return buscarImagemPerfilCandidato.execute(id);
     }
 
 }

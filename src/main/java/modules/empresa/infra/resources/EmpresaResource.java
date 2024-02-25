@@ -106,4 +106,13 @@ public class EmpresaResource {
         service.salvarImagemPerfilEmpresa(input);
         return Response.status(Response.Status.OK).entity("Imagem de perfil salva com sucesso").build();
     }
+
+    @GET
+    @Path("/{id}/imagem-perfil")
+    @RolesAllowed({ "USER_ROLE", "ADMIN_ROLE" })
+    public Response buscarImagemPerfil(@PathParam("id") String id) {
+        return Response.status(Response.Status.OK)
+            .entity(service.buscarImagemPerfilEmpresa(id))
+            .build();
+    }
 }
