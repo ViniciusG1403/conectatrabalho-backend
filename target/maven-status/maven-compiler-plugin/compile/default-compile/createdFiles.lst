@@ -52,6 +52,7 @@ core/pesquisa/PrepararFiltros.class
 core/exceptions/ConectaTrabalhoException.class
 modules/empresa/usecases/BuscarEmpresaResumidoByID.class
 core/emailservice/SendEmailService$1.class
+modules/candidatos/usecases/SalvarImagemPerfilCandidato.class
 modules/usuarios/enumerations/StatusUsuario.class
 core/repositories/GenericRepositoryImpl.class
 core/emailservice/SendEmailService.class
