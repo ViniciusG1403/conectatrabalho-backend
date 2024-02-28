@@ -135,3 +135,13 @@ f
 6src/main/java/modules/vagas/enumerations/TipoVaga.java,4\a\4a701d050fd994f066ef6f2c54729608dc4a3ac2
 h
 8src/main/java/modules/vagas/enumerations/StatusVaga.java,a\d\ad6fd0851c258b479dc0645ac772c4a66eb6566e
+k
+;src/main/java/modules/aplicacoes/infra/infra/Aplicacao.java,6\e\6ec02d471763ac1404fe57a1e0fdac497e5d3e90
+r
+Bsrc/main/java/modules/aplicacoes/enumerations/StatusAplicacao.java,c\e\ceb1ca0790ffbdea1a70e69cb3a61f729421c296
+g
+7src/main/java/modules/aplicacoes/dtos/AplicacaoDTO.java,2\f\2f1090cf08991511bcfe8e218cfca302ae91c3d3
+o
+?src/main/java/modules/aplicacoes/dtos/AplicacaoCadastroDTO.java,0\2\02e941e9654c4196f048cafb965ff468f2df9ef4
+o
+?src/main/java/modules/aplicacoes/dtos/AplicacaoFeedbackDTO.java,5\8\589b44f014266904e976c63aba62ae11b51ae137
