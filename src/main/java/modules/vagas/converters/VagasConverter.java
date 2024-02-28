@@ -24,7 +24,7 @@ public class VagasConverter {
     public Vagas toEntity(VagasDTO dto) {
         Vagas entity = new Vagas();
         entity.setId(dto.getId());
-        entity.setEmpresaPerfil(empresaConverter.toEntity(dto.getEmpresaPerfil()));
+        entity.setEmpresa(empresaConverter.toEntity(dto.getEmpresa()));
         entity.setTitulo(dto.getTitulo());
         entity.setDescricao(dto.getDescricao());
         entity.setRemuneracao(dto.getRemuneracao());
@@ -37,7 +37,7 @@ public class VagasConverter {
     public VagasDTO toDTO(Vagas entity) {
         VagasDTO dto = new VagasDTO();
         dto.setId(entity.getId());
-        dto.setEmpresaPerfil(empresaConverter.toDTO(entity.getEmpresaPerfil()));
+        dto.setEmpresa(empresaConverter.toDTO(entity.getEmpresa()));
         dto.setTitulo(entity.getTitulo());
         dto.setDescricao(entity.getDescricao());
         dto.setRemuneracao(entity.getRemuneracao());
@@ -53,7 +53,7 @@ public class VagasConverter {
         dto.setDescricao(entity.getDescricao());
         dto.setNivel(entity.getNivel());
         dto.setStatus(StatusVaga.valueOf(entity.getStatus()));
-        dto.setEmpresa(entity.getEmpresaPerfil().getUsuario().getNome());
+        dto.setEmpresa(entity.getEmpresa().getUsuario().getNome());
         return dto;
     }
 

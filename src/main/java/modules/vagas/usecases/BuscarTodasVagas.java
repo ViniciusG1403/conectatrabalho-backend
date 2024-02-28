@@ -5,7 +5,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import lombok.RequiredArgsConstructor;
 import modules.vagas.converters.VagasConverter;
 import modules.vagas.dtos.VagasResumidoDTO;
-import modules.vagas.infra.repositories.VagasRepositoryImpl;
+import modules.vagas.repositories.VagasRepository;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BuscarTodasVagas {
 
-    private final VagasRepositoryImpl repository;
+    private final VagasRepository repository;
 
     private final VagasConverter vagasConverter;
     public List<VagasResumidoDTO> execute(List<CondicaoPesquisa> condicaoPesquisaList, int page, int size){

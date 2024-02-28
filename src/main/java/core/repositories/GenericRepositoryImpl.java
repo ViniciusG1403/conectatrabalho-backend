@@ -169,10 +169,15 @@ public class GenericRepositoryImpl<T> implements GenericRepository<T> {
                     }
 
                     Object valor = condicao.getValor();
-                    if (valor instanceof String) {
-                        predicateList.add(criteriaBuilder.like(criteriaBuilder.lower((Path<String>) path), "%" + valor.toString().toLowerCase() + "%"));
+                    if (path.getJavaType().isEnum()) {
+                        Enum<?> enumValue = Enum.valueOf((Class<Enum>) path.getJavaType(), valor.toString());
+                        predicateList.add(criteriaBuilder.equal(path, enumValue));
                     } else {
-                        predicateList.add(criteriaBuilder.equal(path, valor));
+                        if (valor instanceof String) {
+                            predicateList.add(criteriaBuilder.like(criteriaBuilder.lower((Path<String>) path), "%" + valor.toString().toLowerCase() + "%"));
+                        } else {
+                            predicateList.add(criteriaBuilder.equal(path, valor));
+                        }
                     }
                 }
 
@@ -190,6 +195,7 @@ public class GenericRepositoryImpl<T> implements GenericRepository<T> {
             throw new ConectaTrabalhoException(ex);
         }
     }
+
 
 
     @Override

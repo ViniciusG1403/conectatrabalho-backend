@@ -37,7 +37,7 @@ public class CriarVaga {
         vagas.setTipo(TipoVaga.valueOf(dto.getTipo()));
         vagas.setNivel(dto.getNivel());
         vagas.setStatus(StatusVaga.valueOf(dto.getStatus()));
-        vagas.setEmpresaPerfil(empresa);
+        vagas.setEmpresa(empresa);
         vagas.setDataCriacao(new Timestamp(System.currentTimeMillis()));
 
         vagasRepository.save(vagas);
@@ -47,7 +47,7 @@ public class CriarVaga {
         resumidoDTO.setDescricao(vagas.getDescricao());
         resumidoDTO.setNivel(vagas.getNivel());
         resumidoDTO.setStatus(StatusVaga.valueOf(vagas.getStatus()));
-        resumidoDTO.setEmpresa(vagas.getEmpresaPerfil().getUsuario().getNome());
+        resumidoDTO.setEmpresa(vagas.getEmpresa().getUsuario().getNome());
 
         return resumidoDTO;
 

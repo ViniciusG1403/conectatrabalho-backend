@@ -3,6 +3,7 @@ package modules.vagas.infra.repositories;
 import core.repositories.GenericRepositoryImpl;
 import jakarta.enterprise.context.ApplicationScoped;
 import modules.vagas.infra.entities.Vagas;
+import modules.vagas.repositories.VagasRepository;
 
 /**
  * @author Vinicius Gabriel <vinicius.prado@nexuscloud.com.br>
@@ -10,5 +11,5 @@ import modules.vagas.infra.entities.Vagas;
  * @since 26/02/2024
  */
 @ApplicationScoped
-public class VagasRepositoryImpl extends GenericRepositoryImpl<Vagas> {
+public class VagasRepositoryImpl extends GenericRepositoryImpl<Vagas> implements VagasRepository {
 }

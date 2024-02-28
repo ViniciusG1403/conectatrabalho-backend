@@ -29,7 +29,7 @@ public class VagasDTO {
 
     @Schema(description = "Empresa que criou a vaga", required = true)
     @NotNull(message = "A empresa é obrigatória")
-    private EmpresaDTO empresaPerfil;
+    private EmpresaDTO empresa;
 
     @Schema(description = "Título da vaga", required = true, example = "Desenvolvedor Java")
     @NotNull(message = "O título é obrigatório")

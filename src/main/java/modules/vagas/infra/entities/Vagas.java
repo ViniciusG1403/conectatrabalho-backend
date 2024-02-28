@@ -28,8 +28,8 @@ public class Vagas {
     private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_empresaperfil", nullable = false)
-    private Empresa empresaPerfil;
+    @JoinColumn(name = "id_perfilempresa", nullable = false)
+    private Empresa empresa;
 
     @Column(name = "titulo", length = 100, nullable = false)
     private String titulo;

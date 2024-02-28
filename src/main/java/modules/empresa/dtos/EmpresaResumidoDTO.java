@@ -15,6 +15,9 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 @RegisterForReflection
 public class EmpresaResumidoDTO {
 
+    @Schema(name = "nome", required = true, title = "nome", example = "Prado Softwares LTDA")
+    private String nome;
+
     @Schema(name = "descricao", required = true, title = "descricao", example = "Empresa de desenvolvimento de software")
     private String descricao;
 

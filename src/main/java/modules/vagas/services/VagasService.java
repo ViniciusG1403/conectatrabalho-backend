@@ -20,9 +20,10 @@ import java.util.List;
  * @version 1.0
  * @since 27/02/2024
  */
-@Transactional(Transactional.TxType.REQUIRES_NEW)
+
 @ApplicationScoped
 @RequiredArgsConstructor
+@Transactional(Transactional.TxType.REQUIRES_NEW)
 public class VagasService extends Validators {
 
     private final CriarVaga criarVaga;

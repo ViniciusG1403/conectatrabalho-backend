@@ -3,12 +3,11 @@ package modules.vagas.usecases;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.RequiredArgsConstructor;
 import modules.vagas.dtos.VagasCadastroDTO;
-import modules.vagas.dtos.VagasDTO;
 import modules.vagas.enumerations.StatusVaga;
 import modules.vagas.enumerations.TipoVaga;
 import modules.vagas.exceptions.VagaNaoEncontradaException;
 import modules.vagas.infra.entities.Vagas;
-import modules.vagas.infra.repositories.VagasRepositoryImpl;
+import modules.vagas.repositories.VagasRepository;
 
 /**
  * @author Vinicius Gabriel <vinicius.prado@nexuscloud.com.br>
@@ -19,7 +18,7 @@ import modules.vagas.infra.repositories.VagasRepositoryImpl;
 @RequiredArgsConstructor
 public class AtualizarVaga {
 
-    private final VagasRepositoryImpl repository;
+    private final VagasRepository repository;
 
     public void execute(VagasCadastroDTO vagasDTO){
         Vagas vagas = repository.findById(vagasDTO.getId()).orElseThrow(VagaNaoEncontradaException::new);
