@@ -18,11 +18,11 @@ import java.util.UUID;
 @RegisterForReflection
 public class AplicacaoCadastroDTO {
 
-    @Schema(description = "Vaga que o candidato se aplicou", required = true)
+    @Schema(name = "idVaga", description = "Vaga que o candidato se aplicou", required = true)
     @NotNull(message = "A vaga é obrigatória")
     private UUID idVaga;
 
-    @Schema(description = "Candidato que aplicou na vaga", required = true)
+    @Schema(name = "candidato", description = "Candidato que aplicou na vaga", required = true)
     @NotNull(message = "O candidato é obrigatório")
     private UUID candidato;
 

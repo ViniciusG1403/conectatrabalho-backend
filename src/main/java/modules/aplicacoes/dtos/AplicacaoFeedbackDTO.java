@@ -18,9 +18,9 @@ import java.util.UUID;
 @RegisterForReflection
 public class AplicacaoFeedbackDTO {
 
-    @Schema(description = "Vaga que o candidato se aplicou", required = true)
-    @NotNull(message = "A vaga é obrigatória")
-    private UUID idVaga;
+    @Schema(description = "Id da aplicação", required = true)
+    @NotNull(message = "O id da aplicação é obrigatório")
+    private UUID idAplicacao;
 
     @Schema(description = "Usuario - Candidato ou Empresa", required = true)
     private UUID usuario;

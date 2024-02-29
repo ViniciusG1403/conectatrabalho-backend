@@ -1,4 +1,4 @@
-package modules.aplicacoes.infra.infra;
+package modules.aplicacoes.infra.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;

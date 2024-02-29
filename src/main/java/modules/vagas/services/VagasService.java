@@ -5,15 +5,14 @@ import core.validates.Validators;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import modules.vagas.dtos.FinalizarPausarVagaDTO;
 import modules.vagas.dtos.VagasCadastroDTO;
 import modules.vagas.dtos.VagasDTO;
 import modules.vagas.dtos.VagasResumidoDTO;
-import modules.vagas.usecases.AtualizarVaga;
-import modules.vagas.usecases.BuscarTodasVagas;
-import modules.vagas.usecases.BuscarVagaPeloID;
-import modules.vagas.usecases.CriarVaga;
+import modules.vagas.usecases.*;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author Vinicius Gabriel <vinicius.prado@nexuscloud.com.br>
@@ -33,6 +32,10 @@ public class VagasService extends Validators {
     private final BuscarTodasVagas buscarTodasVagas;
 
     private final BuscarVagaPeloID buscarVagaPeloID;
+
+    private final FinalizarVaga finalizarVaga;
+
+    private final PausarVaga pausarVaga;
 
 
     public VagasResumidoDTO criarVaga(VagasCadastroDTO dto){
@@ -57,12 +60,25 @@ public class VagasService extends Validators {
         atualizarVaga.execute(vagasDTO);
     }
 
-    public VagasDTO buscarVagaPeloID(Long id){
+    public VagasDTO buscarVagaPeloID(String id){
         NonNullValidate(id, "ID");
-        return buscarVagaPeloID.execute(id);
+        return buscarVagaPeloID.execute(UUID.fromString(id));
     }
 
     public List<VagasResumidoDTO> buscarTodasVagas(List<CondicaoPesquisa> condicaoPesquisaList, int page, int size){
         return buscarTodasVagas.execute(condicaoPesquisaList, page, size);
     }
+
+    public void finalizarVaga(FinalizarPausarVagaDTO dto){
+        NonNullValidate(dto.getIdVaga(), "Vaga");
+        NonNullValidate(dto.getIdEmpresa(), "Empresa");
+        finalizarVaga.execute(dto);
+    }
+
+    public void pausarVaga(FinalizarPausarVagaDTO dto){
+        NonNullValidate(dto.getIdVaga(), "Vaga");
+        NonNullValidate(dto.getIdEmpresa(), "Empresa");
+        pausarVaga.execute(dto);
+    }
+
 }

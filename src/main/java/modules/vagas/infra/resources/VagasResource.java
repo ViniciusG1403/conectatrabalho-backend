@@ -8,6 +8,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import lombok.RequiredArgsConstructor;
+import modules.vagas.dtos.FinalizarPausarVagaDTO;
 import modules.vagas.dtos.VagasCadastroDTO;
 import modules.vagas.dtos.VagasDTO;
 import modules.vagas.dtos.VagasResumidoDTO;
@@ -61,7 +62,7 @@ public class VagasResource {
     @Produces(MediaType.APPLICATION_JSON)
     @APIResponse(responseCode = "200", description = "Vaga encontrada com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = VagasDTO.class)))
     @Operation(summary = "Buscar", description = "Busca uma vaga pelo ID")
-    public Response buscarPeloID(@PathParam("id") Long id) {
+    public Response buscarPeloID(@PathParam("id") String id) {
         return Response.status(Response.Status.OK).entity(vagasService.buscarVagaPeloID(id)).build();
     }
 
@@ -73,5 +74,27 @@ public class VagasResource {
     public Response buscarTodasVagas(@QueryParam("search") String search, @QueryParam("page") int page, @QueryParam("size") int size) {
         final List<CondicaoPesquisa> condicaoPesquisaList = prepararFiltros.execute(search);
         return Response.status(Response.Status.OK).entity(vagasService.buscarTodasVagas(condicaoPesquisaList, page, size)).build();
+    }
+
+    @PUT
+    @RolesAllowed({ "USER_ROLE", "ADMIN_ROLE" })
+    @Path("/finalizar")
+    @Produces(MediaType.APPLICATION_JSON)
+    @APIResponse(responseCode = "200", description = "Vaga finalizada com sucesso")
+    @Operation(summary = "Finalizar", description = "Finaliza uma vaga")
+    public Response finalizarVaga(FinalizarPausarVagaDTO dto) {
+        vagasService.finalizarVaga(dto);
+        return Response.status(Response.Status.OK).build();
+    }
+
+    @PUT
+    @RolesAllowed({ "USER_ROLE", "ADMIN_ROLE" })
+    @Path("/pausar")
+    @Produces(MediaType.APPLICATION_JSON)
+    @APIResponse(responseCode = "200", description = "Vaga pausada com sucesso")
+    @Operation(summary = "Pausar", description = "Pausa uma vaga")
+    public Response pausarVaga(FinalizarPausarVagaDTO dto) {
+        vagasService.pausarVaga(dto);
+        return Response.status(Response.Status.OK).build();
     }
 }

@@ -11,8 +11,10 @@ import lombok.Getter;
 import lombok.Setter;
 import modules.aplicacoes.enumerations.StatusAplicacao;
 import modules.candidatos.dtos.CandidatoDTO;
+import modules.candidatos.dtos.CandidatoResumidoDTO;
 import modules.empresa.dtos.EmpresaDTO;
 import modules.empresa.dtos.EmpresaResumidoDTO;
+import modules.vagas.dtos.VagasDTO;
 import modules.vagas.dtos.VagasResumidoDTO;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
@@ -29,27 +31,27 @@ import java.util.UUID;
 @RegisterForReflection
 public class AplicacaoDTO {
 
-    @Schema(description = "Identificador da aplicação", required = true, example = "123e4567-e89b-12d3-a456-426614174000")
+    @Schema(name = "id", description = "Identificador da aplicação", required = true, example = "123e4567-e89b-12d3-a456-426614174000")
     private UUID id;
 
-    @Schema(description = "Vaga que o candidato se aplicou", required = true)
+    @Schema(name = "vaga", description = "Vaga que o candidato se aplicou", required = true)
     @NotNull(message = "A vaga é obrigatória")
-    private VagasResumidoDTO vaga;
+    private VagasDTO vaga;
 
-    @Schema(description = "Candidato que aplicou na vaga", required = true)
+    @Schema(name = "candidato", description = "Candidato que aplicou na vaga", required = true)
     @NotNull(message = "O candidato é obrigatório")
     private CandidatoDTO candidato;
 
-    @Schema(description = "Data e Hora que o candidato que se aplicou")
+    @Schema(name = "dataAplicacao", description = "Data e Hora que o candidato que se aplicou")
     private Timestamp dataAplicacao;
 
-    @Schema(description = "Feedback do candidato")
+    @Schema(name = "feedbackCandidato", description = "Feedback do candidato")
     private String feedbackCandidato;
 
-    @Schema(description = "Feedback da empresa")
+    @Schema(name = "feedbackEmpresa", description = "Feedback da empresa")
     private String feedbackEmpresa;
 
-    @Schema(description = "Status da aplicação", required = true, example = "1")
+    @Schema(name = "status", description = "Status da aplicação", required = true, example = "1")
     @NotNull(message = "O status é obrigatório")
     @Min(value = 0, message = "O status deve ser 0 - Pendente, 1 - Aprovado ou 2 - Reprovado")
     @Max(value = 2, message = "O status deve ser 0 - Pendente, 1 - Aprovado ou 2 - Reprovado")
