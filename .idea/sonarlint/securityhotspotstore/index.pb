@@ -145,3 +145,11 @@ o
 ?src/main/java/modules/aplicacoes/dtos/AplicacaoCadastroDTO.java,0\2\02e941e9654c4196f048cafb965ff468f2df9ef4
 o
 ?src/main/java/modules/aplicacoes/dtos/AplicacaoFeedbackDTO.java,5\8\589b44f014266904e976c63aba62ae11b51ae137
+w
+Gsrc/main/java/modules/aplicacoes/infra/resources/AplicacaoResource.java,8\4\847919e82f1ff03bf3bd11966b5f949599561844
+o
+?src/main/java/modules/aplicacoes/services/AplicacaoService.java,c\a\ca26e06d6430c1e17a086069ca67bf45e9cbfdf6
+n
+>src/main/java/modules/aplicacoes/usecases/AplicarParaVaga.java,c\3\c336653396e72549cd121d5d5ae31ec61c34a866
+o
+?src/main/java/modules/aplicacoes/usecases/AprovarCandidato.java,f\b\fb1e001b9325924ffb9b85070349b132555e2676
