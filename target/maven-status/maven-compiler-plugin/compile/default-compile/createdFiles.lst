@@ -14,6 +14,7 @@ modules/login/usecases/TokenUtils.class
 modules/aplicacoes/usecases/ReprovarCandidato.class
 modules/vagas/enumerations/StatusVaga.class
 modules/aplicacoes/repositories/AplicacaoRepository.class
+modules/aplicacoes/infra/resources/AplicacaoResource.class
 modules/aplicacoes/usecases/AplicarParaVaga.class
 modules/vagas/infra/repositories/VagasRepositoryImpl.class
 modules/empresa/dtos/EmpresaDTO.class
@@ -56,6 +57,7 @@ core/shared/ProcessarESalvarImageService.class
 modules/candidatos/usecases/AtualizarCandidato.class
 core/pesquisa/CondicaoPesquisa.class
 modules/candidatos/repositories/CandidatoRepository.class
+modules/aplicacoes/usecases/BuscarTodasAplicacoesVaga.class
 modules/usuarios/dtos/EnderecoDTO.class
 modules/aplicacoes/dtos/AplicacaoDTO.class
 modules/login/dtos/AuthResponse.class
@@ -88,6 +90,7 @@ modules/empresa/usecases/CriarEmpresa.class
 modules/usuarios/infra/entities/Endereco.class
 modules/usuarios/usecases/BuscarTodosOsUsuariosAtivos.class
 modules/vagas/services/VagasService.class
+modules/aplicacoes/usecases/BuscarTodasAplicacoesCandidato.class
 modules/vagas/infra/entities/Vagas.class
 modules/usuarios/converters/EnderecoConverter.class
 modules/login/dtos/AuthRequest.class

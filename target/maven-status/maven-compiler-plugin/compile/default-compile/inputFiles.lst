@@ -62,8 +62,10 @@
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/vagas/infra/resources/VagasResource.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/candidatos/infra/entities/Candidato.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/usuarios/repositories/UsuarioRepository.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/aplicacoes/usecases/BuscarTodasAplicacoesCandidato.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/aplicacoes/usecases/VerificarDuplicidadeAplicacao.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/aplicacoes/exceptions/AplicacaoNaoEncontradaExceptions.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/aplicacoes/usecases/BuscarTodasAplicacoesVaga.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/candidatos/usecases/SalvarImagemPerfilCandidato.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/usuarios/services/UsuarioService.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/candidatos/dtos/CandidatoResponseDTO.java
@@ -75,6 +77,7 @@
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/aplicacoes/dtos/AplicacaoResponseDTO.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/vagas/usecases/AtualizarVaga.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/aplicacoes/dtos/AplicacaoFeedbackDTO.java
+/Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/aplicacoes/infra/resources/AplicacaoResource.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/candidatos/dtos/CandidatoCadastroDTO.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/usuarios/enumerations/StatusUsuario.java
 /Users/nexuscloud/Documents/Meus Projetos/conecta-trabalho/conectatrabalhotcc/src/main/java/modules/empresa/dtos/EmpresaUpdateDTO.java

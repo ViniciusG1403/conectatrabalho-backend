@@ -5,8 +5,10 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import modules.aplicacoes.dtos.AplicacaoCadastroDTO;
 import modules.aplicacoes.dtos.AplicacaoFeedbackDTO;
+import modules.aplicacoes.dtos.AplicacaoResponseDTO;
 import modules.aplicacoes.usecases.*;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -28,6 +30,10 @@ public class AplicacaoService {
 
     private final DarFeedbackAplicacao darFeedbackAplicacao;
 
+    private final BuscarTodasAplicacoesCandidato buscarTodasAplicacoesCandidato;
+
+    private final BuscarTodasAplicacoesVaga buscarTodasAplicacoesVaga;
+
     public void aplicarParaVaga(AplicacaoCadastroDTO dto) {
         aplicarParaVaga.execute(dto);
     }
@@ -42,6 +48,14 @@ public class AplicacaoService {
 
     public void darFeedbackAplicacao(AplicacaoFeedbackDTO feedback) {
         darFeedbackAplicacao.execute(feedback);
+    }
+
+    public List<AplicacaoResponseDTO> buscarTodasAplicacoesCandidato(UUID idCandidato){
+        return buscarTodasAplicacoesCandidato.execute(idCandidato);
+    }
+
+    public List<AplicacaoResponseDTO> buscarTodasAplicacoesVaga(UUID idVaga, UUID idEmpresa){
+        return buscarTodasAplicacoesVaga.execute(idVaga, idEmpresa);
     }
 
 

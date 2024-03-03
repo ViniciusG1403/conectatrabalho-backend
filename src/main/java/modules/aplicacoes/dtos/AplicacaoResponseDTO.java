@@ -24,5 +24,7 @@ public class AplicacaoResponseDTO {
 
     private Integer statusAplicacao;
 
+    private String nomeCandidato;
+
 
 }

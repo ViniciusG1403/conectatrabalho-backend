@@ -1,14 +1,16 @@
 package modules.aplicacoes.infra.resources;
 
 import jakarta.annotation.security.RolesAllowed;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Response;
 import lombok.RequiredArgsConstructor;
 import modules.aplicacoes.dtos.AplicacaoCadastroDTO;
+import modules.aplicacoes.dtos.AplicacaoFeedbackDTO;
 import modules.aplicacoes.services.AplicacaoService;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+
+import java.util.UUID;
 
 /**
  * @author Vinicius Gabriel <vinicius.prado@nexuscloud.com.br>
@@ -21,7 +23,6 @@ public class AplicacaoResource {
 
     private final AplicacaoService aplicacaoService;
 
-
     @POST
     @Path("/aplicar")
     @RolesAllowed({ "USER_ROLE", "ADMIN_ROLE" })
@@ -29,8 +30,61 @@ public class AplicacaoResource {
     @Operation(summary = "Aplicar", description = "Aplica para uma vaga")
     public Response aplicarParaVaga(AplicacaoCadastroDTO dto) {
         aplicacaoService.aplicarParaVaga(dto);
-        return Response.status(Response.Status.CREATED).entity("Aplicação realizada com sucesso, boa sorte").build();
+        return Response.status(Response.Status.CREATED)
+            .entity("Aplicação realizada com sucesso, boa sorte")
+            .build();
     }
 
+    @PUT
+    @Path("/aprovar")
+    @RolesAllowed({ "USER_ROLE", "ADMIN_ROLE" })
+    @APIResponse(responseCode = "200", description = "Candidato aprovado")
+    @Operation(summary = "Aprovar", description = "Aprova um candidato")
+    public Response aprovarCandidato(UUID aplicacaoId) {
+        aplicacaoService.aprovarCandidato(aplicacaoId);
+        return Response.status(Response.Status.OK).entity("Candidato aprovado").build();
+    }
+
+    @PUT
+    @Path("/reprovar")
+    @RolesAllowed({ "USER_ROLE", "ADMIN_ROLE" })
+    @APIResponse(responseCode = "200", description = "Candidato reprovado")
+    @Operation(summary = "Reprovar", description = "Reprova um candidato")
+    public Response reprovarCandidato(UUID aplicacaoId) {
+        aplicacaoService.reprovarCandidato(aplicacaoId);
+        return Response.status(Response.Status.OK).entity("Candidato reprovado").build();
+    }
+
+    @PUT
+    @Path("/feedback")
+    @RolesAllowed({ "USER_ROLE", "ADMIN_ROLE" })
+    @APIResponse(responseCode = "200", description = "Feedback realizado")
+    @Operation(summary = "Feedback", description = "Realiza o feedback")
+    public Response feedback(AplicacaoFeedbackDTO feedback) {
+        aplicacaoService.darFeedbackAplicacao(feedback);
+        return Response.status(Response.Status.OK).entity("Feedback realizado").build();
+    }
+
+    @GET
+    @Path("/{id}/candidato")
+    @RolesAllowed({ "USER_ROLE", "ADMIN_ROLE" })
+    @APIResponse(responseCode = "200", description = "Aplicações do candidato")
+    @Operation(summary = "Aplicações do candidato", description = "Retorna todas as aplicações do candidato")
+    public Response buscarTodasAplicacoesCandidato(@PathParam("id") String idCandidato) {
+        return Response.status(Response.Status.OK)
+            .entity(aplicacaoService.buscarTodasAplicacoesCandidato(UUID.fromString(idCandidato)))
+            .build();
+    }
+
+    @GET
+    @Path("/{id}/{idEmpresa}/empresa")
+    @RolesAllowed({ "USER_ROLE", "ADMIN_ROLE" })
+    @APIResponse(responseCode = "200", description = "Aplicações da empresa")
+    @Operation(summary = "Aplicações da empresa", description = "Retorna todas as aplicações da empresa")
+    public Response buscarTodasAplicacoesVaga(@PathParam("id") String idVaga, @PathParam("idEmpresa") String idEmpresa) {
+        return Response.status(Response.Status.OK)
+            .entity(aplicacaoService.buscarTodasAplicacoesVaga(UUID.fromString(idVaga), UUID.fromString(idEmpresa)))
+            .build();
+    }
 
 }

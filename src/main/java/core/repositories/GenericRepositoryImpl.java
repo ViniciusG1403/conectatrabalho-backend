@@ -119,20 +119,32 @@ public class GenericRepositoryImpl<T> implements GenericRepository<T> {
             CriteriaQuery<T> query = criteriaBuilder.createQuery(entityClass);
             Root<T> root = query.from(entityClass);
 
-            if (condicaoPesquisaList != null && !condicaoPesquisaList.isEmpty()) {
-                List<Predicate> predicateList = condicaoPesquisaList.stream().map(condicao -> {
-                    Path<Object> path = root.get(condicao.getChave());
-                    Object valor = condicao.getValor();
-                    if (valor instanceof String) {
-                        String valorString = ((String) valor).toLowerCase();
-                        return criteriaBuilder.like(criteriaBuilder.lower(path.as(String.class)), "%" + valorString + "%");
-                    } else if (valor instanceof Integer || valor instanceof Long) {
-                        return criteriaBuilder.equal(path, valor);
-                    } else {
 
-                        return null;
+            if (condicaoPesquisaList != null && !condicaoPesquisaList.isEmpty()) {
+                List<Predicate> predicateList = new ArrayList<>();
+
+                for (CondicaoPesquisa condicao : condicaoPesquisaList) {
+                    String chave = condicao.getChave();
+                    String[] partesChave = chave.split("\\.");
+
+                    Path<?> path = root;
+
+                    for (String parteChave : partesChave) {
+                        path = path.get(parteChave);
                     }
-                }).filter(Objects::nonNull).collect(Collectors.toList());
+
+                    Object valor = condicao.getValor();
+                    if (path.getJavaType().isEnum()) {
+                        Enum<?> enumValue = Enum.valueOf((Class<Enum>) path.getJavaType(), valor.toString());
+                        predicateList.add(criteriaBuilder.equal(path, enumValue));
+                    } else {
+                        if (valor instanceof String) {
+                            predicateList.add(criteriaBuilder.like(criteriaBuilder.lower((Path<String>) path), "%" + valor.toString().toLowerCase() + "%"));
+                        } else {
+                            predicateList.add(criteriaBuilder.equal(path, valor));
+                        }
+                    }
+                }
 
                 Predicate finalPredicate = criteriaBuilder.and(predicateList.toArray(new Predicate[0]));
                 query.where(finalPredicate);
