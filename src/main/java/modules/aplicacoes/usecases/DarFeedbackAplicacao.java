@@ -9,6 +9,7 @@ import modules.aplicacoes.infra.entities.Aplicacao;
 import modules.aplicacoes.repositories.AplicacaoRepository;
 
 import java.util.Objects;
+import java.util.UUID;
 
 /**
  * @author Vinicius Gabriel <vinicius.prado@nexuscloud.com.br>
@@ -22,17 +23,20 @@ public class DarFeedbackAplicacao {
     private final AplicacaoRepository aplicacaoRepository;
 
     public void execute(AplicacaoFeedbackDTO dto){
-        Aplicacao aplicacao = aplicacaoRepository.findById(dto.getIdAplicacao()).orElseThrow(
+        final UUID idAplicacao = UUID.fromString(dto.getIdAplicacao());
+        Aplicacao aplicacao = aplicacaoRepository.findById(idAplicacao).orElseThrow(
             AplicacaoNaoEncontradaExceptions::new);
 
-        if(Objects.equals(dto.getUsuario(), aplicacao.getVaga().getEmpresa().getId())) {
+        if(Objects.equals(UUID.fromString(dto.getUsuario()), aplicacao.getVaga().getEmpresa().getId())) {
             aplicacao.setFeedbackEmpresa(dto.getFeedback());
             aplicacaoRepository.update(aplicacao);
+            return;
         }
 
-        if(Objects.equals(dto.getUsuario(), aplicacao.getCandidato().getId())) {
+        if(Objects.equals(UUID.fromString(dto.getUsuario()), aplicacao.getCandidato().getId())) {
             aplicacao.setFeedbackCandidato(dto.getFeedback());
             aplicacaoRepository.update(aplicacao);
+            return;
         }
 
         throw new ValidationException("Usuário não tem permissão para dar feedback nesta aplicação");

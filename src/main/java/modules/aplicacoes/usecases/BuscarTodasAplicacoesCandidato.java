@@ -25,7 +25,7 @@ public class BuscarTodasAplicacoesCandidato {
 
     public List<AplicacaoResponseDTO> execute(UUID idCandidato){
         CondicaoPesquisa condicaoPesquisa = new CondicaoPesquisa();
-        condicaoPesquisa.setChave("candidato");
+        condicaoPesquisa.setChave("candidato.id");
         condicaoPesquisa.setValor(idCandidato);
         return aplicacaoRepository.findAll(List.of(condicaoPesquisa)).stream().map(aplicacaoConverter::toRespondeDTO).toList();
     }

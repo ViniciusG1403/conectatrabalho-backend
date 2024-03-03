@@ -36,22 +36,22 @@ public class AplicacaoResource {
     }
 
     @PUT
-    @Path("/aprovar")
+    @Path("{id}/aprovar")
     @RolesAllowed({ "USER_ROLE", "ADMIN_ROLE" })
     @APIResponse(responseCode = "200", description = "Candidato aprovado")
     @Operation(summary = "Aprovar", description = "Aprova um candidato")
-    public Response aprovarCandidato(UUID aplicacaoId) {
-        aplicacaoService.aprovarCandidato(aplicacaoId);
+    public Response aprovarCandidato(@PathParam("id") String aplicacaoId) {
+        aplicacaoService.aprovarCandidato(UUID.fromString(aplicacaoId));
         return Response.status(Response.Status.OK).entity("Candidato aprovado").build();
     }
 
     @PUT
-    @Path("/reprovar")
+    @Path("{id}/reprovar")
     @RolesAllowed({ "USER_ROLE", "ADMIN_ROLE" })
     @APIResponse(responseCode = "200", description = "Candidato reprovado")
     @Operation(summary = "Reprovar", description = "Reprova um candidato")
-    public Response reprovarCandidato(UUID aplicacaoId) {
-        aplicacaoService.reprovarCandidato(aplicacaoId);
+    public Response reprovarCandidato(@PathParam("id") String aplicacaoId) {
+        aplicacaoService.reprovarCandidato(UUID.fromString(aplicacaoId));
         return Response.status(Response.Status.OK).entity("Candidato reprovado").build();
     }
 

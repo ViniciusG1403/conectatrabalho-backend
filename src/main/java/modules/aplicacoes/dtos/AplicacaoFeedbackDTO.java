@@ -20,10 +20,10 @@ public class AplicacaoFeedbackDTO {
 
     @Schema(description = "Id da aplicação", required = true)
     @NotNull(message = "O id da aplicação é obrigatório")
-    private UUID idAplicacao;
+    private String idAplicacao;
 
     @Schema(description = "Usuario - Candidato ou Empresa", required = true)
-    private UUID usuario;
+    private String usuario;
 
     @Schema(description = "Feedback")
     @NotNull(message = "O feedback é obrigatório")
