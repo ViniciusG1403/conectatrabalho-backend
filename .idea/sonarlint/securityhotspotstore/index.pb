@@ -151,8 +151,6 @@ n
 >src/main/java/modules/aplicacoes/usecases/AplicarParaVaga.java,c\3\c336653396e72549cd121d5d5ae31ec61c34a866
 o
 ?src/main/java/modules/aplicacoes/usecases/AprovarCandidato.java,f\b\fb1e001b9325924ffb9b85070349b132555e2676
-o
-?src/main/java/modules/usuarios/dtos/ReenviarCodigoAtivacao.java,a\6\a6757d907590562bf8e5d5c29fedc9c8f8d0918d
 s
 Csrc/main/java/modules/usuarios/usecases/ReenviarCodigoAtivacao.java,c\5\c566836d39c7ea16de01dde9f391900b256ef48b
 r

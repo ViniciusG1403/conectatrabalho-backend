@@ -1,5 +1,7 @@
 package modules.usuarios.usecases;
 
+import core.emailservice.MessageOperation;
+import core.emailservice.SendEmailService;
 import core.encoder.PBKDF2Encoder;
 import core.exceptions.ConectaTrabalhoException;
 import core.validates.Validators;
@@ -36,6 +38,10 @@ public class CriarOuAtualizarUsuario extends Validators {
 
     private final UsuarioJaExisteComEsteEmail usuarioJaExisteComEsteEmail;
 
+    private final SendEmailService sendEmailService;
+
+    private final GenerateRandomCode generateRandomCode;
+
     public UsuarioResponseDTO execute(UsuarioDTO dto) {
 
         if (Objects.nonNull(dto.getId())) {
@@ -62,8 +68,13 @@ public class CriarOuAtualizarUsuario extends Validators {
             usuario.setRole("USER_ROLE");
             usuario.setSenha(encoder.encode(dto.getSenha()));
             usuario.setRegistro(new Timestamp(System.currentTimeMillis()));
+            usuario.setCodigo(generateRandomCode.execute());
 
-            return converter.toResponse(usuarioRepository.save(usuario));
+            Usuario usuarioSalvo = usuarioRepository.save(usuario);
+
+            sendEmailService.sendMail(converter.toDTO(usuarioSalvo), "Ativação de conta", MessageOperation.ATIVACAO);
+
+            return converter.toResponse(usuarioSalvo);
         }
 
     }
