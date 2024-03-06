@@ -135,8 +135,6 @@ f
 6src/main/java/modules/vagas/enumerations/TipoVaga.java,4\a\4a701d050fd994f066ef6f2c54729608dc4a3ac2
 h
 8src/main/java/modules/vagas/enumerations/StatusVaga.java,a\d\ad6fd0851c258b479dc0645ac772c4a66eb6566e
-k
-;src/main/java/modules/aplicacoes/infra/infra/Aplicacao.java,6\e\6ec02d471763ac1404fe57a1e0fdac497e5d3e90
 r
 Bsrc/main/java/modules/aplicacoes/enumerations/StatusAplicacao.java,c\e\ceb1ca0790ffbdea1a70e69cb3a61f729421c296
 g
@@ -153,3 +151,9 @@ n
 >src/main/java/modules/aplicacoes/usecases/AplicarParaVaga.java,c\3\c336653396e72549cd121d5d5ae31ec61c34a866
 o
 ?src/main/java/modules/aplicacoes/usecases/AprovarCandidato.java,f\b\fb1e001b9325924ffb9b85070349b132555e2676
+o
+?src/main/java/modules/usuarios/dtos/ReenviarCodigoAtivacao.java,a\6\a6757d907590562bf8e5d5c29fedc9c8f8d0918d
+s
+Csrc/main/java/modules/usuarios/usecases/ReenviarCodigoAtivacao.java,c\5\c566836d39c7ea16de01dde9f391900b256ef48b
+r
+Bsrc/main/java/modules/usuarios/dtos/ReenviarCodigoAtivacaoDTO.java,8\4\844b61d3d62d7a30e52b612b90a950fa6241efbd

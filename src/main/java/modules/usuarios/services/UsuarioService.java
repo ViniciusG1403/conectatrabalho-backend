@@ -2,7 +2,9 @@ package modules.usuarios.services;
 
 import core.validates.Validators;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import modules.usuarios.dtos.ReenviarCodigoAtivacaoDTO;
 import modules.usuarios.dtos.UsuarioDTO;
 import modules.usuarios.dtos.UsuarioRegistroDTO;
 import modules.usuarios.dtos.UsuarioResponseDTO;
@@ -16,6 +18,7 @@ import java.util.UUID;
  * @version 1.0
  * @since 13/02/24
  */
+@Transactional
 @ApplicationScoped
 @RequiredArgsConstructor
 public class UsuarioService extends Validators {
@@ -33,6 +36,8 @@ public class UsuarioService extends Validators {
     private final BuscarTodosOsUsuarios buscarTodosOsUsuarios;
 
     private final BuscarTodosOsUsuariosAtivos buscarTodosOsUsuariosAtivos;
+
+    private final ReenviarCodigoAtivacao reenviarCodigoAtivacao;
 
     public UsuarioResponseDTO criarOuAtualizar(UsuarioDTO dto) {
         NonNullValidate(dto.getNome(), "Nome");
@@ -64,5 +69,11 @@ public class UsuarioService extends Validators {
     public List<UsuarioResponseDTO> buscarTodosUsuarios() { return buscarTodosOsUsuarios.execute(); }
 
     public List<UsuarioResponseDTO> buscarTodosUsuariosAtivos() { return buscarTodosOsUsuariosAtivos.execute(); }
+
+    public void reenviarCodigoAtivacao(ReenviarCodigoAtivacaoDTO dto) {
+        NonNullValidate(dto.getEmail(), "Email");
+        EmailFormatValidate(dto.getEmail());
+        reenviarCodigoAtivacao.execute(dto);
+    }
 
 }

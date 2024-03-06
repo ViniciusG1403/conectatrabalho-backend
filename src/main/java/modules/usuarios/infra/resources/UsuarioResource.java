@@ -7,6 +7,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import lombok.RequiredArgsConstructor;
 import modules.usuarios.converters.UsuarioConverter;
+import modules.usuarios.dtos.ReenviarCodigoAtivacaoDTO;
 import modules.usuarios.dtos.UsuarioDTO;
 import modules.usuarios.dtos.UsuarioRegistroDTO;
 import modules.usuarios.infra.entities.Usuario;
@@ -76,7 +77,7 @@ public class UsuarioResource {
     @Operation(summary = "Ativar", description = "Ativa um usuário")
     public Response ativarUsuario(@PathParam("codigo") String codigo){
         usuarioService.ativarUsuario(codigo);
-        return Response.status(Response.Status.NO_CONTENT).build();
+        return Response.status(Response.Status.OK).build();
     }
 
     @PUT
@@ -97,6 +98,16 @@ public class UsuarioResource {
     public Response bloquearUsuario(@PathParam("id") String id){
         usuarioService.bloquearUsuario(id);
         return Response.status(Response.Status.NO_CONTENT).build();
+    }
+
+    @PUT
+    @PermitAll
+    @Path("/reenviar-codigo")
+    @APIResponse(responseCode = "200", description = "Código reenviado com sucesso")
+    @Operation(summary = "Reenviar código de ativação", description = "Reenvia o código de ativação para o usuário")
+    public Response reenviarCodigo(ReenviarCodigoAtivacaoDTO reenviarDTO){
+        usuarioService.reenviarCodigoAtivacao(reenviarDTO);
+        return Response.status(Response.Status.OK).build();
     }
 
 }
