@@ -1,7 +1,6 @@
 package core.repositories;
 
 import core.pesquisa.CondicaoPesquisa;
-import io.quarkus.panache.common.Sort;
 
 import java.util.List;
 import java.util.Optional;

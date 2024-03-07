@@ -2,7 +2,6 @@ package core.repositories;
 
 import core.exceptions.ConectaTrabalhoException;
 import core.pesquisa.CondicaoPesquisa;
-import io.quarkus.panache.common.Sort;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;

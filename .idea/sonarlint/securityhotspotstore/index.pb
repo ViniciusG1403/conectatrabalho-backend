@@ -155,3 +155,5 @@ s
 Csrc/main/java/modules/usuarios/usecases/ReenviarCodigoAtivacao.java,c\5\c566836d39c7ea16de01dde9f391900b256ef48b
 r
 Bsrc/main/java/modules/usuarios/dtos/ReenviarCodigoAtivacaoDTO.java,8\4\844b61d3d62d7a30e52b612b90a950fa6241efbd
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec

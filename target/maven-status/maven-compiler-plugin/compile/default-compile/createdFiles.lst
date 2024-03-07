@@ -104,7 +104,6 @@ core\shared\ProcessarESalvarImageService.class
 modules\candidatos\usecases\BuscarCandidatos.class
 modules\empresa\repositories\EmpresaRepository.class
 modules\vagas\dtos\FinalizarPausarVagaDTO.class
-META-INF\panache-archive.marker
 modules\aplicacoes\repositories\AplicacaoRepository.class
 core\shared\RecuperarImagemPerfil.class
 modules\candidatos\infra\repositories\CandidatoRepositoryImpl.class
