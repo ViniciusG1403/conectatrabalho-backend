@@ -157,3 +157,5 @@ r
 Bsrc/main/java/modules/usuarios/dtos/ReenviarCodigoAtivacaoDTO.java,8\4\844b61d3d62d7a30e52b612b90a950fa6241efbd
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+s
+Csrc/test/java/modules/aplicacoes/dtos/AplicacaoFeedbackDTOTest.java,3\e\3e659a1a083d41901a142af9fdabea070cb6ee70
