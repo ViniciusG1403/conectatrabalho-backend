@@ -173,3 +173,7 @@ k
 ;src/main/java/core/shared/ProcessarESalvarImageService.java,1\4\14e9c09eed523d30770091c0e9e14c0934de0ce8
 u
 Esrc/main/java/modules/empresa/usecases/BuscarImagemPerfilEmpresa.java,6\6\66143c8dc84c530cb12dff835e607b5857862259
+w
+Gsrc/main/java/modules/candidatos/dtos/CandidatoResponseCadastroDTO.java,a\5\a5acdb4e32d5b8874a6d749ede397bcf4214f236
+r
+Bsrc/main/java/modules/empresa/dtos/EmpresaCadastroResponseDTO.java,4\1\416a8f8eba329b7039ae61355e05a5c7cfa67428

@@ -5,10 +5,7 @@ import core.validates.Validators;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import modules.empresa.dtos.EmpresaRegisterDTO;
-import modules.empresa.dtos.EmpresaResponseDTO;
-import modules.empresa.dtos.EmpresaResumidoDTO;
-import modules.empresa.dtos.EmpresaUpdateDTO;
+import modules.empresa.dtos.*;
 import modules.empresa.usecases.*;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
@@ -41,7 +38,7 @@ public class EmpresaService extends Validators {
 
     private final BuscarImagemPerfilEmpresa buscarImagemPerfilEmpresa;
 
-    public EmpresaResponseDTO criar(EmpresaRegisterDTO dto) {
+    public EmpresaCadastroResponseDTO criar(EmpresaRegisterDTO dto) {
         NonNullValidate(dto.getIdUsuario(), "Usuário");
         NonNullValidate(dto.getSetor(), "Setor");
         NonNullValidate(dto.getDescricao(), "Descrição");

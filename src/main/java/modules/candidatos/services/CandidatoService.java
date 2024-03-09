@@ -45,7 +45,7 @@ public class CandidatoService extends Validators {
 
     private final BuscarCurriculoCandidato buscarCurriculoCandidato;
 
-    public CandidatoResponseDTO criarCandidato(CandidatoCadastroDTO dto) {
+    public CandidatoResponseCadastroDTO criarCandidato(CandidatoCadastroDTO dto) {
 
         NonNullValidate(dto, "Candidato");
         NonNullValidate(dto.getIdUsuario(), "Usuario");

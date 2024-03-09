@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import modules.empresa.converters.EmpresaConverter;
+import modules.empresa.dtos.EmpresaCadastroResponseDTO;
 import modules.empresa.dtos.EmpresaRegisterDTO;
 import modules.empresa.dtos.EmpresaResponseDTO;
 import modules.empresa.infra.entities.Empresa;
@@ -32,7 +33,7 @@ public class CriarEmpresa {
 
     private final EmpresaConverter converter;
 
-    public EmpresaResponseDTO execute(@Valid EmpresaRegisterDTO dto) {
+    public EmpresaCadastroResponseDTO execute(@Valid EmpresaRegisterDTO dto) {
 
         Usuario usuario = usuarioRepository.findById(dto.getIdUsuario()).orElseThrow(UsuarioNotFoundException::new);
 
@@ -49,7 +50,12 @@ public class CriarEmpresa {
 
         repository.save(empresa);
 
-        return converter.toResponse(empresa);
+
+        EmpresaCadastroResponseDTO responseDTO = new EmpresaCadastroResponseDTO();
+        responseDTO.setId(empresa.getId().toString());
+        responseDTO.setTipo(TipoUsuario.EMPRESA.ordinal());
+
+        return responseDTO;
     }
 
 

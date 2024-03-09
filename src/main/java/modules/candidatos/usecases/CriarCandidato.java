@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import modules.candidatos.converters.CandidatoConverter;
 import modules.candidatos.dtos.CandidatoCadastroDTO;
 import modules.candidatos.dtos.CandidatoDTO;
+import modules.candidatos.dtos.CandidatoResponseCadastroDTO;
 import modules.candidatos.dtos.CandidatoResponseDTO;
 import modules.candidatos.infra.entities.Candidato;
 import modules.candidatos.repositories.CandidatoRepository;
@@ -34,7 +35,7 @@ public class CriarCandidato {
 
     private final UsuarioRepository usuarioRepository;
 
-    public CandidatoResponseDTO execute(CandidatoCadastroDTO dto) {
+    public CandidatoResponseCadastroDTO execute(CandidatoCadastroDTO dto) {
         boolean candidato = repository.alreadyExistsCandidatoByUser(dto.getIdUsuario()).isPresent();
         if (candidato) {
             throw new ValidationException("Candidato já cadastrado para esse usuário");
@@ -57,7 +58,11 @@ public class CriarCandidato {
         entity.setPretensaoSalarial(dto.getPretensaoSalarial());
         repository.save(entity);
 
-        return converter.toResponse(entity);
+        CandidatoResponseCadastroDTO responseDTO = new CandidatoResponseCadastroDTO();
+        responseDTO.setId(entity.getId().toString());
+        responseDTO.setTipo(TipoUsuario.CANDIDATO.ordinal());
+
+        return responseDTO;
     }
 
 }
