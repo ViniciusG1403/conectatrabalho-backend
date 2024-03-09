@@ -10,8 +10,15 @@ import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.GetObjectRequest;
 import software.amazon.awssdk.services.s3.model.GetObjectResponse;
+import software.amazon.awssdk.services.s3.model.GetUrlRequest;
+import software.amazon.awssdk.services.s3.model.S3Exception;
+import software.amazon.awssdk.services.s3.presigner.S3Presigner;
+import software.amazon.awssdk.services.s3.presigner.model.GetObjectPresignRequest;
+import software.amazon.awssdk.services.s3.presigner.model.PresignedGetObjectRequest;
 
 import java.io.InputStream;
+import java.net.URL;
+import java.time.Duration;
 
 /**
  * @author Vinicius Gabriel <vinicius.prado@nexuscloud.com.br>
@@ -39,8 +46,37 @@ public class RecuperarImagemPerfil {
                 getObjectRequest);
             return objectBytes.asInputStream();
         } catch (Exception e) {
-            throw new WebApplicationException("Falha ao baixar o arquivo do S3.",
-                Response.Status.INTERNAL_SERVER_ERROR);
+            return null;
+        } finally {
+            s3Client.close();
+        }
+    }
+
+    public String buscarUrl(String id) {
+        S3Client s3Client = S3Client.builder()
+                .region(Region.SA_EAST_1)
+                .credentialsProvider(EnvironmentVariableCredentialsProvider.create())
+                .build();
+
+        try (S3Presigner presigner = S3Presigner.create()) {
+
+            GetObjectRequest objectRequest = GetObjectRequest.builder()
+                    .bucket(bucketName)
+                    .key(id + "imagemperfil.jpg")
+                    .build();
+
+            GetObjectPresignRequest presignRequest = GetObjectPresignRequest.builder()
+                    .signatureDuration(Duration.ofMinutes(60))
+                    .getObjectRequest(objectRequest)
+                    .build();
+
+            PresignedGetObjectRequest presignedRequest = presigner.presignGetObject(presignRequest);
+            return presignedRequest.url().toString();
+
+        } catch (S3Exception e) {
+            // Lidar com exceção
+            e.printStackTrace();
+            return null;
         } finally {
             s3Client.close();
         }

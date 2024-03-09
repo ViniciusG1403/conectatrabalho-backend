@@ -1,0 +1,12 @@
+
+[	java:S112 "FDefine and throw a dedicated exception instead of using a generic one.(•½‡Ö
+Z
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(Å¢µN
+u
+java:S1128"ZRemove this unused import 'modules.candidatos.exceptions.CandidatoNaoEncontradoException'.(ƒÉÁ—ùÿÿÿÿ
+^
+java:S1128"HRemove this unused import 'modules.candidatos.infra.entities.Candidato'.(ø®˜ë
+k
+java:S1128"PRemove this unused import 'modules.candidatos.repositories.CandidatoRepository'.(¾ó„Šúÿÿÿÿ
+F
+java:S1128"+Remove this unused import 'java.util.UUID'.(ÀãÄ£úÿÿÿÿ

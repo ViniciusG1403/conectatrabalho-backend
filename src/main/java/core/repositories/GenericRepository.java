@@ -18,6 +18,8 @@ public interface GenericRepository<T> {
 
     Optional<T> findOne(String field, Object value);
 
+    Optional<T> findOne(final CondicaoPesquisa condicaoPesquisa);
+
     Optional<T> findOne(final List<CondicaoPesquisa> condicaoPesquisaList);
 
     List<T> findAll();

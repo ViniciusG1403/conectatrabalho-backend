@@ -48,13 +48,20 @@ public class GenericRepositoryImpl<T> implements GenericRepository<T> {
     }
 
     @Override
-    public Optional<T> findOne(final String field, final Object value) {
+    public Optional<T> findOne(final String fieldPath, final Object value) {
         try {
             CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
             CriteriaQuery<T> query = criteriaBuilder.createQuery(entityClass);
             Root<T> root = query.from(entityClass);
 
-            Predicate predicate = criteriaBuilder.equal(root.get(field), value);
+            String[] fields = fieldPath.split("\\.");
+
+            Path<Object> path = root.get(fields[0]);
+            for (int i = 1; i < fields.length; i++) {
+                path = path.get(fields[i]);
+            }
+
+            Predicate predicate = criteriaBuilder.equal(path, value);
 
             query.where(predicate);
 
@@ -69,15 +76,57 @@ public class GenericRepositoryImpl<T> implements GenericRepository<T> {
     }
 
     @Override
-    public Optional<T> findOne(final List<CondicaoPesquisa> condicaoPesquisaList){
+    public Optional<T> findOne(final CondicaoPesquisa condicaoPesquisa) {
         try {
             CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
             CriteriaQuery<T> query = criteriaBuilder.createQuery(entityClass);
             Root<T> root = query.from(entityClass);
 
-            List<Predicate> predicateList = condicaoPesquisaList.stream().map(condicao -> {
-                return criteriaBuilder.equal(root.get(condicao.getChave()), condicao.getValor());
-            }).toList();
+            String fieldPath = condicaoPesquisa.getChave();
+            String[] fields = fieldPath.split("\\.");
+
+            Path<Object> path = root.get(fields[0]);
+            for (int i = 1; i < fields.length; i++) {
+                path = path.get(fields[i]);
+            }
+
+            Predicate predicate = criteriaBuilder.equal(path, condicaoPesquisa.getValor());
+
+            query.where(predicate);
+
+            final T result = entityManager.createQuery(query).setMaxResults(1).getSingleResult();
+
+            return Optional.ofNullable(result);
+        } catch (NoResultException ex) {
+            return Optional.empty();
+        } catch (Exception ex) {
+            throw new ConectaTrabalhoException(ex);
+        }
+    }
+
+
+
+    @Override
+    public Optional<T> findOne(final List<CondicaoPesquisa> condicaoPesquisaList) {
+        try {
+            CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+            CriteriaQuery<T> query = criteriaBuilder.createQuery(entityClass);
+            Root<T> root = query.from(entityClass);
+
+            List<Predicate> predicateList = new ArrayList<>();
+
+            for (CondicaoPesquisa condicao : condicaoPesquisaList) {
+                String fieldPath = condicao.getChave();
+                String[] fields = fieldPath.split("\\.");
+
+                Path<Object> path = root.get(fields[0]);
+                for (int i = 1; i < fields.length; i++) {
+                    path = path.get(fields[i]);
+                }
+
+                Predicate predicate = criteriaBuilder.equal(path, condicao.getValor());
+                predicateList.add(predicate);
+            }
 
             Predicate[] predicates = predicateList.toArray(new Predicate[0]);
             Predicate finalPredicate = criteriaBuilder.and(predicates);
@@ -93,6 +142,7 @@ public class GenericRepositoryImpl<T> implements GenericRepository<T> {
             throw new ConectaTrabalhoException(ex);
         }
     }
+
 
     @Override
     public List<T> findAll(){

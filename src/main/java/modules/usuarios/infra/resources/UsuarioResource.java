@@ -7,6 +7,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import lombok.RequiredArgsConstructor;
 import modules.usuarios.converters.UsuarioConverter;
+import modules.usuarios.dtos.PerfilResponseDTO;
 import modules.usuarios.dtos.ReenviarCodigoAtivacaoDTO;
 import modules.usuarios.dtos.UsuarioDTO;
 import modules.usuarios.dtos.UsuarioRegistroDTO;
@@ -16,6 +17,8 @@ import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+
+import java.util.UUID;
 
 /**
  * @author Vinicius Gabriel <vinicius.prado@nexuscloud.com.br>
@@ -110,4 +113,23 @@ public class UsuarioResource {
         return Response.status(Response.Status.OK).build();
     }
 
+    @GET
+    @RolesAllowed({"USER_ROLE", "ADMIN_ROLE"})
+    @Path("/{id}/tem-perfil-cadastrado")
+    @Produces(MediaType.APPLICATION_JSON)
+    @APIResponse(responseCode = "200", description = "Usuário tem perfil cadastrado", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = Boolean.class)))
+    @Operation(summary = "Tem perfil cadastrado", description = "Verifica se o usuário tem perfil cadastrado")
+    public Response temPerfilCadastrado(@PathParam("id") String id){
+        return Response.status(Response.Status.OK).entity(usuarioService.usuarioTemPerfilCadastrado(UUID.fromString(id))).build();
+    }
+
+    @GET
+    @RolesAllowed({"USER_ROLE", "ADMIN_ROLE"})
+    @Path("/{id}/perfil")
+    @Produces(MediaType.APPLICATION_JSON)
+    @APIResponse(responseCode = "200", description = "Perfil encontrado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = PerfilResponseDTO.class)))
+    @Operation(summary = "Buscar perfil", description = "Busca o perfil do usuário")
+    public Response buscarPerfilPeloUsuario(@PathParam("id") String id){
+        return Response.status(Response.Status.OK).entity(usuarioService.buscarPerfilPeloUsuario(UUID.fromString(id))).build();
+    }
 }

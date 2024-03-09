@@ -1,6 +1,7 @@
 modules\empresa\usecases\BuscarEmpresaResumidoByID.class
 modules\vagas\dtos\VagasDTO.class
 modules\usuarios\infra\entities\Endereco.class
+modules\usuarios\dtos\PerfilResponseDTO.class
 modules\candidatos\infra\entities\Candidato.class
 modules\empresa\infra\repositories\EmpresaRepositoryImpl.class
 modules\login\resource\AuthResource.class
@@ -20,6 +21,7 @@ core\shared\SalvarCurriculoService.class
 core\validates\Validators.class
 modules\candidatos\infra\resources\CandidatoResource.class
 core\pesquisa\PrepararFiltros.class
+modules\usuarios\usecases\BuscarPerfilPeloUsuario.class
 modules\vagas\usecases\CriarVaga.class
 modules\usuarios\infra\resources\UsuarioResource.class
 modules\usuarios\exceptions\UsuarioExistenteComMesmoEmail.class
@@ -27,6 +29,7 @@ core\shared\PostgreSQLEnumType.class
 modules\empresa\usecases\BuscarEmpresas.class
 modules\candidatos\usecases\BuscarCurriculoCandidato.class
 modules\aplicacoes\infra\resources\AplicacaoResource.class
+modules\usuarios\dtos\PerfilResponseDTO$PerfilResponseDTOBuilder.class
 modules\vagas\exceptions\VagaNaoEncontradaException.class
 modules\candidatos\dtos\CandidatoResponseDTO.class
 modules\empresa\dtos\EmpresaResponseDTO.class
@@ -43,6 +46,7 @@ modules\empresa\usecases\CriarEmpresa.class
 modules\aplicacoes\exceptions\AplicacaoNaoEncontradaExceptions.class
 modules\aplicacoes\services\AplicacaoService.class
 core\exceptions\InvalidFormatEmailException.class
+modules\usuarios\usecases\UsuarioTemPerfilCadastrado.class
 core\exceptions\ConectaTrabalhoException.class
 modules\candidatos\usecases\BuscarCandidatoResumidoPeloID.class
 modules\candidatos\usecases\CriarCandidato.class

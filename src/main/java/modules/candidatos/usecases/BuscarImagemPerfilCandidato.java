@@ -21,5 +21,9 @@ public class BuscarImagemPerfilCandidato {
         return recuperarImagemPerfil.execute(id);
     }
 
+    public String buscarUrl(String id) {
+        return recuperarImagemPerfil.buscarUrl(id);
+    }
+
 
 }

@@ -4,10 +4,7 @@ import core.validates.Validators;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import modules.usuarios.dtos.ReenviarCodigoAtivacaoDTO;
-import modules.usuarios.dtos.UsuarioDTO;
-import modules.usuarios.dtos.UsuarioRegistroDTO;
-import modules.usuarios.dtos.UsuarioResponseDTO;
+import modules.usuarios.dtos.*;
 import modules.usuarios.usecases.*;
 
 import java.util.List;
@@ -38,6 +35,10 @@ public class UsuarioService extends Validators {
     private final BuscarTodosOsUsuariosAtivos buscarTodosOsUsuariosAtivos;
 
     private final ReenviarCodigoAtivacao reenviarCodigoAtivacao;
+
+    private final UsuarioTemPerfilCadastrado usuarioTemPerfilCadastrado;
+
+    private final BuscarPerfilPeloUsuario buscarPerfilPeloUsuario;
 
     public UsuarioResponseDTO criarOuAtualizar(UsuarioDTO dto) {
         NonNullValidate(dto.getNome(), "Nome");
@@ -74,6 +75,14 @@ public class UsuarioService extends Validators {
         NonNullValidate(dto.getEmail(), "Email");
         EmailFormatValidate(dto.getEmail());
         reenviarCodigoAtivacao.execute(dto);
+    }
+
+    public boolean usuarioTemPerfilCadastrado(UUID id){
+        return usuarioTemPerfilCadastrado.execute(id);
+    }
+
+    public PerfilResponseDTO buscarPerfilPeloUsuario(UUID id){
+        return buscarPerfilPeloUsuario.execute(id);
     }
 
 }

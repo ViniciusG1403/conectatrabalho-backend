@@ -35,6 +35,7 @@ C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\usuarios\converters\UsuarioConverter.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\aplicacoes\infra\repositories\AplicacaoRepositoryImpl.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\empresa\usecases\SalvarImagemPerfilEmpresa.java
+C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\usuarios\usecases\BuscarPerfilPeloUsuario.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\empresa\usecases\BuscarEmpresas.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\aplicacoes\usecases\AprovarCandidato.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\core\exceptions\NotNullException.java
@@ -49,6 +50,7 @@ C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\aplicacoes\usecases\VerificarDuplicidadeAplicacao.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\aplicacoes\enumerations\StatusAplicacao.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\vagas\infra\repositories\VagasRepositoryImpl.java
+C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\usuarios\usecases\UsuarioTemPerfilCadastrado.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\usuarios\enumerations\StatusUsuario.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\candidatos\dtos\CandidatoResumidoDTO.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\vagas\enumerations\StatusVaga.java
@@ -89,6 +91,7 @@ C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\empresa\usecases\BuscarEmpresaResumidoByID.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\aplicacoes\dtos\AplicacaoResponseDTO.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\usuarios\services\UsuarioService.java
+C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\usuarios\dtos\PerfilResponseDTO.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\vagas\usecases\CriarVaga.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\modules\vagas\infra\entities\Vagas.java
 C:\Users\Vinicius Gabriel\Documents\ConectaTrabalho\conectatrabalhotcc\src\main\java\core\shared\RecuperarImagemPerfil.java
