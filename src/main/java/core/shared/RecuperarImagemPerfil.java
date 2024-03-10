@@ -58,14 +58,14 @@ public class RecuperarImagemPerfil {
         try {
             HeadObjectRequest headObjectRequest = HeadObjectRequest.builder()
                     .bucket(bucketName)
-                    .key(id + "imagemperfil.jpg")
+                    .key(id + "imagemperfil.png")
                     .build();
 
             HeadObjectResponse headObjectResponse = s3Client.headObject(headObjectRequest);
 
             GetObjectRequest objectRequest = GetObjectRequest.builder()
                     .bucket(bucketName)
-                    .key(id + "imagemperfil.jpg")
+                    .key(id + "imagemperfil.png")
                     .build();
 
             try (S3Presigner presigner = S3Presigner.create()) {
