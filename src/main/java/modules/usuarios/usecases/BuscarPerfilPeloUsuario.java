@@ -73,6 +73,10 @@ public class BuscarPerfilPeloUsuario {
         Candidato candidato = candidatoRepository.findOne("usuario.id", usuario.getId()).orElseThrow(CandidatoNaoEncontradoException::new);
         String imagem = buscarImagemPerfilCandidato.buscarUrl(candidato.getId().toString());
 
+        if(Objects.isNull(imagem)){
+            imagem = buscarImagemPerfilCandidato.buscarUrl("foto-not-found");
+        }
+
         return PerfilResponseDTO.builder()
                 .id(candidato.getId())
                 .nome(usuario.getNome())
