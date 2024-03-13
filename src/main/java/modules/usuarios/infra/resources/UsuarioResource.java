@@ -1,6 +1,8 @@
 package modules.usuarios.infra.resources;
 
 import core.geolocalizador.GetCoordenadasGeograficas;
+import core.pesquisa.CondicaoPesquisa;
+import core.pesquisa.PrepararFiltros;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.ws.rs.*;
@@ -19,6 +21,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -33,6 +36,8 @@ public class UsuarioResource {
     private final UsuarioService usuarioService;
 
     private final UsuarioConverter converter;
+
+    private final PrepararFiltros prepararFiltros;
 
     @POST
     @PermitAll
@@ -137,7 +142,8 @@ public class UsuarioResource {
     @GET
     @PermitAll
     @Path("/buscar-todos/localizacao/{id}")
-    public Response buscarUsuariosPelaLocalizacao(@PathParam("id") String id){
-        return Response.status(Response.Status.OK).entity(usuarioService.buscarTodosUsuariosProximidade(id)).build();
+    public Response buscarUsuariosPelaLocalizacao(@PathParam("id") String id, @QueryParam("search") String search, @QueryParam("page") Integer page){
+        List<CondicaoPesquisa> condicaoPesquisaList = prepararFiltros.execute(search);
+        return Response.status(Response.Status.OK).entity(usuarioService.buscarTodosUsuariosProximidade(id, condicaoPesquisaList, page)).build();
     }
 }

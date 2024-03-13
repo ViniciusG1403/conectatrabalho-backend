@@ -1,5 +1,6 @@
 package modules.usuarios.services;
 
+import core.pesquisa.CondicaoPesquisa;
 import core.validates.Validators;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
@@ -87,8 +88,8 @@ public class UsuarioService extends Validators {
         return buscarPerfilPeloUsuario.execute(id);
     }
 
-    public List<UsuarioResponseDTO> buscarTodosUsuariosProximidade(String id){
-        return buscarTodosUsuariosProximidade.execute(UUID.fromString(id));
+    public List<UsuarioResponseDTO> buscarTodosUsuariosProximidade(String id, List<CondicaoPesquisa> condicaoPesquisaList, int page){
+        return buscarTodosUsuariosProximidade.execute(UUID.fromString(id), condicaoPesquisaList, page);
     }
 
 }

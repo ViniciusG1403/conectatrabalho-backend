@@ -177,3 +177,7 @@ w
 Gsrc/main/java/modules/candidatos/dtos/CandidatoResponseCadastroDTO.java,a\5\a5acdb4e32d5b8874a6d749ede397bcf4214f236
 r
 Bsrc/main/java/modules/empresa/dtos/EmpresaCadastroResponseDTO.java,4\1\416a8f8eba329b7039ae61355e05a5c7cfa67428
+z
+Jsrc/main/java/modules/usuarios/usecases/BuscarTodosUsuarioProximidade.java,5\0\50006bcc0cc2bb9aa1bc9240768afd9222e1ddd6
+a
+1src/main/java/core/pesquisa/CondicaoPesquisa.java,4\1\41b89f5504345df5b4fbdfadbfa3437baaf1a489

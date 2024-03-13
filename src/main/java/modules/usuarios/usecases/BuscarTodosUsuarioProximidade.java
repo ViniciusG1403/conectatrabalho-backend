@@ -1,14 +1,17 @@
 package modules.usuarios.usecases;
 
+import core.pesquisa.CondicaoPesquisa;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.RequiredArgsConstructor;
 import modules.usuarios.converters.UsuarioConverter;
 import modules.usuarios.dtos.UsuarioResponseDTO;
+import modules.usuarios.enumerations.StatusUsuario;
 import modules.usuarios.exceptions.UsuarioNotFoundException;
 import modules.usuarios.infra.entities.Usuario;
 import modules.usuarios.repositories.UsuarioRepository;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -25,14 +28,18 @@ public class BuscarTodosUsuarioProximidade {
 
     private final UsuarioConverter usuarioConverter;
 
-    public List<UsuarioResponseDTO> execute(UUID idUsuario) {
+    public List<UsuarioResponseDTO> execute(UUID idUsuario, List<CondicaoPesquisa> condicaoPesquisaList, int page) {
         Usuario usuarioSolicitante = usuarioRepository.findById(idUsuario).orElseThrow(
             UsuarioNotFoundException::new);
 
         double latitude = Double.parseDouble(usuarioSolicitante.getEndereco().getLatitude());
         double longitude = Double.parseDouble(usuarioSolicitante.getEndereco().getLongitude());
 
-        List<Usuario> allUsers = usuarioRepository.findAll();
+        condicaoPesquisaList.add(new CondicaoPesquisa("status", StatusUsuario.ATIVO));
+
+        List<Usuario> allUsers = usuarioRepository.findAll(condicaoPesquisaList, page, 10);
+
+        allUsers.removeIf(user -> Objects.equals(user.getId(), idUsuario));
 
         return allUsers.stream()
             .filter(user -> calculateDistance(latitude, longitude,
