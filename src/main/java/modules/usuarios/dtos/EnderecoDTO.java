@@ -44,4 +44,10 @@ public class EnderecoDTO {
     @Schema(name = "complemento", title = "Complemento do endereço", example = "Apto 123")
     private String complemento;
 
+    @Schema(name = "latitude", title = "Latitude do endereço", example = "-23.567")
+    private String latitude;
+
+    @Schema(name = "longitude", title = "Longitude do endereço", example = "-46.789")
+    private String longitude;
+
 }

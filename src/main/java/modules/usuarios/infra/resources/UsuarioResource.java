@@ -1,5 +1,6 @@
 package modules.usuarios.infra.resources;
 
+import core.geolocalizador.GetCoordenadasGeograficas;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.ws.rs.*;
@@ -131,5 +132,12 @@ public class UsuarioResource {
     @Operation(summary = "Buscar perfil", description = "Busca o perfil do usuário")
     public Response buscarPerfilPeloUsuario(@PathParam("id") String id){
         return Response.status(Response.Status.OK).entity(usuarioService.buscarPerfilPeloUsuario(UUID.fromString(id))).build();
+    }
+
+    @GET
+    @PermitAll
+    @Path("/buscar-todos/localizacao/{id}")
+    public Response buscarUsuariosPelaLocalizacao(@PathParam("id") String id){
+        return Response.status(Response.Status.OK).entity(usuarioService.buscarTodosUsuariosProximidade(id)).build();
     }
 }

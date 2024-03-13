@@ -50,4 +50,10 @@ public class Endereco {
 
     @Column(name = "complemento")
     private String complemento;
+
+    @Column(name = "latitude")
+    private String latitude;
+
+    @Column(name = "longitude")
+    private String longitude;
 }

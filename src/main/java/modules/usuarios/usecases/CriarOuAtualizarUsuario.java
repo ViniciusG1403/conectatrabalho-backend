@@ -4,16 +4,20 @@ import core.emailservice.MessageOperation;
 import core.emailservice.SendEmailService;
 import core.encoder.PBKDF2Encoder;
 import core.exceptions.ConectaTrabalhoException;
+import core.geolocalizador.CoordenadasGeograficasDTO;
+import core.geolocalizador.GetCoordenadasGeograficas;
 import core.validates.Validators;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.RequiredArgsConstructor;
 import modules.usuarios.converters.UsuarioConverter;
+import modules.usuarios.dtos.EnderecoDTO;
 import modules.usuarios.dtos.UsuarioDTO;
 import modules.usuarios.dtos.UsuarioResponseDTO;
 import modules.usuarios.enumerations.StatusUsuario;
 import modules.usuarios.enumerations.TipoUsuario;
 import modules.usuarios.exceptions.UsuarioExistenteComMesmoEmail;
 import modules.usuarios.exceptions.UsuarioNotFoundException;
+import modules.usuarios.infra.entities.Endereco;
 import modules.usuarios.infra.entities.Usuario;
 import modules.usuarios.repositories.UsuarioRepository;
 
@@ -42,6 +46,8 @@ public class CriarOuAtualizarUsuario extends Validators {
 
     private final GenerateRandomCode generateRandomCode;
 
+    private final GetCoordenadasGeograficas getCoordenadasGeograficas;
+
     public UsuarioResponseDTO execute(UsuarioDTO dto) {
 
         if (Objects.nonNull(dto.getId())) {
@@ -69,6 +75,7 @@ public class CriarOuAtualizarUsuario extends Validators {
             usuario.setSenha(encoder.encode(dto.getSenha()));
             usuario.setRegistro(new Timestamp(System.currentTimeMillis()));
             usuario.setCodigo(generateRandomCode.execute());
+            buscarCoordenadas(usuario.getEndereco());
 
             Usuario usuarioSalvo = usuarioRepository.save(usuario);
 
@@ -77,6 +84,15 @@ public class CriarOuAtualizarUsuario extends Validators {
             return converter.toResponse(usuarioSalvo);
         }
 
+    }
+
+    private void buscarCoordenadas(Endereco endereco){
+        if(Objects.nonNull(endereco)){
+            String enderecoString = endereco.getLogradouro() + ", " + endereco.getNumero() + " - " + endereco.getBairro() + ", " + endereco.getMunicipio() + ", " + endereco.getEstado() + ", " + endereco.getPais();
+            CoordenadasGeograficasDTO coordenadas = getCoordenadasGeograficas.execute(enderecoString);
+            endereco.setLatitude(coordenadas.getLatitude());
+            endereco.setLongitude(coordenadas.getLongitude());
+        }
     }
 
 }

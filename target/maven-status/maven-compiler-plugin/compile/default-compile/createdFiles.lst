@@ -33,6 +33,7 @@ modules/usuarios/enumerations/TipoUsuario.class
 core/repositories/GenericRepository.class
 core/shared/PostgreSQLEnumType.class
 modules/empresa/dtos/EmpresaUpdateDTO.class
+core/geolocalizador/CoordenadasGeograficasDTO.class
 core/exceptions/NotNullException.class
 modules/usuarios/infra/entities/Usuario.class
 modules/usuarios/usecases/BuscarUsuarioPeloID.class
@@ -119,6 +120,7 @@ modules/vagas/enumerations/TipoVaga.class
 modules/candidatos/dtos/CandidatoCadastroDTO.class
 modules/vagas/dtos/FinalizarPausarVagaDTO.class
 core/validates/Validators.class
+modules/usuarios/usecases/BuscarTodosUsuarioProximidade.class
 modules/empresa/services/EmpresaService.class
 modules/aplicacoes/usecases/DarFeedbackAplicacao.class
 modules/empresa/usecases/BuscarEmpresaPeloID.class
@@ -131,3 +133,5 @@ modules/usuarios/dtos/EnderecoResponseDTO.class
 modules/vagas/repositories/VagasRepository.class
 modules/candidatos/dtos/CandidatoResponseDTO.class
 modules/usuarios/converters/UsuarioConverter.class
+core/geolocalizador/CoordenadasGeograficasDTO$CoordenadasGeograficasDTOBuilder.class
+core/geolocalizador/GetCoordenadasGeograficas.class

@@ -40,6 +40,8 @@ public class UsuarioService extends Validators {
 
     private final BuscarPerfilPeloUsuario buscarPerfilPeloUsuario;
 
+    private final BuscarTodosUsuarioProximidade buscarTodosUsuariosProximidade;
+
     public UsuarioResponseDTO criarOuAtualizar(UsuarioDTO dto) {
         NonNullValidate(dto.getNome(), "Nome");
         NonNullValidate(dto.getEmail(), "Email");
@@ -83,6 +85,10 @@ public class UsuarioService extends Validators {
 
     public PerfilResponseDTO buscarPerfilPeloUsuario(UUID id){
         return buscarPerfilPeloUsuario.execute(id);
+    }
+
+    public List<UsuarioResponseDTO> buscarTodosUsuariosProximidade(String id){
+        return buscarTodosUsuariosProximidade.execute(UUID.fromString(id));
     }
 
 }
