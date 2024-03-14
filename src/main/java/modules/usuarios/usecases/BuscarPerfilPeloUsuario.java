@@ -105,4 +105,10 @@ public class BuscarPerfilPeloUsuario {
                 .fotoPerfil(imagem).build();
     }
 
+    public UUID buscarIdPerfilEmpresa(UUID idUsuario) {
+        Empresa empresa = empresaRepository.findOne("usuario.id", idUsuario).orElseThrow(EmpresaNaoEncontradoException::new);
+
+        return empresa.getId();
+    }
+
 }

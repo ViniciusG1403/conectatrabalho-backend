@@ -1,0 +1,11 @@
+
+[
+java:S1128">Remove this unused import 'jakarta.transaction.Transactional'.(▀Ц╩│8ли ╤у1
+^
+java:S1128	"ARemove this unused import 'modules.candidatos.dtos.CandidatoDTO'.(ИХ╘п8ми ╤у1
+k
+java:S1128"IRemove this unused import 'modules.candidatos.dtos.CandidatoResponseDTO'.(Ю√їл     8ни ╤у1
+e
+java:S1128"IRemove this unused import 'modules.usuarios.converters.UsuarioConverter'.(ог╕8ни ╤у1
+Y
+java:S1128"=Remove this unused import 'modules.usuarios.dtos.UsuarioDTO'.(д┼╠8ни ╤у1
