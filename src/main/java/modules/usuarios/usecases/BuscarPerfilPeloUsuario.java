@@ -1,5 +1,6 @@
 package modules.usuarios.usecases;
 
+import core.pesquisa.CondicaoPesquisa;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.RequiredArgsConstructor;
 import modules.candidatos.converters.CandidatoConverter;
@@ -23,9 +24,7 @@ import modules.usuarios.infra.entities.Usuario;
 import modules.usuarios.repositories.UsuarioRepository;
 
 import java.io.InputStream;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * @author Vinicius Gabriel <vinicius.prado@nexuscloud.com.br>
@@ -46,21 +45,43 @@ public class BuscarPerfilPeloUsuario {
 
     private final UsuarioRepository usuarioRepository;
 
+    private final BuscarTodosUsuarioProximidade buscarTodosUsuarioProximidade;
+
 
     public PerfilResponseDTO execute(UUID idUsuario){
         Usuario usuario = usuarioRepository.findById(idUsuario).orElseThrow(UsuarioNotFoundException::new);
 
         if(Objects.equals(usuario.getTipo(), TipoUsuario.CANDIDATO)){
-            return buscarPerfilCandidato(usuario);
+            PerfilResponseDTO dto =  buscarPerfilCandidato(usuario);
+            List<CondicaoPesquisa> condicaoPesquisaList = new ArrayList<>();
+            CondicaoPesquisa condicaoPesquisa = new CondicaoPesquisa();
+            condicaoPesquisa.setChave("tipo");
+            condicaoPesquisa.setValor(TipoUsuario.CANDIDATO);
+            condicaoPesquisaList.add(condicaoPesquisa);
+            dto.setUsuarios(buscarTodosUsuarioProximidade.execute(usuario.getId(), condicaoPesquisaList, 1));
+
+            return dto;
         }
 
-        return buscarPerfilEmpresa(usuario);
+        PerfilResponseDTO dto = buscarPerfilEmpresa(usuario);
+        List<CondicaoPesquisa> condicaoPesquisaList = new ArrayList<>();
+        CondicaoPesquisa condicaoPesquisa = new CondicaoPesquisa();
+        condicaoPesquisa.setChave("tipo");
+        condicaoPesquisa.setValor(TipoUsuario.EMPRESA);
+        condicaoPesquisaList.add(condicaoPesquisa);
+        dto.setUsuarios(buscarTodosUsuarioProximidade.execute(usuario.getId(), condicaoPesquisaList, 1));
+
+        return dto;
 
     }
 
     private PerfilResponseDTO buscarPerfilEmpresa(Usuario usuario){
         Empresa empresa = empresaRepository.findOne("usuario.id", usuario.getId()).orElseThrow(EmpresaNaoEncontradoException::new);
         String imagem = buscarImagemPerfilEmpresa.buscarUrl(empresa.getId().toString());
+
+        if(Objects.isNull(imagem)){
+            imagem = buscarImagemPerfilEmpresa.buscarUrl("foto-not-found");
+        }
 
         return PerfilResponseDTO.builder()
                 .id(empresa.getId())

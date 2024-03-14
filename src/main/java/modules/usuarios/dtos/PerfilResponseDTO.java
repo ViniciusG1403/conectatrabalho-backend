@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.InputStream;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -13,6 +14,7 @@ import java.util.UUID;
  * @since 09/03/2024
  */
 @Getter
+@Setter
 @Builder
 public class PerfilResponseDTO {
 
@@ -23,5 +25,7 @@ public class PerfilResponseDTO {
     private String email;
 
     private String fotoPerfil;
+
+    List<UsuarioResponseDTO> usuarios;
 
 }
