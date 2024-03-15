@@ -97,4 +97,15 @@ public class VagasResource {
         vagasService.pausarVaga(dto);
         return Response.status(Response.Status.OK).build();
     }
+
+    @GET
+    @RolesAllowed({ "USER_ROLE", "ADMIN_ROLE" })
+    @Path("/{id}/proximidade")
+    @Produces(MediaType.APPLICATION_JSON)
+    @APIResponse(responseCode = "200", description = "Vagas encontradas com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = VagasResumidoDTO.class)))
+    @Operation(summary = "Buscar", description = "Busca todas as vagas por proximidade")
+    public Response buscarVagasPorProximidade(@PathParam("id") final String uuid, @QueryParam("search") String search, @QueryParam("page") int page) {
+        final List<CondicaoPesquisa> condicaoPesquisaList = prepararFiltros.execute(search);
+        return Response.status(Response.Status.OK).entity(vagasService.buscarVagasPorProximidade(uuid, condicaoPesquisaList, page)).build();
+    }
 }

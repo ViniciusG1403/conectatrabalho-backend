@@ -4,6 +4,8 @@ import io.quarkus.runtime.annotations.RegisterForReflection;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.UUID;
+
 /**
  * @author Vinicius Gabriel <vinicius.prado@nexuscloud.com.br>
  * @version 1.0
@@ -13,6 +15,8 @@ import lombok.Setter;
 @Setter
 @RegisterForReflection
 public class VagasResumidoDTO {
+
+    public UUID id;
 
     public String titulo;
 

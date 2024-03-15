@@ -49,6 +49,7 @@ public class VagasConverter {
 
     public VagasResumidoDTO toResumidoDTO(Vagas entity) {
         VagasResumidoDTO dto = new VagasResumidoDTO();
+        dto.setId(entity.getId());
         dto.setTitulo(entity.getTitulo());
         dto.setDescricao(entity.getDescricao());
         dto.setNivel(entity.getNivel());
