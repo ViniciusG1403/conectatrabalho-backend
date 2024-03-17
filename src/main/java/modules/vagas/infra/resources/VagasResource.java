@@ -104,8 +104,8 @@ public class VagasResource {
     @Produces(MediaType.APPLICATION_JSON)
     @APIResponse(responseCode = "200", description = "Vagas encontradas com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = VagasResumidoDTO.class)))
     @Operation(summary = "Buscar", description = "Busca todas as vagas por proximidade")
-    public Response buscarVagasPorProximidade(@PathParam("id") final String uuid, @QueryParam("search") String search, @QueryParam("page") int page) {
+    public Response buscarVagasPorProximidade(@PathParam("id") final String uuid, @QueryParam("search") String search, @QueryParam("page") int page, @QueryParam("size") int size) {
         final List<CondicaoPesquisa> condicaoPesquisaList = prepararFiltros.execute(search);
-        return Response.status(Response.Status.OK).entity(vagasService.buscarVagasPorProximidade(uuid, condicaoPesquisaList, page)).build();
+        return Response.status(Response.Status.OK).entity(vagasService.buscarVagasPorProximidade(uuid, condicaoPesquisaList, page, size)).build();
     }
 }

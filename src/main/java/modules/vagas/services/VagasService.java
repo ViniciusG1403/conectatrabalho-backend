@@ -83,8 +83,8 @@ public class VagasService extends Validators {
         pausarVaga.execute(dto);
     }
 
-    public List<VagasResumidoDTO> buscarVagasPorProximidade(String idUsuario, List<CondicaoPesquisa> condicaoPesquisaList, int page){
-        return buscarVagasPorProximidade.execute(UUID.fromString(idUsuario), condicaoPesquisaList, page);
+    public List<VagasResumidoDTO> buscarVagasPorProximidade(String idUsuario, List<CondicaoPesquisa> condicaoPesquisaList, int page, int size){
+        return buscarVagasPorProximidade.execute(UUID.fromString(idUsuario), condicaoPesquisaList, page, size);
     }
 
 
