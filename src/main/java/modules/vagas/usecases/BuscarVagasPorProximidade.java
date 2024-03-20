@@ -41,7 +41,7 @@ public class BuscarVagasPorProximidade {
 
         condicaoPesquisaList.add(new CondicaoPesquisa("status", StatusVaga.ATIVA));
 
-        List<Vagas> allVagas = vagasRepository.findAll(condicaoPesquisaList, page, size);
+        List<Vagas> allVagas = vagasRepository.findAll(condicaoPesquisaList, "dataCriacao", "DESC", page, size);
 
         return allVagas.stream()
             .filter(vagas -> calculateDistance(latitude, longitude,

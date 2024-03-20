@@ -54,4 +54,7 @@ public class Vagas {
     @Column(name = "data_criacao", nullable = false)
     private Timestamp dataCriacao;
 
+    @Column(name = "cargo", nullable = false)
+    private String cargo;
+
 }

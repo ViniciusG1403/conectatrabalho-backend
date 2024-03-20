@@ -22,7 +22,7 @@ public class BuscarTodasVagas {
 
     private final VagasConverter vagasConverter;
     public List<VagasResumidoDTO> execute(List<CondicaoPesquisa> condicaoPesquisaList, int page, int size){
-        return repository.findAll(condicaoPesquisaList, page, size).stream().map(vagasConverter::toResumidoDTO).toList();
+        return repository.findAll(condicaoPesquisaList, "dataCriacao", "DESC", page, size).stream().map(vagasConverter::toResumidoDTO).toList();
     }
 
 

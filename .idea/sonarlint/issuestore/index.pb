@@ -181,3 +181,5 @@ z
 Jsrc/main/java/modules/usuarios/usecases/BuscarTodosUsuarioProximidade.java,5\0\50006bcc0cc2bb9aa1bc9240768afd9222e1ddd6
 a
 1src/main/java/core/pesquisa/CondicaoPesquisa.java,4\1\41b89f5504345df5b4fbdfadbfa3437baaf1a489
+s
+Csrc/main/java/modules/vagas/usecases/BuscarVagasPorProximidade.java,7\2\724bdb0d9a9a2e853953a8d6aefd45dc75b7ec19

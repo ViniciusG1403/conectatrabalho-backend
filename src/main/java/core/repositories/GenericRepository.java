@@ -27,6 +27,7 @@ public interface GenericRepository<T> {
     List<T> findAll(final List<CondicaoPesquisa> condicaoPesquisaList);
 
     List<T> findAll(final List<CondicaoPesquisa> condicaoPesquisaList, int pageNumber, int pageSize);
+    List<T> findAll(List<CondicaoPesquisa> condicaoPesquisaList, String campoOrdenacao, String tipoOrdenacao, int pageNumber, int pageSize);
 
     T update(T object);
 

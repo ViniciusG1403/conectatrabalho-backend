@@ -63,4 +63,8 @@ public class VagasDTO {
     @Schema(description = "Data de criação da vaga", required = true, example = "2024-02-25 00:00:00")
     private Timestamp dataCriacao;
 
+    @Schema(description = "Cargo da vaga", required = true, example = "Desenvolvedor Java")
+    @NotNull(message = "O cargo é obrigatório")
+    private String cargo;
+
 }

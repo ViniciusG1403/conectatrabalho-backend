@@ -2,7 +2,9 @@
 M
 java:S3740»"/Provide the parametrized type for this generic.(´ü‰ë8©¦£éŞ1
 M
-java:S3740ê"/Provide the parametrized type for this generic.(´ü‰ë8à°°Ùá1
+java:S3740é"/Provide the parametrized type for this generic.(´ü‰ë8à°°Ùá1
+M
+java:S3740¡"/Provide the parametrized type for this generic.(´ü‰ë8ŒÿıÅå1
 |
 java:S1488Ê"^Immediately return this expression instead of assigning it to the temporary variable "result".(”çë8¹ğ˜éŞ1
 [
@@ -12,6 +14,10 @@ java:S1481˜")Remove this unused "root" local variable.(¯ºßÊıÿÿÿÿ8‹‹à¤â1
 u
 java:S3776¥"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(îÍ‚Øøÿÿÿÿ8ó±°Ùá1
 p
-java:S3776Õ"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(àÔ¶‰8ø¦™éŞ1
+java:S3776Ô"RRefactor this method to reduce its Cognitive Complexity from 24 to the 15 allowed.(È§•á8ø¦™éŞ1
+p
+java:S3776Œ"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(àÔ¶‰8áşÅå1
 
-java:S6201‘"\Replace this instanceof check and cast with 'instanceof ParameterizedType parameterizedtype'(åƒ£ğıÿÿÿÿ8ı¦™éŞ1
+java:S6201È"\Replace this instanceof check and cast with 'instanceof ParameterizedType parameterizedtype'(åƒ£ğıÿÿÿÿ8ı¦™éŞ1
+Z
+java:S1128"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ8ü¿Ïãå1

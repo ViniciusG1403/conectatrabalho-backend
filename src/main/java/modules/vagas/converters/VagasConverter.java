@@ -31,6 +31,7 @@ public class VagasConverter {
         entity.setTipo(TipoVaga.valueOf(dto.getTipo()));
         entity.setNivel(dto.getNivel());
         entity.setStatus(StatusVaga.valueOf(dto.getStatus()));
+        entity.setCargo(dto.getCargo());
         return entity;
     }
 
@@ -44,6 +45,7 @@ public class VagasConverter {
         dto.setTipo(TipoVaga.valueOf(entity.getTipo()));
         dto.setNivel(entity.getNivel());
         dto.setStatus(StatusVaga.valueOf(entity.getStatus()));
+        dto.setCargo(entity.getCargo());
         return dto;
     }
 
@@ -55,6 +57,7 @@ public class VagasConverter {
         dto.setNivel(entity.getNivel());
         dto.setStatus(StatusVaga.valueOf(entity.getStatus()));
         dto.setEmpresa(entity.getEmpresa().getUsuario().getNome());
+        dto.setCargo(entity.getCargo());
         return dto;
     }
 

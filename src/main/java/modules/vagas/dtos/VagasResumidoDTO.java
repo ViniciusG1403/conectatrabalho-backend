@@ -28,5 +28,7 @@ public class VagasResumidoDTO {
 
     public String empresa;
 
+    public String cargo;
+
 
 }

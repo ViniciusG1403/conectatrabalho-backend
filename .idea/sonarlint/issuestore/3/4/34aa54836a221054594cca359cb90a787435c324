@@ -1,11 +1,15 @@
 
+p
+java:S1104"NMake id a static final constant or non-public and provide accessors if needed.(ê“àşùÿÿÿÿ8ìÍÁÅå1
 t
-java:S1104"RMake titulo a static final constant or non-public and provide accessors if needed.(˜±šÿÿÿÿÿ8·ëƒÀŞ1
+java:S1104"RMake titulo a static final constant or non-public and provide accessors if needed.(˜±šÿÿÿÿÿ8·ëƒÀŞ1
 w
-java:S1104"UMake descricao a static final constant or non-public and provide accessors if needed.(…§‡‰úÿÿÿÿ8¸ëƒÀŞ1
+java:S1104"UMake descricao a static final constant or non-public and provide accessors if needed.(…§‡‰úÿÿÿÿ8¸ëƒÀŞ1
 s
-java:S1104"QMake nivel a static final constant or non-public and provide accessors if needed.(‰¼‰µıÿÿÿÿ8¸ëƒÀŞ1
+java:S1104"QMake nivel a static final constant or non-public and provide accessors if needed.(‰¼‰µıÿÿÿÿ8¸ëƒÀŞ1
 t
-java:S1104"RMake status a static final constant or non-public and provide accessors if needed.(ƒóšÜüÿÿÿÿ8¸ëƒÀŞ1
+java:S1104"RMake status a static final constant or non-public and provide accessors if needed.(ƒóšÜüÿÿÿÿ8¸ëƒÀŞ1
 u
-java:S1104"SMake empresa a static final constant or non-public and provide accessors if needed.(¦¨˜Æùÿÿÿÿ8¸ëƒÀŞ1
+java:S1104"SMake empresa a static final constant or non-public and provide accessors if needed.(¦¨˜Æùÿÿÿÿ8¸ëƒÀŞ1
+s
+java:S1104"QMake cargo a static final constant or non-public and provide accessors if needed.(ß¬Û‘ùÿÿÿÿ8ù­ÂÅå1
