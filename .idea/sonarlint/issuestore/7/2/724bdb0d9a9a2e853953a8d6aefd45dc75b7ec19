@@ -1,3 +1,7 @@
 
+o
+java:S6204/"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(äæå„8‡û¶æ1
+\
+java:S1128"?Remove this unused import 'modules.vagas.infra.entities.Vagas'.(¯Š¯8ˆû¶æ1
 X
 java:S11443"6Remove this unused private "calculateDistance" method.(’†Ïßıÿÿÿÿ8Š™Ãœæ1

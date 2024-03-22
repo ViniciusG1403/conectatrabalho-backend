@@ -33,7 +33,7 @@ public class BuscarVagasPorProximidade {
     private final VagasRepository vagasRepository;
 
     public List<VagasResumidoDTO> execute(UUID idUsuario,
-        List<CondicaoPesquisa> condicaoPesquisaList, int page, int size) {
+        List<CondicaoPesquisa> condicaoPesquisaList, int page, int size, int distanciaMaxima) {
         Usuario usuarioSolicitante = usuarioRepository.findById(idUsuario).orElseThrow(
             UsuarioNotFoundException::new);
 
@@ -44,7 +44,7 @@ public class BuscarVagasPorProximidade {
 
         condicaoPesquisaList.add(new CondicaoPesquisa("status", StatusVaga.ATIVA));
 
-        return vagasRepository.findAllProximidade(condicaoPesquisaList, "dataCriacao", "DESC",coordenadasGeograficasDTO, 120, page, size).stream().map(vagasConverter::toResumidoDTO).collect(Collectors.toList());
+        return vagasRepository.findAllProximidade(condicaoPesquisaList, "dataCriacao", "DESC",coordenadasGeograficasDTO, distanciaMaxima, page, size).stream().map(vagasConverter::toResumidoDTO).collect(Collectors.toList());
 
     }
 
