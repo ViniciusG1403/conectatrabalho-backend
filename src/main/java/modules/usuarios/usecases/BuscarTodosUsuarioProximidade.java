@@ -32,8 +32,8 @@ public class BuscarTodosUsuarioProximidade {
         Usuario usuarioSolicitante = usuarioRepository.findById(idUsuario).orElseThrow(
             UsuarioNotFoundException::new);
 
-        double latitude = Double.parseDouble(usuarioSolicitante.getEndereco().getLatitude());
-        double longitude = Double.parseDouble(usuarioSolicitante.getEndereco().getLongitude());
+        double latitude = usuarioSolicitante.getEndereco().getLatitude();
+        double longitude = usuarioSolicitante.getEndereco().getLongitude();
 
         condicaoPesquisaList.add(new CondicaoPesquisa("status", StatusUsuario.ATIVO));
 
@@ -43,8 +43,8 @@ public class BuscarTodosUsuarioProximidade {
 
         return allUsers.stream()
             .filter(user -> calculateDistance(latitude, longitude,
-                Double.parseDouble(user.getEndereco().getLatitude()),
-                Double.parseDouble(user.getEndereco().getLongitude())) <= 80)
+                user.getEndereco().getLatitude(),
+                user.getEndereco().getLongitude()) <= 80)
             .map(usuarioConverter::toResponse)
             .collect(Collectors.toList());
     }

@@ -1,23 +1,25 @@
 
 M
-java:S3740»"/Provide the parametrized type for this generic.(´ü‰ë8©¦£éŞ1
+java:S3740¿"/Provide the parametrized type for this generic.(´ü‰ë8áœÔ›æ1
 M
-java:S3740é"/Provide the parametrized type for this generic.(´ü‰ë8à°°Ùá1
+java:S3740í"/Provide the parametrized type for this generic.(´ü‰ë8áœÔ›æ1
 M
-java:S3740¡"/Provide the parametrized type for this generic.(´ü‰ë8ŒÿıÅå1
+java:S3740¥"/Provide the parametrized type for this generic.(´ü‰ë8áœÔ›æ1
+M
+java:S3740Ú"/Provide the parametrized type for this generic.(´ü‰ë8øšŒæ1
 |
-java:S1488Ê"^Immediately return this expression instead of assigning it to the temporary variable "result".(”çë8¹ğ˜éŞ1
+java:S1488Î"^Immediately return this expression instead of assigning it to the temporary variable "result".(”çë8âœÔ›æ1
 [
-java:S1854˜"8Remove this useless assignment to local variable "root".(¯ºßÊıÿÿÿÿ8úğ˜éŞ1
+java:S1854œ"8Remove this useless assignment to local variable "root".(¯ºßÊıÿÿÿÿ8×Ô›æ1
 L
-java:S1481˜")Remove this unused "root" local variable.(¯ºßÊıÿÿÿÿ8‹‹à¤â1
+java:S1481œ")Remove this unused "root" local variable.(¯ºßÊıÿÿÿÿ8×Ô›æ1
 u
-java:S3776¥"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(îÍ‚Øøÿÿÿÿ8ó±°Ùá1
+java:S3776©"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(îÍ‚Øøÿÿÿÿ8ØÔ›æ1
 p
-java:S3776Ô"RRefactor this method to reduce its Cognitive Complexity from 24 to the 15 allowed.(È§•á8ø¦™éŞ1
+java:S3776Ø"RRefactor this method to reduce its Cognitive Complexity from 24 to the 15 allowed.(È§•á8ÛÔ›æ1
 p
-java:S3776Œ"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(àÔ¶‰8áşÅå1
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(àÔ¶‰8ŞÔ›æ1
+u
+java:S3776¿"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(çİûÿÿÿÿ8“Œæ1
 
-java:S6201È"\Replace this instanceof check and cast with 'instanceof ParameterizedType parameterizedtype'(åƒ£ğıÿÿÿÿ8ı¦™éŞ1
-Z
-java:S1128"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ8ü¿Ïãå1
+java:S6201­"\Replace this instanceof check and cast with 'instanceof ParameterizedType parameterizedtype'(åƒ£ğıÿÿÿÿ8åÔ›æ1

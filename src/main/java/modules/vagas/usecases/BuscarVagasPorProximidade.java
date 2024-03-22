@@ -1,5 +1,6 @@
 package modules.vagas.usecases;
 
+import core.geolocalizador.CoordenadasGeograficasDTO;
 import core.pesquisa.CondicaoPesquisa;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.RequiredArgsConstructor;
@@ -36,20 +37,15 @@ public class BuscarVagasPorProximidade {
         Usuario usuarioSolicitante = usuarioRepository.findById(idUsuario).orElseThrow(
             UsuarioNotFoundException::new);
 
-        double latitude = Double.parseDouble(usuarioSolicitante.getEndereco().getLatitude());
-        double longitude = Double.parseDouble(usuarioSolicitante.getEndereco().getLongitude());
+        double latitude = usuarioSolicitante.getEndereco().getLatitude();
+        double longitude = usuarioSolicitante.getEndereco().getLongitude();
+
+        CoordenadasGeograficasDTO coordenadasGeograficasDTO = CoordenadasGeograficasDTO.builder().longitude(longitude).latitude(latitude).build();
 
         condicaoPesquisaList.add(new CondicaoPesquisa("status", StatusVaga.ATIVA));
 
-        List<Vagas> allVagas = vagasRepository.findAll(condicaoPesquisaList, "dataCriacao", "DESC", page, size);
+        return vagasRepository.findAllProximidade(condicaoPesquisaList, "dataCriacao", "DESC",coordenadasGeograficasDTO, 120, page, size).stream().map(vagasConverter::toResumidoDTO).collect(Collectors.toList());
 
-        return allVagas.stream()
-            .filter(vagas -> calculateDistance(latitude, longitude,
-                Double.parseDouble(vagas.getEmpresa().getUsuario().getEndereco().getLatitude()),
-                Double.parseDouble(vagas.getEmpresa().getUsuario().getEndereco().getLongitude()))
-                <= 80)
-            .map(vagasConverter::toResumidoDTO)
-            .collect(Collectors.toList());
     }
 
     private double calculateDistance(double lat1, double lon1, double lat2, double lon2) {

@@ -183,3 +183,7 @@ a
 1src/main/java/core/pesquisa/CondicaoPesquisa.java,4\1\41b89f5504345df5b4fbdfadbfa3437baaf1a489
 s
 Csrc/main/java/modules/vagas/usecases/BuscarVagasPorProximidade.java,7\2\724bdb0d9a9a2e853953a8d6aefd45dc75b7ec19
+p
+@src/main/java/core/geolocalizador/GetCoordenadasGeograficas.java,a\a\aa8333e8a6117eedfcd1a67bc98a70a4b6737f2a
+p
+@src/main/java/core/geolocalizador/CoordenadasGeograficasDTO.java,d\9\d917d01118c69f0cc47da5a87acfeee207458dc1

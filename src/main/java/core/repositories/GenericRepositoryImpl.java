@@ -1,6 +1,7 @@
 package core.repositories;
 
 import core.exceptions.ConectaTrabalhoException;
+import core.geolocalizador.CoordenadasGeograficasDTO;
 import core.pesquisa.CondicaoPesquisa;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
@@ -8,6 +9,9 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.criteria.*;
 import jakarta.transaction.Transactional;
 import lombok.Getter;
+import modules.empresa.infra.entities.Empresa;
+import modules.usuarios.infra.entities.Endereco;
+import modules.usuarios.infra.entities.Usuario;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -311,8 +315,105 @@ public class GenericRepositoryImpl<T> implements GenericRepository<T> {
             throw new ConectaTrabalhoException(ex);
         }
     }
+    @Override
+    public List<T> findAllProximidade(List<CondicaoPesquisa> condicaoPesquisaList, String campoOrdenacao, String tipoOrdenacao, CoordenadasGeograficasDTO coordenadas, double distanciaMaxima, int pageNumber, int pageSize) {
+        try {
+            CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+            CriteriaQuery<T> query = criteriaBuilder.createQuery(entityClass);
+            Root<T> root = query.from(entityClass);
 
+            // Navegação para acessar latitude e longitude da tabela de endereço
+            Join<T, Empresa> empresaJoin = root.join("empresa", JoinType.INNER);
+            Join<Empresa, Usuario> usuarioJoin = empresaJoin.join("usuario", JoinType.INNER);
+            Join<Usuario, Endereco> enderecoJoin = usuarioJoin.join("endereco", JoinType.INNER);
 
+            List<Predicate> predicateList = new ArrayList<>();
+
+            // Adiciona outras condições de pesquisa, se houver
+            if (condicaoPesquisaList != null && !condicaoPesquisaList.isEmpty()) {
+                for (CondicaoPesquisa condicao : condicaoPesquisaList) {
+                    String chave = condicao.getChave();
+                    String[] partesChave = chave.split("\\.");
+
+                    Path<?> path = root;
+
+                    for (String parteChave : partesChave) {
+                        path = path.get(parteChave);
+                    }
+
+                    Object valor = condicao.getValor();
+                    if (path.getJavaType().isEnum()) {
+                        Enum<?> enumValue = Enum.valueOf((Class<Enum>) path.getJavaType(), valor.toString());
+                        predicateList.add(criteriaBuilder.equal(path, enumValue));
+                    } else {
+                        if (valor instanceof String) {
+                            predicateList.add(criteriaBuilder.like(criteriaBuilder.lower((Path<String>) path), "%" + valor.toString().toLowerCase() + "%"));
+                        } else {
+                            predicateList.add(criteriaBuilder.equal(path, valor));
+                        }
+                    }
+                }
+            }
+
+            // Adiciona condições para calcular a distância
+            if (coordenadas.getLatitude() != 0.0 && coordenadas.getLongitude() != 0.0 && distanciaMaxima > 0) {
+                final double RAIO_TERRA = 6371.0; // Raio médio da Terra em quilômetros
+
+                // Conversão de graus para radianos
+                double grausParaRadianos = Math.PI / 180.0;
+                double latitudeOrigemRad = coordenadas.getLatitude() * grausParaRadianos;
+                double longitudeOrigemRad = coordenadas.getLongitude() * grausParaRadianos;
+
+                // Distância máxima convertida para radianos
+                double distanciaMaximaRad = distanciaMaxima / RAIO_TERRA;
+
+                // Cálculo das latitudes mínima e máxima
+                double latitudeMinRad = latitudeOrigemRad - distanciaMaximaRad;
+                double latitudeMaxRad = latitudeOrigemRad + distanciaMaximaRad;
+
+                // Cálculo da variação de longitude para a latitude de origem
+                double deltaLongitudeOrigem = Math.asin(Math.sin(distanciaMaximaRad) / Math.cos(latitudeOrigemRad));
+
+                // Cálculo das longitudes mínima e máxima
+                double longitudeMinRad = longitudeOrigemRad - deltaLongitudeOrigem;
+                double longitudeMaxRad = longitudeOrigemRad + deltaLongitudeOrigem;
+
+                // Conversão de radianos para graus
+                double latitudeMin = latitudeMinRad / grausParaRadianos;
+                double latitudeMax = latitudeMaxRad / grausParaRadianos;
+                double longitudeMin = longitudeMinRad / grausParaRadianos;
+                double longitudeMax = longitudeMaxRad / grausParaRadianos;
+
+                // Adiciona as condições para latitude e longitude
+                predicateList.add(criteriaBuilder.between(enderecoJoin.get("latitude"), latitudeMin, latitudeMax));
+                predicateList.add(criteriaBuilder.between(enderecoJoin.get("longitude"), longitudeMin, longitudeMax));
+            }
+
+            Predicate finalPredicate = criteriaBuilder.and(predicateList.toArray(new Predicate[0]));
+            query.where(finalPredicate);
+
+            // Adiciona ordenação, se especificada
+            if (campoOrdenacao != null && !campoOrdenacao.isEmpty()) {
+                if (tipoOrdenacao != null && tipoOrdenacao.equalsIgnoreCase("ASC")) {
+                    query.orderBy(criteriaBuilder.asc(root.get(campoOrdenacao)));
+                } else {
+                    query.orderBy(criteriaBuilder.desc(root.get(campoOrdenacao)));
+                }
+            }
+
+            // Executa a consulta paginada
+            return entityManager.createQuery(query)
+                    .setFirstResult((pageNumber - 1) * pageSize)
+                    .setMaxResults(pageSize)
+                    .getResultList();
+        } catch (NoResultException ex) {
+            // Se nenhum resultado for encontrado, retorna uma lista vazia
+            return Collections.emptyList();
+        } catch (Exception ex) {
+            // Se ocorrer uma exceção, lança uma exceção personalizada
+            throw new ConectaTrabalhoException(ex);
+        }
+    }
 
     @Override
     public T update(final T entity) {

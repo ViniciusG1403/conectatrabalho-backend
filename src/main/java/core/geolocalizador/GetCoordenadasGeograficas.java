@@ -22,7 +22,7 @@ public class GetCoordenadasGeograficas {
 
         JOpenCageResponse response = jOpenCageGeocoder.forward(request);
         JOpenCageLatLng firstResultLatLng = response.getFirstPosition();
-        return CoordenadasGeograficasDTO.builder().latitude(firstResultLatLng.getLat().toString()).longitude(firstResultLatLng.getLng().toString()).build();
+        return CoordenadasGeograficasDTO.builder().latitude(firstResultLatLng.getLat()).longitude(firstResultLatLng.getLng()).build();
     }
 
 }

@@ -13,8 +13,8 @@ import lombok.Setter;
 @Builder
 public class CoordenadasGeograficasDTO {
 
-    private String latitude;
+    private Double latitude;
 
-    private String longitude;
+    private Double longitude;
 
 }

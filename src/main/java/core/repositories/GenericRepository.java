@@ -1,5 +1,6 @@
 package core.repositories;
 
+import core.geolocalizador.CoordenadasGeograficasDTO;
 import core.pesquisa.CondicaoPesquisa;
 
 import java.util.List;
@@ -27,7 +28,11 @@ public interface GenericRepository<T> {
     List<T> findAll(final List<CondicaoPesquisa> condicaoPesquisaList);
 
     List<T> findAll(final List<CondicaoPesquisa> condicaoPesquisaList, int pageNumber, int pageSize);
+
     List<T> findAll(List<CondicaoPesquisa> condicaoPesquisaList, String campoOrdenacao, String tipoOrdenacao, int pageNumber, int pageSize);
+
+    List<T> findAllProximidade(List<CondicaoPesquisa> condicaoPesquisaList, String campoOrdenacao, String tipoOrdenacao, CoordenadasGeograficasDTO coordenadas, double distanciaMaxima, int pageNumber, int pageSize);
+
 
     T update(T object);
 
