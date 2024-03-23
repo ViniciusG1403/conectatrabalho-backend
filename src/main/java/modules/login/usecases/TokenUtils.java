@@ -29,6 +29,7 @@ public class TokenUtils {
 
         Set<String> groups = new HashSet<>();
         groups.add(roles);
+        groups.add("refreshToken: " + generateRefreshToken(uidUser));
 
         claimsBuilder.issuer(issuer);
         claimsBuilder.preferredUserName(username);
@@ -74,5 +75,19 @@ public class TokenUtils {
         long currentTimeMS = System.currentTimeMillis();
         return (int) (currentTimeMS / 1000);
     }
+
+    public static String generateRefreshToken(String uidUser) throws Exception {
+        String privateKeyLocation = "/privateKey.pem";
+        PrivateKey privateKey = readPrivateKey(privateKeyLocation);
+
+        JwtClaimsBuilder claimsBuilder = Jwt.claims();
+        long currentTimeInSecs = currentTimeInSecs();
+
+        claimsBuilder.audience(uidUser);
+        claimsBuilder.issuedAt(currentTimeInSecs);
+
+        return claimsBuilder.jws().signatureKeyId(privateKeyLocation).sign(privateKey);
+    }
+
 
 }

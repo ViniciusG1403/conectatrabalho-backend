@@ -5,15 +5,13 @@ import core.emailservice.SendEmailService;
 import core.encoder.PBKDF2Encoder;
 import jakarta.annotation.security.PermitAll;
 import jakarta.transaction.Transactional;
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import lombok.RequiredArgsConstructor;
 import modules.login.dtos.AuthRequest;
 import modules.login.dtos.AuthResponse;
+import modules.login.usecases.AtualizarToken;
 import modules.login.usecases.TokenUtils;
 import modules.usuarios.converters.UsuarioConverter;
 import modules.usuarios.enumerations.StatusUsuario;
@@ -27,6 +25,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 
 import java.util.Objects;
+import java.util.UUID;
 
 /**
  * @author Vinicius Gabriel <vinicius.prado@nexuscloud.com.br>
@@ -46,6 +45,8 @@ public class AuthResource {
     private final UsuarioConverter usuarioConverter;
 
     private final UsuarioRepository usuarioRepository;
+
+    private final AtualizarToken atualizarToken;
 
     @ConfigProperty(name = "com.ard333.quarkusjwt.jwt.duration")
     public Long duration;
@@ -90,11 +91,26 @@ public class AuthResource {
                     TokenUtils.generateToken(usuario.getNome(), usuario.getEmail(),
                         usuario.getRole(),
                         duration, issuer, usuario.getId().toString()))).build();
-
             } catch (Exception e) {
                 return Response.status(Response.Status.UNAUTHORIZED).build();
             }
         } else {
+            return Response.status(Response.Status.UNAUTHORIZED).build();
+        }
+    }
+
+    @POST
+    @PermitAll
+    @Transactional
+    @Path("/{id}/refresh")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Operation(summary = "Refresh Token", description = "Atualiza o token do usuário")
+    @APIResponse(responseCode = "200", description = "Token atualizado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = AuthRequest.class)))
+    public Response refresh(@PathParam("id") String id) {
+        try {
+            return atualizarToken.execute(UUID.fromString(id));
+        } catch (Exception e) {
             return Response.status(Response.Status.UNAUTHORIZED).build();
         }
     }
