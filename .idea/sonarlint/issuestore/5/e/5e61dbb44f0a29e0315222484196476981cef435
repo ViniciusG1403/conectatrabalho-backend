@@ -23,3 +23,5 @@ u
 java:S3776¿"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(çİûÿÿÿÿ8“Œæ1
 
 java:S6201­"\Replace this instanceof check and cast with 'instanceof ParameterizedType parameterizedtype'(åƒ£ğıÿÿÿÿ8åÔ›æ1
+Z
+java:S1128"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ8òùó¶æ1

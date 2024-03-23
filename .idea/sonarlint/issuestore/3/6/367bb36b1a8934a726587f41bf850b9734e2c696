@@ -1,0 +1,14 @@
+
+b	java:S1125"FDefine and throw a dedicated exception instead of using a generic one.(®ÉŞá8Ğñ’åæ1
+\
+java:S1118":Add a private constructor to hide the implicit public one.(ñÕŸÂüÿÿÿÿ8Ú×’·æ1
+X
+java:S1874*"6Remove this use of "signatureKeyId"; it is deprecated.(Ü¡¢¯şÿÿÿÿ8âñ’åæ1
+[
+java:S47191"9Replace charset name argument with StandardCharsets.UTF_8(êşüÿÿÿÿ8åñ’åæ1
+e
+java:S5361E"HReplace this call to "replaceAll()" by a call to the "replace()" method.(ç¿¸·8èñ’åæ1
+j
+java:S5361F"HReplace this call to "replaceAll()" by a call to the "replace()" method.(”©½Æøÿÿÿÿ8éñ’åæ1
+X
+java:S1874Y"6Remove this use of "signatureKeyId"; it is deprecated.(Ü¡¢¯şÿÿÿÿ8êñ’åæ1

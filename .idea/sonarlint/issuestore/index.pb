@@ -187,3 +187,9 @@ p
 @src/main/java/core/geolocalizador/GetCoordenadasGeograficas.java,a\a\aa8333e8a6117eedfcd1a67bc98a70a4b6737f2a
 p
 @src/main/java/core/geolocalizador/CoordenadasGeograficasDTO.java,d\9\d917d01118c69f0cc47da5a87acfeee207458dc1
+d
+4src/main/java/modules/login/usecases/TokenUtils.java,3\6\367bb36b1a8934a726587f41bf850b9734e2c696
+h
+8src/main/java/modules/login/usecases/AtualizarToken.java,c\6\c6fbc3331fd4c9ac7c89285c3be860f64c1586d0
+g
+7src/main/java/modules/login/usecases/ValidateToken.java,8\5\8542af61a648d094c4870c28fbc4e14cb23c2438

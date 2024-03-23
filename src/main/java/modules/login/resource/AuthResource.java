@@ -115,4 +115,11 @@ public class AuthResource {
         }
     }
 
+    @GET
+    @PermitAll
+    @Path("/validate")
+    public Response refresh() {
+        return Response.ok().build();
+    }
+
 }
