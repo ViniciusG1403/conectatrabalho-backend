@@ -86,6 +86,7 @@ public class BuscarPerfilPeloUsuario {
             .id(empresa.getId())
             .nome(usuario.getNome())
             .email(usuario.getEmail())
+                .tipoUsuario(TipoUsuario.EMPRESA.ordinal())
             .fotoPerfil(imagem).build();
     }
 
@@ -102,6 +103,7 @@ public class BuscarPerfilPeloUsuario {
             .id(candidato.getId())
             .nome(usuario.getNome())
             .email(usuario.getEmail())
+                .tipoUsuario(TipoUsuario.CANDIDATO.ordinal())
             .fotoPerfil(imagem).build();
     }
 

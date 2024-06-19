@@ -46,9 +46,9 @@ public class ProcessarESalvarImageService {
             ImageIO.write(resizedImage, "png", os);
             byte[] buffer = os.toByteArray();
 
-            S3Client s3 = S3Client.builder().region(Region.SA_EAST_1).build();
+            S3Client s3 = S3Client.builder().region(Region.US_EAST_1).build();
 
-            String bucketName = "imagensperfil-conectatrabalho";
+            String bucketName = "conecta-trabalho";
             String key = id + "imagemperfil.png";
             PutObjectRequest putObjectRequest = PutObjectRequest.builder().bucket(bucketName).key(key).build();
             s3.putObject(putObjectRequest, RequestBody.fromBytes(buffer));

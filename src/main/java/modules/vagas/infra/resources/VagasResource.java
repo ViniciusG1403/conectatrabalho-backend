@@ -108,4 +108,12 @@ public class VagasResource {
         final List<CondicaoPesquisa> condicaoPesquisaList = prepararFiltros.execute(search);
         return Response.status(Response.Status.OK).entity(vagasService.buscarVagasPorProximidade(uuid, condicaoPesquisaList, page, size, distanciaMaxima)).build();
     }
+
+    @GET
+    @RolesAllowed({"USER_ROLE", "ADMIN_ROLE"})
+    @Path("/{idVaga}/{idUsuario}/verifica-duplicidade-aplicacao")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response verificarSeUsuarioJaAplicou(@PathParam("idVaga") final String idVaga, @PathParam("idUsuario") final String idUsuario){
+        return Response.status(Response.Status.OK).entity(vagasService.verificarSeUsuarioJaAplicou(idVaga, idUsuario)).build();
+    }
 }

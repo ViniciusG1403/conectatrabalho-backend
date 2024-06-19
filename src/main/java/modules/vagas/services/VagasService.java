@@ -5,6 +5,7 @@ import core.validates.Validators;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import modules.aplicacoes.usecases.VerificarDuplicidadeAplicacao;
 import modules.vagas.dtos.FinalizarPausarVagaDTO;
 import modules.vagas.dtos.VagasCadastroDTO;
 import modules.vagas.dtos.VagasDTO;
@@ -38,6 +39,8 @@ public class VagasService extends Validators {
     private final PausarVaga pausarVaga;
 
     private final BuscarVagasPorProximidade buscarVagasPorProximidade;
+
+    private final VerificarDuplicidadeAplicacao verificarDuplicidadeAplicacao;
 
 
     public VagasResumidoDTO criarVaga(VagasCadastroDTO dto){
@@ -85,6 +88,10 @@ public class VagasService extends Validators {
 
     public List<VagasResumidoDTO> buscarVagasPorProximidade(String idUsuario, List<CondicaoPesquisa> condicaoPesquisaList, int page, int size, int distanciaMaxima){
         return buscarVagasPorProximidade.execute(UUID.fromString(idUsuario), condicaoPesquisaList, page, size, distanciaMaxima);
+    }
+
+    public boolean verificarSeUsuarioJaAplicou(String idVaga, String idUsuario){
+        return verificarDuplicidadeAplicacao.execute(UUID.fromString(idVaga), UUID.fromString(idUsuario));
     }
 
 

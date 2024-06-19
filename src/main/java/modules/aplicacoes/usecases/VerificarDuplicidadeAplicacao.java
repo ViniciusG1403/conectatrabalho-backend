@@ -22,8 +22,8 @@ public class VerificarDuplicidadeAplicacao {
 
     public boolean execute(UUID idVaga, UUID idCandidato){
         List<CondicaoPesquisa> condicaoPesquisaList = new ArrayList<>();
-        condicaoPesquisaList.add(new CondicaoPesquisa("idVaga", idVaga));
-        condicaoPesquisaList.add(new CondicaoPesquisa("idCandidato", idCandidato));
+        condicaoPesquisaList.add(new CondicaoPesquisa("vaga.id", idVaga));
+        condicaoPesquisaList.add(new CondicaoPesquisa("candidato.id", idCandidato));
 
         return !aplicacaoRepository.findAll(condicaoPesquisaList).isEmpty();
 

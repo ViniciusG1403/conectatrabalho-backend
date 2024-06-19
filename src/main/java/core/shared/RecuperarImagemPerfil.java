@@ -25,17 +25,17 @@ import java.time.Duration;
 @ApplicationScoped
 @Unremovable
 public class RecuperarImagemPerfil {
-    private final String bucketName = "imagensperfil-conectatrabalho";
+    private final String bucketName = "conecta-trabalho";
 
     public InputStream execute(String id) {
         S3Client s3Client = S3Client.builder()
-            .region(Region.SA_EAST_1)
+            .region(Region.US_EAST_1)
             .credentialsProvider(EnvironmentVariableCredentialsProvider.create())
             .build();
 
         GetObjectRequest getObjectRequest = GetObjectRequest.builder()
             .bucket(bucketName)
-            .key(id + "imagemperfil.jpg")
+            .key(id + "imagemperfil.png")
             .build();
 
         try {
@@ -51,7 +51,7 @@ public class RecuperarImagemPerfil {
 
     public String buscarUrl(String id) {
         S3Client s3Client = S3Client.builder()
-                .region(Region.SA_EAST_1)
+                .region(Region.US_EAST_1)
                 .credentialsProvider(EnvironmentVariableCredentialsProvider.create())
                 .build();
 

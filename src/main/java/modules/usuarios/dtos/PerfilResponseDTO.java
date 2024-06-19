@@ -28,4 +28,6 @@ public class PerfilResponseDTO {
 
     List<UsuarioResponseDTO> usuarios;
 
+    private Integer tipoUsuario;
+
 }
