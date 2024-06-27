@@ -8,7 +8,7 @@ package modules.aplicacoes.enumerations;
 public enum StatusAplicacao {
 
 
-    PENDENTE, APROVADO, REPROVADO;
+    PENDENTE, APROVADO, REPROVADO, CANCELADO;
     public static StatusAplicacao valueOf(Integer value) {
         return value == null ? null : values()[value];
     }

@@ -16,6 +16,7 @@ import modules.usuarios.infra.entities.Usuario;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.*;
+import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
 /**
@@ -109,7 +110,6 @@ public class GenericRepositoryImpl<T> implements GenericRepository<T> {
     }
 
 
-
     @Override
     public Optional<T> findOne(final List<CondicaoPesquisa> condicaoPesquisaList) {
         try {
@@ -119,22 +119,55 @@ public class GenericRepositoryImpl<T> implements GenericRepository<T> {
 
             List<Predicate> predicateList = new ArrayList<>();
 
+            Map<String, BiFunction<Path<?>, Object, Predicate>> operationMap = new HashMap<>();
+            operationMap.put("=", (path, value) -> criteriaBuilder.equal(path, value));
+            operationMap.put("!=", (path, value) -> criteriaBuilder.notEqual(path, value));
+            operationMap.put("<", (path, value) -> criteriaBuilder.lessThan((Path<Comparable>) path, (Comparable) value));
+            operationMap.put("<=", (path, value) -> criteriaBuilder.lessThanOrEqualTo((Path<Comparable>) path, (Comparable) value));
+            operationMap.put(">", (path, value) -> criteriaBuilder.greaterThan((Path<Comparable>) path, (Comparable) value));
+            operationMap.put(">=", (path, value) -> criteriaBuilder.greaterThanOrEqualTo((Path<Comparable>) path, (Comparable) value));
+            operationMap.put("like", (path, value) -> criteriaBuilder.like(criteriaBuilder.lower((Path<String>) path), "%" + value.toString().toLowerCase() + "%"));
+
             for (CondicaoPesquisa condicao : condicaoPesquisaList) {
                 String fieldPath = condicao.getChave();
+                String operacao = condicao.getOperacao() != null ? condicao.getOperacao() : "=";
+                Object valor = condicao.getValor();
                 String[] fields = fieldPath.split("\\.");
 
-                Path<Object> path = root.get(fields[0]);
+                Path<?> path = root.get(fields[0]);
                 for (int i = 1; i < fields.length; i++) {
                     path = path.get(fields[i]);
                 }
 
-                Predicate predicate = criteriaBuilder.equal(path, condicao.getValor());
-                predicateList.add(predicate);
+                if (path.getJavaType().isEnum()) {
+                    Enum<?> enumValue = Enum.valueOf((Class<Enum>) path.getJavaType(), valor.toString());
+                    if ("=".equals(operacao)) {
+                        predicateList.add(criteriaBuilder.equal(path, enumValue));
+                    } else if ("!=".equals(operacao)) {
+                        predicateList.add(criteriaBuilder.notEqual(path, enumValue));
+                    } else {
+                        throw new IllegalArgumentException("Operação desconhecida para enum: " + operacao);
+                    }
+                } else if (path.getJavaType() == String.class) {
+                    if ("=".equals(operacao)) {
+                        predicateList.add(criteriaBuilder.like(criteriaBuilder.lower((Path<String>) path), "%" + valor.toString().toLowerCase() + "%"));
+                    } else if ("!=".equals(operacao)) {
+                        predicateList.add(criteriaBuilder.notLike(criteriaBuilder.lower((Path<String>) path), "%" + valor.toString().toLowerCase() + "%"));
+                    } else {
+                        throw new IllegalArgumentException("Operação desconhecida para String: " + operacao);
+                    }
+                } else {
+                    BiFunction<Path<?>, Object, Predicate> operation = operationMap.get(operacao);
+                    if (operation != null) {
+                        predicateList.add(operation.apply(path, valor));
+                    } else {
+                        throw new IllegalArgumentException("Operação desconhecida: " + operacao);
+                    }
+                }
             }
 
             Predicate[] predicates = predicateList.toArray(new Predicate[0]);
             Predicate finalPredicate = criteriaBuilder.and(predicates);
-
             query.where(finalPredicate);
 
             final T result = entityManager.createQuery(query).setMaxResults(1).getSingleResult();
@@ -172,29 +205,52 @@ public class GenericRepositoryImpl<T> implements GenericRepository<T> {
             CriteriaQuery<T> query = criteriaBuilder.createQuery(entityClass);
             Root<T> root = query.from(entityClass);
 
-
             if (condicaoPesquisaList != null && !condicaoPesquisaList.isEmpty()) {
                 List<Predicate> predicateList = new ArrayList<>();
 
+                Map<String, BiFunction<Path<?>, Object, Predicate>> operationMap = new HashMap<>();
+                operationMap.put("=", (path, value) -> criteriaBuilder.equal(path, value));
+                operationMap.put("!=", (path, value) -> criteriaBuilder.notEqual(path, value));
+                operationMap.put("<", (path, value) -> criteriaBuilder.lessThan((Path<Comparable>) path, (Comparable) value));
+                operationMap.put("<=", (path, value) -> criteriaBuilder.lessThanOrEqualTo((Path<Comparable>) path, (Comparable) value));
+                operationMap.put(">", (path, value) -> criteriaBuilder.greaterThan((Path<Comparable>) path, (Comparable) value));
+                operationMap.put(">=", (path, value) -> criteriaBuilder.greaterThanOrEqualTo((Path<Comparable>) path, (Comparable) value));
+                operationMap.put("like", (path, value) -> criteriaBuilder.like(criteriaBuilder.lower((Path<String>) path), "%" + value.toString().toLowerCase() + "%"));
+
                 for (CondicaoPesquisa condicao : condicaoPesquisaList) {
                     String chave = condicao.getChave();
+                    String operacao = condicao.getOperacao() != null ? condicao.getOperacao() : "=";
+                    Object valor = condicao.getValor();
                     String[] partesChave = chave.split("\\.");
 
                     Path<?> path = root;
-
                     for (String parteChave : partesChave) {
                         path = path.get(parteChave);
                     }
 
-                    Object valor = condicao.getValor();
                     if (path.getJavaType().isEnum()) {
                         Enum<?> enumValue = Enum.valueOf((Class<Enum>) path.getJavaType(), valor.toString());
-                        predicateList.add(criteriaBuilder.equal(path, enumValue));
-                    } else {
-                        if (valor instanceof String) {
-                            predicateList.add(criteriaBuilder.like(criteriaBuilder.lower((Path<String>) path), "%" + valor.toString().toLowerCase() + "%"));
+                        if ("=".equals(operacao)) {
+                            predicateList.add(criteriaBuilder.equal(path, enumValue));
+                        } else if ("!=".equals(operacao)) {
+                            predicateList.add(criteriaBuilder.notEqual(path, enumValue));
                         } else {
-                            predicateList.add(criteriaBuilder.equal(path, valor));
+                            throw new IllegalArgumentException("Operação desconhecida para enum: " + operacao);
+                        }
+                    } else if (valor instanceof String) {
+                        if ("=".equals(operacao)) {
+                            predicateList.add(criteriaBuilder.like(criteriaBuilder.lower((Path<String>) path), "%" + valor.toString().toLowerCase() + "%"));
+                        } else if ("!=".equals(operacao)) {
+                            predicateList.add(criteriaBuilder.notLike(criteriaBuilder.lower((Path<String>) path), "%" + valor.toString().toLowerCase() + "%"));
+                        } else {
+                            throw new IllegalArgumentException("Operação desconhecida para String: " + operacao);
+                        }
+                    } else {
+                        BiFunction<Path<?>, Object, Predicate> operation = operationMap.get(operacao);
+                        if (operation != null) {
+                            predicateList.add(operation.apply(path, valor));
+                        } else {
+                            throw new IllegalArgumentException("Operação desconhecida: " + operacao);
                         }
                     }
                 }
@@ -203,14 +259,14 @@ public class GenericRepositoryImpl<T> implements GenericRepository<T> {
                 query.where(finalPredicate);
             }
 
-            final List<T> result = entityManager.createQuery(query).getResultList();
-            return result;
+            return entityManager.createQuery(query).getResultList();
         } catch (NoResultException ex) {
             return Collections.emptyList();
         } catch (Exception ex) {
             throw new ConectaTrabalhoException(ex);
         }
     }
+
 
     @Override
     public List<T> findAll(List<CondicaoPesquisa> condicaoPesquisaList, String campoOrdenacao, String tipoOrdenacao, int pageNumber, int pageSize) {

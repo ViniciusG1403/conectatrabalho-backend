@@ -34,8 +34,14 @@ public class AplicacaoService {
 
     private final BuscarTodasAplicacoesVaga buscarTodasAplicacoesVaga;
 
+    private final CancelarAplicacao cancelarAplicacao;
+
     public void aplicarParaVaga(AplicacaoCadastroDTO dto) {
         aplicarParaVaga.execute(dto);
+    }
+
+    public void cancelarAplicacao(AplicacaoCadastroDTO dto) {
+        cancelarAplicacao.execute(dto);
     }
 
     public void aprovarCandidato(UUID idAplicacao) {
