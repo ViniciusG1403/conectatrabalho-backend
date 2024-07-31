@@ -60,6 +60,7 @@ public class EmpresaConverter {
 
     public EmpresaResumidoDTO toResumido(Empresa entity) {
         EmpresaResumidoDTO resumidoDTO = new EmpresaResumidoDTO();
+        resumidoDTO.setId(entity.getId().toString());
         resumidoDTO.setNome(entity.getUsuario().getNome());
         resumidoDTO.setDescricao(entity.getDescricao());
         resumidoDTO.setSetor(entity.getSetor());

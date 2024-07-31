@@ -116,4 +116,12 @@ public class VagasResource {
     public Response verificarSeUsuarioJaAplicou(@PathParam("idVaga") final String idVaga, @PathParam("idUsuario") final String idUsuario){
         return Response.status(Response.Status.OK).entity(vagasService.verificarSeUsuarioJaAplicou(idVaga, idUsuario)).build();
     }
+
+    @GET
+    @RolesAllowed({"USER_ROLE", "ADMIN_ROLE"})
+    @Path("/empresa/{idEmpresa}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response buscarVagaPorEmpresa(@PathParam("idEmpresa") final String idEmpresa){
+        return Response.status(Response.Status.OK).entity(vagasService.buscarVagaPorEmpresa(idEmpresa)).build();
+    }
 }

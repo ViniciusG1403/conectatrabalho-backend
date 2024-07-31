@@ -96,6 +96,7 @@ C:\Users\vinig\Documents\TCC\Desenvolvimento\conectatrabalhotcc\src\main\java\mo
 C:\Users\vinig\Documents\TCC\Desenvolvimento\conectatrabalhotcc\src\main\java\modules\vagas\usecases\PausarVaga.java
 C:\Users\vinig\Documents\TCC\Desenvolvimento\conectatrabalhotcc\src\main\java\core\emailservice\MessageOperation.java
 C:\Users\vinig\Documents\TCC\Desenvolvimento\conectatrabalhotcc\src\main\java\modules\usuarios\converters\EnderecoConverter.java
+C:\Users\vinig\Documents\TCC\Desenvolvimento\conectatrabalhotcc\src\main\java\modules\vagas\usecases\BuscarVagaPorEmpresa.java
 C:\Users\vinig\Documents\TCC\Desenvolvimento\conectatrabalhotcc\src\main\java\modules\candidatos\dtos\CandidatoResponseCadastroDTO.java
 C:\Users\vinig\Documents\TCC\Desenvolvimento\conectatrabalhotcc\src\main\java\modules\usuarios\dtos\ReenviarCodigoAtivacaoDTO.java
 C:\Users\vinig\Documents\TCC\Desenvolvimento\conectatrabalhotcc\src\main\java\core\repositories\GenericRepository.java
@@ -133,5 +134,6 @@ C:\Users\vinig\Documents\TCC\Desenvolvimento\conectatrabalhotcc\src\main\java\mo
 C:\Users\vinig\Documents\TCC\Desenvolvimento\conectatrabalhotcc\src\main\java\modules\usuarios\repositories\UsuarioRepository.java
 C:\Users\vinig\Documents\TCC\Desenvolvimento\conectatrabalhotcc\src\main\java\modules\usuarios\usecases\BuscarTodosUsuarioProximidade.java
 C:\Users\vinig\Documents\TCC\Desenvolvimento\conectatrabalhotcc\src\main\java\core\exceptions\ConectaTrabalhoException.java
+C:\Users\vinig\Documents\TCC\Desenvolvimento\conectatrabalhotcc\src\main\java\modules\aplicacoes\usecases\BuscarAplicacaoPorId.java
 C:\Users\vinig\Documents\TCC\Desenvolvimento\conectatrabalhotcc\src\main\java\modules\usuarios\usecases\AtivarUsuario.java
 C:\Users\vinig\Documents\TCC\Desenvolvimento\conectatrabalhotcc\src\main\java\modules\usuarios\services\UsuarioService.java

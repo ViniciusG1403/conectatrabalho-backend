@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.util.UUID;
 
 /**
  * @author Vinicius Gabriel <vinicius.prado@nexuscloud.com.br>
@@ -15,6 +16,8 @@ import java.sql.Timestamp;
 @Setter
 @RequiredArgsConstructor
 public class AplicacaoResponseDTO {
+
+    private String id;
 
     private String descricaoVaga;
 

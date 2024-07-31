@@ -48,4 +48,6 @@ public class Aplicacao {
     @Column(name = "status")
     private StatusAplicacao status;
 
+
+
 }

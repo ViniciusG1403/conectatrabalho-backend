@@ -50,6 +50,7 @@ modules\empresa\usecases\CriarEmpresa.class
 modules\aplicacoes\exceptions\AplicacaoNaoEncontradaExceptions.class
 modules\aplicacoes\services\AplicacaoService.class
 core\exceptions\InvalidFormatEmailException.class
+modules\vagas\usecases\BuscarVagaPorEmpresa.class
 modules\aplicacoes\usecases\CancelarAplicacao.class
 modules\usuarios\usecases\UsuarioTemPerfilCadastrado.class
 core\exceptions\ConectaTrabalhoException.class
@@ -85,6 +86,7 @@ modules\empresa\dtos\EmpresaRegisterDTO.class
 modules\usuarios\usecases\BuscarTodosOsUsuariosAtivos.class
 modules\candidatos\exceptions\CandidatoNaoEncontradoException.class
 modules\vagas\dtos\VagasResumidoDTO.class
+modules\aplicacoes\usecases\BuscarAplicacaoPorId.class
 modules\vagas\services\VagasService.class
 modules\usuarios\dtos\ReenviarCodigoAtivacaoDTO.class
 modules\empresa\dtos\EmpresaResumidoDTO.class

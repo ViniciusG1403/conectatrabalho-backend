@@ -42,6 +42,8 @@ public class VagasService extends Validators {
 
     private final VerificarDuplicidadeAplicacao verificarDuplicidadeAplicacao;
 
+    private final BuscarVagaPorEmpresa buscarVagaPorEmpresa;
+
 
     public VagasResumidoDTO criarVaga(VagasCadastroDTO dto){
         NonNullValidate(dto.getIdEmpresa(), "Empresa");
@@ -84,6 +86,10 @@ public class VagasService extends Validators {
         NonNullValidate(dto.getIdVaga(), "Vaga");
         NonNullValidate(dto.getIdEmpresa(), "Empresa");
         pausarVaga.execute(dto);
+    }
+
+    public List<VagasResumidoDTO> buscarVagaPorEmpresa(String idEmpresa){
+        return buscarVagaPorEmpresa.execute(UUID.fromString(idEmpresa));
     }
 
     public List<VagasResumidoDTO> buscarVagasPorProximidade(String idUsuario, List<CondicaoPesquisa> condicaoPesquisaList, int page, int size, int distanciaMaxima){

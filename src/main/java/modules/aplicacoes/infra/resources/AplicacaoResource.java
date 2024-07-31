@@ -97,4 +97,15 @@ public class AplicacaoResource {
                 .build();
     }
 
+
+    @GET
+    @Path("/{id}")
+    @RolesAllowed({"USER_ROLE", "ADMIN_ROLE"})
+    @APIResponse(responseCode = "200", description = "Aplicações da empresa")
+    @Operation(summary = "Aplicações da empresa", description = "Retorna todas as aplicações da empresa")
+    public Response buscarAplicacaoId(@PathParam("id") String idAplicacao) {
+        return Response.status(Response.Status.OK)
+                .entity(aplicacaoService.findById(idAplicacao))
+                .build();
+    }
 }

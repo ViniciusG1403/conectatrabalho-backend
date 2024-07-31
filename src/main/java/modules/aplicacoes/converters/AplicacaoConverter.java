@@ -50,6 +50,7 @@ public class AplicacaoConverter {
 
     public AplicacaoResponseDTO toRespondeDTO(Aplicacao orm){
         AplicacaoResponseDTO dto = new AplicacaoResponseDTO();
+        dto.setId(orm.getId().toString());
         dto.setDescricaoVaga(orm.getVaga().getDescricao());
         dto.setDataAplicacao(orm.getDataAplicacao());
         dto.setNomeEmpresa(orm.getVaga().getEmpresa().getUsuario().getNome());
