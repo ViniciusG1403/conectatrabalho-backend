@@ -75,11 +75,12 @@ public class CriarOuAtualizarUsuario extends Validators {
             usuario.setSenha(encoder.encode(dto.getSenha()));
             usuario.setRegistro(new Timestamp(System.currentTimeMillis()));
             usuario.setCodigo(generateRandomCode.execute());
+            usuario.setStatus(StatusUsuario.ATIVO);
             buscarCoordenadas(usuario.getEndereco());
 
             Usuario usuarioSalvo = usuarioRepository.save(usuario);
 
-            sendEmailService.sendMail(converter.toDTO(usuarioSalvo), "Ativação de conta", MessageOperation.ATIVACAO);
+//            sendEmailService.sendMail(converter.toDTO(usuarioSalvo), "Ativação de conta", MessageOperation.ATIVACAO);
 
             return converter.toResponse(usuarioSalvo);
         }

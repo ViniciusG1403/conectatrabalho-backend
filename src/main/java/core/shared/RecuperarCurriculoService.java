@@ -21,7 +21,7 @@ public class RecuperarCurriculoService {
             .build();
 
         GetObjectRequest getObjectRequest = GetObjectRequest.builder()
-            .bucket("curriculosperfil-conectatrabalho")
+            .bucket("conecta-trabalho")
             .key(id + "-curriculo.pdf")
             .build();
 

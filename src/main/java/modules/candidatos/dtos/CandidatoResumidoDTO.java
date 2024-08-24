@@ -15,6 +15,9 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 @RegisterForReflection
 public class CandidatoResumidoDTO {
 
+    @Schema(name = "id", required = true, title = "Identificador do candidato", example = "123e4567-e89b-12d3-a456-426614174000")
+    private String id;
+
     @Schema(name = "nome", required = true, title = "Nome do candidato", example = "Vinicius Gabriel")
     private String nome;
 

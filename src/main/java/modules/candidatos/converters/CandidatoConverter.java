@@ -69,6 +69,7 @@ public class CandidatoConverter {
 
     public CandidatoResumidoDTO toResumido(Candidato entity){
         CandidatoResumidoDTO resumidoDTO = new CandidatoResumidoDTO();
+        resumidoDTO.setId(entity.getId().toString());
         resumidoDTO.setNome(entity.getUsuario().getNome());
         resumidoDTO.setHabilidades(entity.getHabilidades());
         resumidoDTO.setCidadeEstado(entity.getUsuario().getEndereco().getMunicipio() + "/" + entity.getUsuario().getEndereco().getEstado());

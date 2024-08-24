@@ -74,7 +74,8 @@ public class CandidatoService extends Validators {
     }
 
     public List<CandidatoResumidoDTO> buscarCandidatos(List<CondicaoPesquisa> condicoes, int page, int size) {
-        return buscarCandidatos.execute(condicoes, page, size);
+        List<CandidatoResumidoDTO> execute = buscarCandidatos.execute(condicoes, page, size);
+        return execute;
     }
 
     public CandidatoResumidoDTO buscarCandidatosResumido(String id) {

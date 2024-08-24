@@ -38,6 +38,7 @@ public class CriarVaga {
         vagas.setNivel(dto.getNivel());
         vagas.setStatus(StatusVaga.valueOf(dto.getStatus()));
         vagas.setEmpresa(empresa);
+        vagas.setCargo(dto.getCargo());
         vagas.setDataCriacao(new Timestamp(System.currentTimeMillis()));
 
         vagasRepository.save(vagas);

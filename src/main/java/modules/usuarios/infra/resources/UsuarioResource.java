@@ -1,5 +1,7 @@
 package modules.usuarios.infra.resources;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import core.geolocalizador.GetCoordenadasGeograficas;
 import core.pesquisa.CondicaoPesquisa;
 import core.pesquisa.PrepararFiltros;
@@ -45,9 +47,24 @@ public class UsuarioResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @APIResponse(responseCode = "201", description = "Usuário criado/atualizado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = UsuarioRegistroDTO.class)))
     @Operation(summary = "Criar ou Atualizar", description = "Cria ou atualiza um usuário")
-    public Response criarOuAtualizar(UsuarioRegistroDTO registroDTO){
+    public Response criarOuAtualizar(UsuarioRegistroDTO registroDTO) throws JsonProcessingException {
         UsuarioDTO dto = converter.registroToDTO(registroDTO);
         return Response.status(Response.Status.CREATED).entity(usuarioService.criarOuAtualizar(dto)).build();
+    }
+
+
+    @POST
+    @Path("/batch")
+    @PermitAll
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @APIResponse(responseCode = "201", description = "Usuário criado/atualizado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = UsuarioRegistroDTO.class)))
+    @Operation(summary = "Criar ou Atualizar", description = "Cria ou atualiza um usuário")
+    public Response criarOuAtualizarBatch(List<UsuarioRegistroDTO> registroDTO) {
+        registroDTO.forEach(dto -> {
+            usuarioService.criarOuAtualizar(converter.registroToDTO(dto));
+        });
+        return Response.status(Response.Status.CREATED).build();
     }
 
     @GET
