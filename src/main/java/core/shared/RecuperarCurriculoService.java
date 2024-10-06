@@ -17,7 +17,7 @@ public class RecuperarCurriculoService {
 
     public ResponseInputStream<GetObjectResponse> execute(String id) {
         S3Client s3Client = S3Client.builder()
-            .region(Region.SA_EAST_1)
+            .region(Region.US_EAST_1)
             .build();
 
         GetObjectRequest getObjectRequest = GetObjectRequest.builder()

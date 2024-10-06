@@ -55,6 +55,7 @@ public class AplicacaoConverter {
         dto.setDataAplicacao(orm.getDataAplicacao());
         dto.setNomeEmpresa(orm.getVaga().getEmpresa().getUsuario().getNome());
         dto.setStatusAplicacao(StatusAplicacao.valueOf(orm.getStatus()));
+        dto.setIdCandidato(String.valueOf(orm.getCandidato().getId()));
         dto.setNomeCandidato(orm.getCandidato().getUsuario().getNome());
 
         return dto;

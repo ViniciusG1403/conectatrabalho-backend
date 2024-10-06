@@ -38,6 +38,8 @@ public class VagasService extends Validators {
 
     private final PausarVaga pausarVaga;
 
+    private final AtivarVaga ativarVaga;
+
     private final BuscarVagasPorProximidade buscarVagasPorProximidade;
 
     private final VerificarDuplicidadeAplicacao verificarDuplicidadeAplicacao;
@@ -86,6 +88,13 @@ public class VagasService extends Validators {
         NonNullValidate(dto.getIdVaga(), "Vaga");
         NonNullValidate(dto.getIdEmpresa(), "Empresa");
         pausarVaga.execute(dto);
+    }
+
+
+    public void ativarVaga(FinalizarPausarVagaDTO dto){
+        NonNullValidate(dto.getIdVaga(), "Vaga");
+        NonNullValidate(dto.getIdEmpresa(), "Empresa");
+        ativarVaga.execute(dto);
     }
 
     public List<VagasResumidoDTO> buscarVagaPorEmpresa(String idEmpresa){

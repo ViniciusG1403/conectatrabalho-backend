@@ -19,6 +19,8 @@ public class AplicacaoResponseDTO {
 
     private String id;
 
+    private String idCandidato;
+
     private String descricaoVaga;
 
     private Timestamp dataAplicacao;

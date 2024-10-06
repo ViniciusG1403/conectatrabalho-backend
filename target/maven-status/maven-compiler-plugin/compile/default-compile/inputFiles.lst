@@ -114,6 +114,7 @@ C:\Users\vinig\Documents\TCC\Desenvolvimento\conectatrabalhotcc\src\main\java\co
 C:\Users\vinig\Documents\TCC\Desenvolvimento\conectatrabalhotcc\src\main\java\modules\empresa\usecases\BuscarImagemPerfilEmpresa.java
 C:\Users\vinig\Documents\TCC\Desenvolvimento\conectatrabalhotcc\src\main\java\core\geolocalizador\GetCoordenadasGeograficas.java
 C:\Users\vinig\Documents\TCC\Desenvolvimento\conectatrabalhotcc\src\main\java\modules\vagas\repositories\VagasRepository.java
+C:\Users\vinig\Documents\TCC\Desenvolvimento\conectatrabalhotcc\src\main\java\modules\vagas\usecases\AtivarVaga.java
 C:\Users\vinig\Documents\TCC\Desenvolvimento\conectatrabalhotcc\src\main\java\modules\vagas\infra\repositories\VagasRepositoryImpl.java
 C:\Users\vinig\Documents\TCC\Desenvolvimento\conectatrabalhotcc\src\main\java\modules\aplicacoes\usecases\VerificarDuplicidadeAplicacao.java
 C:\Users\vinig\Documents\TCC\Desenvolvimento\conectatrabalhotcc\src\main\java\modules\empresa\services\EmpresaService.java

@@ -96,6 +96,7 @@ modules\candidatos\usecases\BuscarCandidatoPeloID.class
 modules\empresa\infra\resources\EmpresaResource.class
 modules\vagas\repositories\VagasRepository.class
 modules\empresa\dtos\EmpresaDTO.class
+modules\vagas\usecases\AtivarVaga.class
 core\emailservice\MessageOperation.class
 modules\candidatos\dtos\CandidatoResumidoDTO.class
 modules\login\dtos\AuthRequest.class

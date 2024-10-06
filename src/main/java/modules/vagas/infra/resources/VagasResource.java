@@ -98,6 +98,18 @@ public class VagasResource {
         return Response.status(Response.Status.OK).build();
     }
 
+
+    @PUT
+    @RolesAllowed({ "USER_ROLE", "ADMIN_ROLE" })
+    @Path("/ativar")
+    @Produces(MediaType.APPLICATION_JSON)
+    @APIResponse(responseCode = "200", description = "Vaga pausada com sucesso")
+    @Operation(summary = "Pausar", description = "Pausa uma vaga")
+    public Response ativarVaga(FinalizarPausarVagaDTO dto) {
+        vagasService.ativarVaga(dto);
+        return Response.status(Response.Status.OK).build();
+    }
+
     @GET
     @RolesAllowed({ "USER_ROLE", "ADMIN_ROLE" })
     @Path("/{id}/proximidade")

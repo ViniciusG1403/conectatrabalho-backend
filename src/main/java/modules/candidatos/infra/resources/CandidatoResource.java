@@ -45,6 +45,22 @@ public class CandidatoResource {
             .build();
     }
 
+
+    @POST
+    @Path("/batch")
+    @RolesAllowed({ "USER_ROLE", "ADMIN_ROLE" })
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @APIResponse(responseCode = "201", description = "Candidato criado com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = CandidatoCadastroDTO.class)))
+    @Operation(summary = "Criar", description = "Cria um candidato")
+    public Response criar(List<CandidatoCadastroDTO> candidatoDTO) {
+        candidatoDTO.forEach(candidatoService::criarCandidato);
+
+        return Response.status(Response.Status.CREATED)
+                .entity("OK")
+                .build();
+    }
+
     @PUT
     @RolesAllowed({ "USER_ROLE", "ADMIN_ROLE" })
     @Produces(MediaType.APPLICATION_JSON)
